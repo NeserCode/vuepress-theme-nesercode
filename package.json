@@ -1,0 +1,24 @@
+{
+	"name": "vuepress-theme-nesercode",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/NeserCode/vuepress-theme-nesercode.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/NeserCode/vuepress-theme-nesercode/issues"
+	},
+	"homepage": "https://github.com/NeserCode/vuepress-theme-nesercode#readme",
+	"devDependencies": {
+		"vuepress": "^2.0.0-beta.49"
+	}
+}
