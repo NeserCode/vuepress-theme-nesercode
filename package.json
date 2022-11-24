@@ -1,5 +1,5 @@
 {
-	"name": "vuepress-theme-nesercode",
+	"name": "@nesercode/vuepress-theme-nesercode",
 	"version": "1.0.0",
 	"description": "a theme for vuepress2 by NeserCode",
 	"main": "lib/node/index.js",
