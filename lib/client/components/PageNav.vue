@@ -1,103 +1,54 @@
 <script setup lang="ts">
-import AutoLink from '@theme/AutoLink.vue'
-import { usePageFrontmatter } from '@vuepress/client'
-import { isPlainObject, isString } from '@vuepress/shared'
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import type {
-  DefaultThemeNormalPageFrontmatter,
-  NavLink,
-  ResolvedSidebarItem,
-} from '../../shared'
-import { useNavLink, useSidebarItems } from '../composables'
+import AutoLink from "@theme/AutoLink.vue"
+import { usePageData } from "@vuepress/client"
+import { computed } from "vue"
 
-/**
- * Resolve `prev` or `next` config from frontmatter
- */
-const resolveFromFrontmatterConfig = (
-  conf: unknown
-): null | false | NavLink => {
-  if (conf === false) {
-    return null
-  }
+const page = usePageData()
 
-  if (isString(conf)) {
-    return useNavLink(conf)
-  }
-
-  if (isPlainObject<NavLink>(conf)) {
-    return conf
-  }
-
-  return false
-}
-
-/**
- * Resolve `prev` or `next` config from sidebar items
- */
-const resolveFromSidebarItems = (
-  sidebarItems: ResolvedSidebarItem[],
-  currentPath: string,
-  offset: number
-): null | NavLink => {
-  const index = sidebarItems.findIndex((item) => item.link === currentPath)
-  if (index !== -1) {
-    const targetItem = sidebarItems[index + offset]
-    if (!targetItem?.link) {
-      return null
-    }
-    return targetItem as NavLink
-  }
-
-  for (const item of sidebarItems) {
-    if (item.children) {
-      const childResult = resolveFromSidebarItems(
-        item.children,
-        currentPath,
-        offset
-      )
-      if (childResult) {
-        return childResult
-      }
-    }
-  }
-
-  return null
-}
-
-const frontmatter = usePageFrontmatter<DefaultThemeNormalPageFrontmatter>()
-const sidebarItems = useSidebarItems()
-const route = useRoute()
-
-const prevNavLink = computed(() => {
-  const prevConfig = resolveFromFrontmatterConfig(frontmatter.value.prev)
-  if (prevConfig !== false) {
-    return prevConfig
-  }
-
-  return resolveFromSidebarItems(sidebarItems.value, route.path, -1)
-})
-
-const nextNavLink = computed(() => {
-  const nextConfig = resolveFromFrontmatterConfig(frontmatter.value.next)
-  if (nextConfig !== false) {
-    return nextConfig
-  }
-
-  return resolveFromSidebarItems(sidebarItems.value, route.path, 1)
-})
+const prevNavLink = computed(() => page.value.prev)
+const nextNavLink = computed(() => page.value.next)
 </script>
 
 <template>
-  <nav v-if="prevNavLink || nextNavLink" class="page-nav">
-    <p class="inner">
-      <span v-if="prevNavLink" class="prev">
-        <AutoLink :item="prevNavLink" />
-      </span>
+	<nav v-if="prevNavLink || nextNavLink" class="page-nav">
+		<p class="inner">
+			<router-link :to="prevNavLink.path" v-if="prevNavLink" class="prev">
+				<span class="prefix">上一页</span>
+				<span>{{ prevNavLink.title }}</span>
+			</router-link>
 
-      <span v-if="nextNavLink" class="next">
-        <AutoLink :item="nextNavLink" />
-      </span>
-    </p>
-  </nav>
+			<router-link :to="nextNavLink.path" v-if="nextNavLink" class="next">
+				<span class="prefix">下一页</span>
+				<span>{{
+					nextNavLink.title === "" ? "No title" : nextNavLink.title
+				}}</span>
+			</router-link>
+		</p>
+	</nav>
 </template>
+
+<style lang="postcss" scoped>
+.prev,
+.next {
+	@apply inline-flex flex-col justify-center mx-2 px-2 rounded
+	border-2 border-gray-200 dark:border-gray-700
+	transition-all;
+}
+
+.prev:hover,
+.next:hover {
+	@apply border-gray-300 dark:border-gray-600;
+}
+
+.prefix {
+	@apply font-thin text-sm text-gray-400 pt-1;
+}
+
+.prev {
+	@apply text-left;
+}
+
+.next {
+	@apply text-right;
+}
+</style>

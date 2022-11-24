@@ -1,4 +1,4 @@
-import type { NavLink } from '../../shared';
+import type { NavLink } from '../../shared/index.js';
 declare module 'vue-router' {
     interface RouteMeta {
         title?: string;

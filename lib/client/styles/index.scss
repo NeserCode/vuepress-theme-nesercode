@@ -17,3 +17,31 @@
 @use 'transitions';
 
 @use '@vuepress/plugin-palette/style';
+
+/* Tailwind Css Import */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@layer base {
+  h1 {
+    @apply text-4xl font-semibold flex items-center py-2;
+  }
+  h2 {
+    @apply text-2xl font-semibold flex items-center py-2;
+  }
+  h3 {
+    @apply text-xl font-semibold flex items-center py-2;
+  }
+  a {
+    @apply text-green-400;
+  }
+  p{
+    @apply my-2;
+  }
+  ul,ol,li{
+    list-style: revert;
+  }
+  ul,ol{
+    @apply pl-6;
+  }
+}
+@import 'tailwindcss/utilities';
