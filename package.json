@@ -1,6 +1,6 @@
 {
 	"name": "@nesercode/vuepress-theme-nesercode",
-	"version": "1.0.0-beta.1",
+	"version": "1.0.0-beta.2",
 	"description": "a theme for vuepress2 by NeserCode",
 	"main": "lib/node/index.js",
 	"types": "lib/node/index.d.ts",
@@ -23,10 +23,6 @@
 		"url": "https://github.com/NeserCode/vuepress-theme-nesercode/issues"
 	},
 	"homepage": "https://github.com/NeserCode/vuepress-theme-nesercode#readme",
-	"devDependencies": {
-		"@vuepress/bundler-vite": "2.0.0-beta.51",
-		"@vuepress/bundler-webpack": "2.0.0-beta.51"
-	},
 	"exports": {
 		".": "./lib/node/index.js",
 		"./client": "./lib/client/index.js",
@@ -52,7 +48,10 @@
 		"@nesercode/vuepress-neser-down-to-comment": "^1.0.0",
 		"@nesercode/vuepress-plugin-theme-nesercode": "^1.1.0",
 		"@vuepress/client": "2.0.0-beta.51",
+		"@vuepress/cli": "2.0.0-beta.51",
 		"@vuepress/core": "2.0.0-beta.51",
+		"@vuepress/bundler-vite": "2.0.0-beta.51",
+		"@vuepress/bundler-webpack": "2.0.0-beta.51",
 		"@vuepress/plugin-active-header-links": "2.0.0-beta.51",
 		"@vuepress/plugin-container": "2.0.0-beta.51",
 		"@vuepress/plugin-external-link-icon": "2.0.0-beta.51",
