@@ -1,9 +1,10 @@
 {
 	"name": "@nesercode/vuepress-theme-nesercode",
-	"version": "1.0.0-beta.2",
+	"version": "1.0.0-beta.3",
 	"description": "a theme for vuepress2 by NeserCode",
 	"main": "lib/node/index.js",
 	"types": "lib/node/index.d.ts",
+	"type": "module",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
@@ -72,34 +73,17 @@
 		"autoprefixer": "^10.4.8",
 		"postcss": "^8.4.16",
 		"sass": "^1.53.0",
+		"sass-loader": "^13.0.0",
 		"tailwindcss": "^3.1.8",
 		"vuepress": "^2.0.0-beta.51",
 		"vuepress-plugin-blog2": "^2.0.0-beta.110",
 		"vuepress-plugin-copy-code2": "^2.0.0-beta.110",
 		"vuepress-plugin-md-enhance": "^2.0.0-beta.110",
 		"vuepress-plugin-reading-time2": "^2.0.0-beta.110",
+		"vuepress-vite": "2.0.0-beta.51",
+		"vuepress-webpack": "2.0.0-beta.51",
 		"vue": "^3.2.37",
 		"vue-router": "^4.1.2"
-	},
-	"peerDependencies": {
-		"sass-loader": "^13.0.0",
-		"vuepress": "2.0.0-beta.51",
-		"vuepress-vite": "2.0.0-beta.51",
-		"vuepress-webpack": "2.0.0-beta.51"
-	},
-	"peerDependenciesMeta": {
-		"sass-loader": {
-			"optional": true
-		},
-		"vuepress": {
-			"optional": true
-		},
-		"vuepress-vite": {
-			"optional": true
-		},
-		"vuepress-webpack": {
-			"optional": true
-		}
 	},
 	"publishConfig": {
 		"access": "public"
