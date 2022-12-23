@@ -1,6 +1,6 @@
 {
 	"name": "@nesercode/vuepress-theme-nesercode",
-	"version": "1.0.0-beta.4",
+	"version": "1.0.0-beta.5",
 	"description": "a theme for vuepress2 by NeserCode",
 	"main": "lib/node/index.js",
 	"types": "lib/node/index.d.ts",

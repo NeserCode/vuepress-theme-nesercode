@@ -1,14 +1,9 @@
 <script setup>
 import Pagination from "./Pagination.vue"
-import { acticles as rawActicles } from "../../../../.temp/articles"
+import { acticles as rawActicles } from "@temp/articles"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
-import { computed, ref, watch, onMounted } from "vue"
-import {
-	Disclosure,
-	DisclosureButton,
-	DisclosurePanel,
-	TransitionRoot,
-} from "@headlessui/vue"
+import { computed, ref, watch } from "vue"
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue"
 import { ChevronUpIcon } from "@heroicons/vue/20/solid"
 
 const page = usePageData()
