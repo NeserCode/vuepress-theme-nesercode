@@ -36,7 +36,6 @@ export default {
 				],
 			},
 		],
-		sidebar: false,
 		themePlugins: {
 			// to-do: Disable back-to-top
 			backToTop: false,

@@ -26,6 +26,17 @@ const createdTime = computed(() => {
 	}
 	return page.value.frontmatter.date ?? "[非法时间替换词]"
 })
+
+const tocOptions = {
+	containerTag: "nav",
+	containerClass: "toc-main",
+	listClass: "vuepress-toc-list",
+	itemClass: "vuepress-toc-item",
+	linkTag: "a",
+	linkClass: "vuepress-toc-link",
+	linkActiveClass: "active",
+	linkChildrenActiveClass: "active",
+}
 </script>
 
 <template>
@@ -58,7 +69,7 @@ const createdTime = computed(() => {
 			<slot name="bottom" />
 		</div>
 		<aside class="sidebar-custom">
-			<Toc />
+			<Toc :options="tocOptions" />
 		</aside>
 	</main>
 </template>

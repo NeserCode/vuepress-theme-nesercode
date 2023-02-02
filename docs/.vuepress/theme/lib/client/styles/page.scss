@@ -10,6 +10,82 @@
 		padding: 0;
 	}
 
+	.sidebar-custom {
+		max-width: fit-content;
+		padding: 0;
+
+		display: inline-flex;
+		flex-direction: column;
+
+		.toc-main {
+			.vuepress-toc-list {
+				display: inline-flex;
+				justify-content: center;
+				flex-direction: column;
+				padding-left: 0.5rem;
+				list-style: none;
+				.vuepress-toc-item {
+					display: inline-flex;
+					flex-direction: column;
+					list-style: none;
+					.vuepress-toc-list {
+						.vuepress-toc-item {
+							padding-left: 0.5rem;
+						}
+					}
+				}
+			}
+		}
+
+		/* Active */
+		.toc-main > .vuepress-toc-list > .vuepress-toc-item > .vuepress-toc-list {
+			display: none;
+		}
+		.toc-main
+			> .vuepress-toc-list:has(.vuepress-toc-list .vuepress-toc-link.active),
+		.toc-main
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			> .vuepress-toc-list:has(.vuepress-toc-link.active),
+		.toc-main
+			> .vuepress-toc-list
+			> .vuepress-toc-item:has(.vuepress-toc-link.active)
+			> .vuepress-toc-list {
+			display: inline-flex;
+		}
+		.toc-main
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			.vuepress-toc-link.active::before {
+			position: relative;
+			display: inline-block;
+			width: 3px;
+			top: 0.5ch;
+			left: -8px;
+			background-color: var(--c-text-lighter);
+			content: " ";
+			height: 2ch;
+		}
+		.toc-main
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			.vuepress-toc-link.active {
+			color: aqua;
+			font-weight: 600;
+		}
+		.toc-main
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			.vuepress-toc-link.active {
+			color: goldenrod;
+			font-weight: 600;
+		}
+	}
+
 	.page-header {
 		display: inline-flex;
 		flex-direction: column;
@@ -66,6 +142,12 @@
 	}
 }
 
+@media (max-width: $MQDesktop) {
+	.sidebar-custom {
+		display: none;
+	}
+}
+
 @media (max-width: $MQMobile) {
 	.page-meta {
 		.last-updated {
@@ -76,12 +158,6 @@
 		.contributors {
 			font-size: 0.8em;
 		}
-	}
-}
-
-@media (max-width: $MQDesktop) {
-	.sidebar-custom {
-		display: none;
 	}
 }
 

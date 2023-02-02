@@ -3,7 +3,7 @@
 
 .page {
 	padding-top: var(--navbar-height);
-	padding-left: var(--sidebar-width);
+	padding-left: 0;
 }
 
 .navbar {
@@ -162,7 +162,7 @@
 	}
 
 	.page {
-		padding-left: var(--sidebar-width-mobile);
+		padding-left: 0;
 	}
 }
 
