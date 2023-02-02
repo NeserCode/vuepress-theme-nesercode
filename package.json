@@ -1,5 +1,34 @@
 {
-  "devDependencies": {
-    "vuepress": "^2.0.0-beta.60"
-  }
+	"name": "@vuepress/theme-nesercode",
+	"version": "1.0.0-beta.1",
+	"description": "More clear theme of VuePress for personal blog.",
+	"keywords": [
+		"vuepress-theme",
+		"vuepress",
+		"theme",
+		"blog"
+	],
+	"homepage": "https://github.com/nesercode",
+	"bugs": {
+		"url": "https://github.com/nesercode/vuepress-theme-nesercode/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nesercode/vuepress-theme-nesercode.git"
+	},
+	"license": "MIT",
+	"author": "Nesercode",
+	"devDependencies": {
+		"vuepress": "^2.0.0-beta.60",
+		"vuepress-plugin-blog2": "^2.0.0-beta.171",
+		"vuepress-plugin-comment2": "^2.0.0-beta.171",
+		"vuepress-plugin-reading-time2": "^2.0.0-beta.171"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"dev": "vuepress dev docs",
+		"build": "vuepress build docs"
+	}
 }
