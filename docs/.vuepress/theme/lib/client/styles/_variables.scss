@@ -1,6 +1,7 @@
-@import '@vuepress/plugin-palette/palette';
+@import "@vuepress/plugin-palette/palette";
 
 // responsive breakpoints
+$MQDesktop: 1199px !default;
 $MQNarrow: 959px !default;
 $MQMobile: 719px !default;
 $MQMobileNarrow: 419px !default;

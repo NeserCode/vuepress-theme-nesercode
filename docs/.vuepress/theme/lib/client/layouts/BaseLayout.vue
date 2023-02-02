@@ -1,5 +1,7 @@
 <script setup lang="ts">
+// @ts-ignore
 import Navbar from "@theme/Navbar.vue"
+// @ts-ignore
 import Sidebar from "@theme/Sidebar.vue"
 import { usePageFrontmatter } from "@vuepress/client"
 import { computed, onMounted, onUnmounted, ref } from "vue"

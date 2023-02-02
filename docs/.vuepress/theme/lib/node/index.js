@@ -1,5 +1,5 @@
-import { defaultTheme } from './defaultTheme.js';
+import { nesercodeTheme } from './nesercodeTheme.js';
 export * from '../shared/index.js';
-export * from './defaultTheme.js';
+export * from './nesercodeTheme.js';
 export * from './utils/index.js';
-export default defaultTheme;
+export default nesercodeTheme;

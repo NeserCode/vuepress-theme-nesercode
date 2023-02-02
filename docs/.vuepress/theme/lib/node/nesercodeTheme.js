@@ -8,13 +8,14 @@ import { nprogressPlugin } from '@vuepress/plugin-nprogress';
 import { palettePlugin } from '@vuepress/plugin-palette';
 import { prismjsPlugin } from '@vuepress/plugin-prismjs';
 import { themeDataPlugin } from '@vuepress/plugin-theme-data';
+import { tocPlugin } from '@vuepress/plugin-toc';
 import { fs, getDirname, path } from '@vuepress/utils';
 import { assignDefaultLocaleOptions, resolveContainerPluginOptions, } from './utils/index.js';
 const __dirname = getDirname(import.meta.url);
-export const defaultTheme = ({ themePlugins = {}, ...localeOptions } = {}) => {
+export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => {
     assignDefaultLocaleOptions(localeOptions);
     return {
-        name: '@vuepress/theme-default',
+        name: '@nesercode/vuepress-theme-nesercodeTheme',
         templateBuild: path.resolve(__dirname, '../../templates/build.html'),
         alias: {
             // use alias to make all components replaceable
@@ -22,9 +23,9 @@ export const defaultTheme = ({ themePlugins = {}, ...localeOptions } = {}) => {
                 .readdirSync(path.resolve(__dirname, '../client/components'))
                 .filter((file) => file.endsWith('.vue'))
                 .map((file) => [
-                `@theme/${file}`,
-                path.resolve(__dirname, '../client/components', file),
-            ])),
+                    `@theme/${file}`,
+                    path.resolve(__dirname, '../client/components', file),
+                ])),
         },
         clientConfigFile: path.resolve(__dirname, '../client/config.js'),
         extendsPage: (page) => {
@@ -112,6 +113,7 @@ export const defaultTheme = ({ themePlugins = {}, ...localeOptions } = {}) => {
             themePlugins.prismjs !== false ? prismjsPlugin() : [],
             // @vuepress/plugin-theme-data
             themeDataPlugin({ themeData: localeOptions }),
+            tocPlugin(),
         ],
     };
 };

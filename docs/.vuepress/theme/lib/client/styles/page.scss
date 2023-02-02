@@ -3,14 +3,20 @@
 
 .page {
 	padding-bottom: 2rem;
-	display: block;
+	padding-top: 6rem;
+	display: inline-flex;
+
+	.main-custom {
+		padding: 0;
+	}
 
 	.page-header {
 		display: inline-flex;
-		align-items: center;
+		flex-direction: column;
+		justify-content: center;
 		padding: 0;
 
-		color: var(--c-text-lightest);
+		color: var(--c-text-lighter);
 		font-size: 0.875rem;
 		font-weight: 300;
 	}
@@ -70,6 +76,12 @@
 		.contributors {
 			font-size: 0.8em;
 		}
+	}
+}
+
+@media (max-width: $MQDesktop) {
+	.sidebar-custom {
+		display: none;
 	}
 }
 
