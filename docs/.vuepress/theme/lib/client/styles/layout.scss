@@ -59,7 +59,6 @@
 
 .theme-container {
 	display: inline-flex;
-	justify-content: center;
 	&.sidebar-open {
 		.sidebar-mask {
 			display: block;
@@ -107,6 +106,11 @@
 		.sidebar {
 			top: 0;
 		}
+	}
+}
+@media (max-width: $MQDesktop) {
+	.theme-container {
+		display: block;
 	}
 }
 .theme-container.no-sidebar {

@@ -60,28 +60,23 @@
 			> .vuepress-toc-list {
 			display: inline-flex;
 		}
+
 		.toc-main
 			> .vuepress-toc-list
 			> .vuepress-toc-item
 			> .vuepress-toc-list
 			> .vuepress-toc-item
-			.vuepress-toc-link.active::before {
-			position: relative;
-			display: inline-block;
-			width: 3px;
-			top: 0.5ch;
-			left: -1.2rem;
-			background-color: lightblue;
-			border: 1px gray solid;
-			content: " ";
-			height: 2.5ch;
+			> .vuepress-toc-link.active {
+			text-decoration: underline;
+			text-underline-offset: 0.3rem;
+			text-underline-position: left;
 		}
+
 		.toc-main
 			> .vuepress-toc-list
 			> .vuepress-toc-item
 			.vuepress-toc-link.active {
 			color: var(--c-text-lightest);
-			font-weight: 600;
 		}
 		.toc-main
 			> .vuepress-toc-list
@@ -90,7 +85,6 @@
 			> .vuepress-toc-item
 			.vuepress-toc-link.active {
 			color: var(--c-text-lighter);
-			font-weight: 600;
 		}
 	}
 
@@ -151,8 +145,11 @@
 }
 
 @media (max-width: $MQDesktop) {
-	.sidebar-custom {
-		display: none;
+	.page {
+		display: block;
+		.sidebar-custom {
+			display: none;
+		}
 	}
 }
 
