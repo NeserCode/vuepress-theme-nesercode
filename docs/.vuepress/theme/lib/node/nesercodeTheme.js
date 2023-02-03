@@ -9,13 +9,26 @@ import { palettePlugin } from '@vuepress/plugin-palette';
 import { prismjsPlugin } from '@vuepress/plugin-prismjs';
 import { themeDataPlugin } from '@vuepress/plugin-theme-data';
 import { tocPlugin } from '@vuepress/plugin-toc';
+import { getBlogPlugin } from './plugins/blog'
 import { fs, getDirname, path } from '@vuepress/utils';
-import { assignDefaultLocaleOptions, resolveContainerPluginOptions, } from './utils/index.js';
+
+import {
+    assignDefaultLocaleOptions,
+    resolveContainerPluginOptions,
+    useGitPlugin
+} from './utils/index.js';
+
 const __dirname = getDirname(import.meta.url);
-export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => {
+
+export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => (app) => {
     assignDefaultLocaleOptions(localeOptions);
+    useGitPlugin(app, {
+        createdTime: true,
+        updatedTime: localeOptions.lastUpdated !== false,
+        contributors: localeOptions.contributors !== false,
+    })
     return {
-        name: '@nesercode/vuepress-theme-nesercodeTheme',
+        name: '@nesercode/vuepress-theme-nesercode',
         templateBuild: path.resolve(__dirname, '../../templates/build.html'),
         alias: {
             // use alias to make all components replaceable
@@ -113,7 +126,10 @@ export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => 
             themePlugins.prismjs !== false ? prismjsPlugin() : [],
             // @vuepress/plugin-theme-data
             themeDataPlugin({ themeData: localeOptions }),
+            // Toc plugin [@vuepress/plugin-toc] for sidebar category
             tocPlugin(),
+            // Blog plugin
+            getBlogPlugin(),
         ],
     };
 };

@@ -2,8 +2,12 @@ import { defineClientConfig } from '@vuepress/client';
 import { h } from 'vue';
 import { Badge, CodeGroup, CodeGroupItem } from './components/global/index.js';
 import { setupDarkMode, setupSidebarItems, useScrollPromise, } from './composables/index.js';
+// Layouts
 import Layout from './layouts/Layout.vue';
 import NotFound from './layouts/NotFound.vue';
+import TimeLine from './layouts/TimeLine.vue';
+import TagPage from './layouts/TagPage.vue'
+// Style
 import './styles/index.scss';
 export default defineClientConfig({
     enhance({ app, router }) {
@@ -40,5 +44,7 @@ export default defineClientConfig({
     layouts: {
         Layout,
         NotFound,
+        TimeLine,
+        TagPage
     },
 });

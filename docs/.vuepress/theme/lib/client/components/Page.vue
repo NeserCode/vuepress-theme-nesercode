@@ -19,13 +19,14 @@ type ExtraPageData = PageData & {
 
 const page: Ref<ExtraPageData> = usePageData()
 
-console.log(page.value)
 const createdTime = computed(() => {
 	if (page.value.git.createdTime !== undefined) {
 		return new Date(page.value.git.createdTime).toLocaleString()
 	}
 	return page.value.frontmatter.date ?? "[非法时间替换词]"
 })
+
+console.log(page.value)
 
 const tocOptions = {
 	containerTag: "nav",

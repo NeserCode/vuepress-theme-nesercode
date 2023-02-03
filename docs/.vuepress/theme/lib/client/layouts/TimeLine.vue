@@ -9,6 +9,7 @@ import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import type { DefaultThemePageFrontmatter } from "../../shared/index.js"
 import { useScrollPromise } from "../composables/index.js"
 
+import { useBlogType } from "vuepress-plugin-blog2/client"
 const page = usePageData()
 const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>()
 
@@ -16,6 +17,9 @@ const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>()
 const scrollPromise = useScrollPromise()
 const onBeforeEnter = scrollPromise.resolve
 const onBeforeLeave = scrollPromise.pending
+
+const blogType = useBlogType()
+console.log(blogType.value)
 </script>
 
 <template>
