@@ -10,6 +10,7 @@ import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import { PageData, PageFrontmatter } from "@vuepress/client"
 import { GitData } from "@vuepress/plugin-git"
 import { ReadingTime } from "vuepress-plugin-reading-time2"
+import { isArray } from "@vue/shared"
 
 type ExtraPageData = PageData & {
 	readingTime: ReadingTime
@@ -36,10 +37,19 @@ const createdTime = computed(() => {
 	return frontmatter.value.date ?? "[非法时间替换词]"
 })
 
-console.log(page.value, frontmatter.value)
 // Plugins Options
 const isOpenSdiebarCategory = computed(() => {
-	return !(frontmatter.value.plugins?.sidebarCategory === false)
+	if (typeof frontmatter.value.plugins === "undefined") return true
+	else if (isArray(frontmatter.value.plugins)) {
+		let tempValue = true
+		for (let i = 0; i < frontmatter.value.plugins.length; i++) {
+			Object.keys(frontmatter.value.plugins[i]).forEach((key) => {
+				if (key === "sidebarCategory")
+					tempValue = frontmatter.value.plugins![i][key]
+			})
+		}
+		return tempValue
+	} else return !(frontmatter.value.plugins.sidebarCategory === false)
 })
 const tocOptions = {
 	containerTag: "nav",
@@ -58,6 +68,8 @@ const isOpenReadingTime = computed(() => {
 const isOpenReadingLine = computed(() => {
 	return !(frontmatter.value.plugins?.readingLine === false)
 })
+
+console.log(page.value, frontmatter.value)
 </script>
 
 <template>
