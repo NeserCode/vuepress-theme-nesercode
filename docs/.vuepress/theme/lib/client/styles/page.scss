@@ -23,8 +23,8 @@
 			position: sticky;
 			top: calc(2rem + var(--navbar-height));
 			& > .vuepress-toc-list {
-				border: 0px gray solid;
-				border-left-width: 1.5px;
+				border: 0px var(--c-text-accent) solid;
+				border-left-width: 1px;
 			}
 			.vuepress-toc-list {
 				display: inline-flex;
@@ -37,9 +37,6 @@
 				.vuepress-toc-item {
 					display: inline-flex;
 					flex-direction: column;
-					list-style: none;
-
-					transition: all ease-in-out 300;
 				}
 			}
 		}
@@ -76,7 +73,7 @@
 			> .vuepress-toc-list
 			> .vuepress-toc-item
 			.vuepress-toc-link.active {
-			color: var(--c-text-lightest);
+			color: var(--c-text-lighter);
 		}
 		.toc-main
 			> .vuepress-toc-list
@@ -84,7 +81,7 @@
 			> .vuepress-toc-list
 			> .vuepress-toc-item
 			.vuepress-toc-link.active {
-			color: var(--c-text-lighter);
+			color: var(--c-text-lightest);
 		}
 	}
 

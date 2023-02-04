@@ -1,6 +1,8 @@
 ---
 about: true
 permalink: /about
+plugins:
+  - sidebarCategory: false
 ---
 
 # 关于
