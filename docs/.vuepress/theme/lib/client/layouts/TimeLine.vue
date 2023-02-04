@@ -8,7 +8,7 @@ import Page from "@theme/Page.vue"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import type { DefaultThemePageFrontmatter } from "../../shared/index.js"
 import { useScrollPromise } from "../composables/index.js"
-
+// @ts-ignore
 import { useBlogType } from "vuepress-plugin-blog2/client"
 const page = usePageData()
 const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>()
@@ -25,10 +25,7 @@ console.log(blogType.value)
 <template>
 	<base-layout>
 		<template #page>
-			<Home v-if="frontmatter.home" />
-
 			<Transition
-				v-else
 				name="fade-slide-y"
 				mode="out-in"
 				@before-enter="onBeforeEnter"

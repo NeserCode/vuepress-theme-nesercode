@@ -5,9 +5,9 @@ import PageMeta from "@theme/PageMeta.vue"
 import PageNav from "@theme/PageNav.vue"
 import { computed } from "vue"
 import { Ref } from "@vue/reactivity"
-import { usePageData } from "@vuepress/client"
+import { usePageData, usePageFrontmatter } from "@vuepress/client"
 
-import { PageData } from "@vuepress/client"
+import { PageData, PageFrontmatter } from "@vuepress/client"
 import { GitData } from "@vuepress/plugin-git"
 import { ReadingTime } from "vuepress-plugin-reading-time2"
 
@@ -17,17 +17,30 @@ type ExtraPageData = PageData & {
 	git: GitData
 }
 
+type ExtraPageFrontmatter = PageFrontmatter & {
+	plugins?: {
+		readingTime?: boolean
+		readingLine?: boolean
+		comment?: boolean
+		sidebarCategory?: boolean
+	}
+}
+
 const page: Ref<ExtraPageData> = usePageData()
+const frontmatter: Ref<ExtraPageFrontmatter> = usePageFrontmatter()
 
 const createdTime = computed(() => {
 	if (page.value.git.createdTime !== undefined) {
 		return new Date(page.value.git.createdTime).toLocaleString()
 	}
-	return page.value.frontmatter.date ?? "[非法时间替换词]"
+	return frontmatter.value.date ?? "[非法时间替换词]"
 })
 
-console.log(page.value)
-
+console.log(page.value, frontmatter.value)
+// Plugins Options
+const isOpenSdiebarCategory = computed(() => {
+	return !(frontmatter.value.plugins?.sidebarCategory === false)
+})
 const tocOptions = {
 	containerTag: "nav",
 	containerClass: "toc-main",
@@ -38,6 +51,13 @@ const tocOptions = {
 	linkActiveClass: "active",
 	linkChildrenActiveClass: "active",
 }
+
+const isOpenReadingTime = computed(() => {
+	return !(frontmatter.value.plugins?.readingTime === false)
+})
+const isOpenReadingLine = computed(() => {
+	return !(frontmatter.value.plugins?.readingLine === false)
+})
 </script>
 
 <template>
@@ -48,11 +68,13 @@ const tocOptions = {
 			<div class="theme-default-content">
 				<h1 class="page-title-custom">{{ page.title }}</h1>
 				<div class="page-header">
-					<span class="reading-time">
-						📖 共 {{ page.readingTime.words }} 字，预计需要
-						{{ page.readingTime.minutes }} 分钟
+					<span class="reading-time-main" v-if="isOpenReadingTime">
+						<span class="reading-time">
+							📖 共 {{ page.readingTime.words }} 字，预计需要
+							{{ page.readingTime.minutes }} 分钟
+						</span>
+						<span class="created-time"> 写于 {{ createdTime }} </span>
 					</span>
-					<span class="created-time"> 写于 {{ createdTime }} </span>
 				</div>
 				<slot name="content-top" />
 
@@ -70,7 +92,8 @@ const tocOptions = {
 			<slot name="bottom" />
 		</div>
 		<aside class="sidebar-custom">
-			<Toc :options="tocOptions" />
+			<Toc :options="tocOptions" v-if="isOpenSdiebarCategory" />
+			<slot name="sidebar-custom" />
 		</aside>
 	</main>
 </template>

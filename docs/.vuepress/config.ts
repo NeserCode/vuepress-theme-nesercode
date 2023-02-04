@@ -25,6 +25,11 @@ export default {
 				link: "/blog/about/aboutme.md",
 			},
 			{
+				text: "时",
+				activeMatch: "^/timeLine/",
+				link: "/timeLine/",
+			},
+			{
 				text: "起步",
 				children: [
 					{

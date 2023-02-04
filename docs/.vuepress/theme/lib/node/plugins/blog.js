@@ -37,7 +37,16 @@ export const getBlogPlugin = () => blogPlugin({
       getter: ({ frontmatter }) => (frontmatter.tag || []),
       path: "/tag/",
       layout: "TagPage",
-      frontmatter: (path) => ({ title: "类", localePath: path }),
+      frontmatter: (path) => ({
+        title: "类",
+        localePath: path,
+        plugins: {
+          readingTime: false,
+          readingLine: false,
+          comment: false,
+          sidebarCategory: false,
+        }
+      }),
       itemPath: "/tag/:name/",
       itemLayout: "TagPage",
       itemFrontmatter: (name, path) => ({ title: `${name} 标签`, localePath: path }),
@@ -53,6 +62,12 @@ export const getBlogPlugin = () => blogPlugin({
       frontmatter: (path) => ({
         title: "时",
         localePath: path,
+        plugins: {
+          readingTime: false,
+          readingLine: false,
+          comment: false,
+          sidebarCategory: false,
+        }
       }),
     }
   ],

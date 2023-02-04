@@ -1,8 +1,6 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 // @ts-ignore
 import BaseLayout from "./BaseLayout.vue"
-// @ts-ignore
-import Home from "@theme/Home.vue"
 // @ts-ignore
 import Page from "@theme/Page.vue"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
