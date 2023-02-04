@@ -19,8 +19,8 @@
 	"license": "MIT",
 	"author": "Nesercode",
 	"devDependencies": {
-		"@vuepress/plugin-toc": "^2.0.0-beta.60",
-		"vuepress": "^2.0.0-beta.60",
+		"@vuepress/plugin-toc": "2.0.0-beta.60",
+		"vuepress": "2.0.0-beta.60",
 		"vuepress-plugin-blog2": "^2.0.0-beta.171",
 		"vuepress-plugin-comment2": "^2.0.0-beta.171",
 		"vuepress-plugin-reading-time2": "^2.0.0-beta.171"
@@ -30,6 +30,7 @@
 	},
 	"scripts": {
 		"dev": "vuepress dev docs",
-		"build": "vuepress build docs"
+		"build": "vuepress build docs",
+		"info": "vuepress info"
 	}
 }

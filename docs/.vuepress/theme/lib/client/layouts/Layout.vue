@@ -5,6 +5,10 @@ import BaseLayout from "./BaseLayout.vue"
 import Home from "@theme/Home.vue"
 // @ts-ignore
 import Page from "@theme/Page.vue"
+// @ts-ignore
+import ReadingLine from "@theme/ReadingLine.vue"
+
+import { computed } from "vue"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import type { DefaultThemePageFrontmatter } from "../../shared/index.js"
 import { useScrollPromise } from "../composables/index.js"
@@ -16,11 +20,22 @@ const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>()
 const scrollPromise = useScrollPromise()
 const onBeforeEnter = scrollPromise.resolve
 const onBeforeLeave = scrollPromise.pending
+
+// calculate reading progress
+const readingProgress = computed(() => {
+	return Math.round(
+		(document.documentElement.scrollTop /
+			(document.documentElement.scrollHeight -
+				document.documentElement.clientHeight)) *
+			100
+	)
+})
 </script>
 
 <template>
 	<base-layout>
 		<template #page>
+			<reading-line :reading-progress="readingProgress" />
 			<Home v-if="frontmatter.home" />
 
 			<Transition

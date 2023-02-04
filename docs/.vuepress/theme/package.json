@@ -1,12 +1,11 @@
 {
-	"name": "@vuepress/theme-default",
-	"version": "2.0.0-beta.60",
+	"name": "@nesercode/theme-nesercode",
+	"version": "1.0.0-beta.1",
 	"description": "Default theme of VuePress",
 	"keywords": [
 		"vuepress-theme",
 		"vuepress",
-		"theme",
-		"default"
+		"theme"
 	],
 	"homepage": "https://github.com/vuepress",
 	"bugs": {

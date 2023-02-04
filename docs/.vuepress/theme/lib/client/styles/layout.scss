@@ -15,8 +15,14 @@
 	height: var(--navbar-height);
 	box-sizing: border-box;
 	border-bottom: 1px solid var(--c-border);
-	background-color: var(--c-bg-navbar);
+	// background-color: var(--c-bg-navbar);
+	background-color: rgba(255 255 255 / 0.78);
+	backdrop-filter: blur(0.5rem);
 	transition: background-color var(--t-color), border-color var(--t-color);
+}
+
+html.dark .navbar {
+	background-color: rgba(34 39 46 / 0.65);
 }
 
 .sidebar {
@@ -154,6 +160,34 @@
 			+ .custom-container {
 				margin-top: 2rem;
 			}
+		}
+	}
+}
+
+.reading-line {
+	position: fixed;
+	top: var(--navbar-height);
+	left: 0;
+	width: 100%;
+	height: 0.125rem;
+	background: transparent;
+	z-index: 999;
+	transition: all 0.3s ease;
+	.reading-line-main {
+		display: inline-block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 0.125rem;
+		background-color: lightskyblue;
+		transition: all 0.3s ease-in-out;
+	}
+}
+
+html.dark {
+	.reading-line {
+		.reading-line-main {
+			background-color: lightgreen;
 		}
 	}
 }
