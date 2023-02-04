@@ -14,7 +14,6 @@
 		max-width: fit-content;
 		padding: 0;
 		padding-top: 8.8rem;
-		padding-left: 1.25rem;
 
 		display: inline-flex;
 		flex-direction: column;
@@ -22,6 +21,7 @@
 		.toc-main {
 			position: sticky;
 			top: calc(2rem + var(--navbar-height));
+			margin-left: 1.25rem;
 			& > .vuepress-toc-list {
 				border: 0px var(--c-text-accent) solid;
 				border-left-width: 1px;

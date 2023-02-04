@@ -30,6 +30,11 @@ export default {
 				link: "/timeLine/",
 			},
 			{
+				text: "类",
+				activeMatch: "^/tag/",
+				link: "/tag/",
+			},
+			{
 				text: "起步",
 				children: [
 					{

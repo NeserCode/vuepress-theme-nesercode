@@ -1,7 +1,11 @@
 <script setup lang="ts">
+// @ts-ignore
 import NavbarBrand from "@theme/NavbarBrand.vue"
+// @ts-ignore
 import NavbarItems from "@theme/NavbarItems.vue"
+// @ts-ignore
 import ToggleColorModeButton from "@theme/ToggleColorModeButton.vue"
+// @ts-ignore
 import ToggleSidebarButton from "@theme/ToggleSidebarButton.vue"
 import { computed, onMounted, ref } from "vue"
 import { useThemeLocaleData } from "../composables/index.js"

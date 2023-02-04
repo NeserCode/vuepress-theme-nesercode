@@ -38,19 +38,23 @@ const createdTime = computed(() => {
 })
 
 // Plugins Options
-const isOpenSdiebarCategory = computed(() => {
-	if (typeof frontmatter.value.plugins === "undefined") return true
-	else if (isArray(frontmatter.value.plugins)) {
-		let tempValue = true
-		for (let i = 0; i < frontmatter.value.plugins.length; i++) {
-			Object.keys(frontmatter.value.plugins[i]).forEach((key) => {
-				if (key === "sidebarCategory")
-					tempValue = frontmatter.value.plugins![i][key]
-			})
-		}
-		return tempValue
-	} else return !(frontmatter.value.plugins.sidebarCategory === false)
-})
+function initialPluginState(keyName: string) {
+	return computed(() => {
+		if (typeof frontmatter.value.plugins === "undefined") return true
+		else if (isArray(frontmatter.value.plugins)) {
+			let tempValue = true
+			for (let i = 0; i < frontmatter.value.plugins.length; i++) {
+				Object.keys(frontmatter.value.plugins[i]).forEach((key) => {
+					if (key === keyName && frontmatter.value.plugins)
+						tempValue = frontmatter.value.plugins[i][key]
+				})
+			}
+			return tempValue
+		} else return !(frontmatter.value.plugins[keyName] === false)
+	})
+}
+
+const isOpenSdiebarCategory = initialPluginState("sidebarCategory")
 const tocOptions = {
 	containerTag: "nav",
 	containerClass: "toc-main",
@@ -62,12 +66,8 @@ const tocOptions = {
 	linkChildrenActiveClass: "active",
 }
 
-const isOpenReadingTime = computed(() => {
-	return !(frontmatter.value.plugins?.readingTime === false)
-})
-const isOpenReadingLine = computed(() => {
-	return !(frontmatter.value.plugins?.readingLine === false)
-})
+const isOpenReadingTime = initialPluginState("readingTime")
+const isOpenReadingLine = initialPluginState("readingLine")
 
 console.log(page.value, frontmatter.value)
 </script>

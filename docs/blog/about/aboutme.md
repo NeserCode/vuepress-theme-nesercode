@@ -2,8 +2,8 @@
 about: true
 permalink: /about
 plugins:
-  - reading-time: false
-  - sidebarCategory: false
+  readingTime: true
+  sidebarCategory: false
 ---
 
 # 关于
