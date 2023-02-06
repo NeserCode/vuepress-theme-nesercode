@@ -10,7 +10,6 @@ import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import { PageData, PageFrontmatter } from "@vuepress/client"
 import { GitData } from "@vuepress/plugin-git"
 import { ReadingTime } from "vuepress-plugin-reading-time2"
-import { isArray } from "@vue/shared"
 
 type ExtraPageData = PageData & {
 	readingTime: ReadingTime
@@ -41,7 +40,7 @@ const createdTime = computed(() => {
 function initialPluginState(keyName: string) {
 	return computed(() => {
 		if (typeof frontmatter.value.plugins === "undefined") return true
-		else if (isArray(frontmatter.value.plugins)) {
+		else if (frontmatter.value.plugins instanceof Array) {
 			let tempValue = true
 			for (let i = 0; i < frontmatter.value.plugins.length; i++) {
 				Object.keys(frontmatter.value.plugins[i]).forEach((key) => {
