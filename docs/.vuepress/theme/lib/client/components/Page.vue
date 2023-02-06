@@ -67,8 +67,6 @@ const tocOptions = {
 
 const isOpenReadingTime = initialPluginState("readingTime")
 const isOpenReadingLine = initialPluginState("readingLine")
-
-console.log(page.value, frontmatter.value)
 </script>
 
 <template>
