@@ -2,7 +2,6 @@ import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links';
 import { backToTopPlugin } from '@vuepress/plugin-back-to-top';
 import { containerPlugin } from '@vuepress/plugin-container';
 import { externalLinkIconPlugin } from '@vuepress/plugin-external-link-icon';
-import { gitPlugin } from '@vuepress/plugin-git';
 import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom';
 import { nprogressPlugin } from '@vuepress/plugin-nprogress';
 import { palettePlugin } from '@vuepress/plugin-palette';
@@ -99,14 +98,6 @@ export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => 
                         };
                         return result;
                     }, {}),
-                })
-                : [],
-            // @vuepress/plugin-git
-            themePlugins.git !== false
-                ? gitPlugin({
-                    createdTime: false,
-                    updatedTime: localeOptions.lastUpdated !== false,
-                    contributors: localeOptions.contributors !== false,
                 })
                 : [],
             // @vuepress/plugin-medium-zoom
