@@ -50,6 +50,11 @@ export default {
 			// Disable back-to-top
 			backToTop: false,
 		},
+		// Data helper options
+		helperOptions: {
+			isTempPages: true,
+			pagesStartWith: "/blog/",
+		},
 
 		// theme locales
 		// contributors: false,

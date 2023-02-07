@@ -1,6 +1,6 @@
 {
 	"name": "vuepress-plugin-data-helper",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Data Generator for Theme nesercode.",
 	"type": "module",
 	"types": "./lib/node/index.d.ts",

@@ -1,4 +1,4 @@
-export const useThemePlugin =
+export const useDataHelper =
   (options) => {
     return {
       name: `vuepress-plugin-data-helper`,

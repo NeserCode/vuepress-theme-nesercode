@@ -1,4 +1,5 @@
 import type { ThemeData } from "@vuepress/plugin-theme-data"
+import type { HelperOptions } from "vuepress-plugin-data-helper/lib/share"
 import type { LocaleData } from "@vuepress/shared"
 import type { NavbarConfig, SidebarConfig } from "./nav.js"
 export interface DefaultThemePluginsOptions {
@@ -248,4 +249,9 @@ export interface DefaultThemeLocaleData extends LocaleData {
 	 * @default '"非法时间"'
 	 **/
 	outTime?: string
+	/**
+	 * Data Helper Options
+	 * @default HelperOptions from plugin
+	 */
+	helperOptions: HelperOptions
 }

@@ -40,7 +40,7 @@ onMounted(() => {
 			linksWrapperMaxWidth.value = 0
 		} else if (navbar.value && navbar.value.offsetWidth) {
 			linksWrapperMaxWidth.value =
-				navbar.value!.offsetWidth -
+				navbar.value.offsetWidth -
 				navbarHorizontalPadding -
 				(navbarBrand.value?.offsetWidth || 0)
 		}
