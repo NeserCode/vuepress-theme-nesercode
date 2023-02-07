@@ -47,12 +47,15 @@ export default {
 			},
 		],
 		themePlugins: {
-			// to-do: Disable back-to-top
+			// Disable back-to-top
 			backToTop: false,
 		},
 
-		contributors: false,
+		// theme locales
+		// contributors: false,
+		contributorsText: "作者",
 		lastUpdatedText: "最近更新于",
+		outTime: "时间长河中某处",
 	}),
 
 	plugins: [readingTimePlugin({ wordPerMinute: 200 })],

@@ -8,7 +8,9 @@ import { palettePlugin } from '@vuepress/plugin-palette';
 import { prismjsPlugin } from '@vuepress/plugin-prismjs';
 import { themeDataPlugin } from '@vuepress/plugin-theme-data';
 import { tocPlugin } from '@vuepress/plugin-toc';
+import { searchPlugin } from '@vuepress/plugin-search'
 import { getBlogPlugin } from './plugins/blog'
+import { useDataHelper } from '../../../plugins/DataHelper'
 import { fs, getDirname, path } from '@vuepress/utils';
 
 import {
@@ -115,12 +117,19 @@ export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => 
             palettePlugin({ preset: 'sass' }),
             // @vuepress/plugin-prismjs
             themePlugins.prismjs !== false ? prismjsPlugin() : [],
+            // @vuepress/plugin-search
+            themePlugins.search !== false ? searchPlugin() : [],
             // @vuepress/plugin-theme-data
             themeDataPlugin({ themeData: localeOptions }),
             // Toc plugin [@vuepress/plugin-toc] for sidebar category
             tocPlugin(),
             // Blog plugin
             getBlogPlugin(),
+            // DataHelper plugin
+            useDataHelper({
+                isTempPages: false,
+                pagesStartWith: "/blog/"
+            })
         ],
     };
 };

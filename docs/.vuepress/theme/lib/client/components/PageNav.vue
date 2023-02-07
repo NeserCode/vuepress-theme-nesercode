@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 // @ts-ignore
 import AutoLink from "@theme/AutoLink.vue"
 import { usePageFrontmatter } from "@vuepress/client"

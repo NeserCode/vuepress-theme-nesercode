@@ -6,10 +6,12 @@ import PageNav from "@theme/PageNav.vue"
 import { computed } from "vue"
 import { Ref } from "@vue/reactivity"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
+import { useThemeLocaleData } from "../composables"
 
-import { PageData, PageFrontmatter } from "@vuepress/client"
-import { GitData } from "@vuepress/plugin-git"
-import { ReadingTime } from "vuepress-plugin-reading-time2"
+import type { PageData, PageFrontmatter } from "@vuepress/client"
+import type { DefaultThemeLocaleData } from "../../shared/index.js"
+import type { GitData } from "@vuepress/plugin-git"
+import type { ReadingTime } from "vuepress-plugin-reading-time2"
 
 type ExtraPageData = PageData & {
 	readingTime: ReadingTime
@@ -20,7 +22,6 @@ type ExtraPageData = PageData & {
 type ExtraPageFrontmatter = PageFrontmatter & {
 	plugins?: {
 		readingTime?: boolean
-		readingLine?: boolean
 		comment?: boolean
 		sidebarCategory?: boolean
 	}
@@ -28,12 +29,17 @@ type ExtraPageFrontmatter = PageFrontmatter & {
 
 const page: Ref<ExtraPageData> = usePageData()
 const frontmatter: Ref<ExtraPageFrontmatter> = usePageFrontmatter()
+const themeLocale: Ref<DefaultThemeLocaleData> = useThemeLocaleData()
 
 const createdTime = computed(() => {
-	if (page.value.git.createdTime !== undefined) {
-		return new Date(page.value.git.createdTime).toLocaleString()
+	if (page.value.git.createdTime !== (undefined || null)) {
+		if (page.value.git.createdTime !== undefined)
+			return new Date(page.value.git.createdTime).toLocaleString()
 	}
-	return frontmatter.value.date ?? "[非法时间替换词]"
+
+	let outTimeText = themeLocale.value.outTime ?? '"非法时间"'
+
+	return frontmatter.value.date ?? outTimeText
 })
 
 // Plugins Options
@@ -66,7 +72,6 @@ const tocOptions = {
 }
 
 const isOpenReadingTime = initialPluginState("readingTime")
-const isOpenReadingLine = initialPluginState("readingLine")
 </script>
 
 <template>
@@ -82,7 +87,9 @@ const isOpenReadingLine = initialPluginState("readingLine")
 							📖 共 {{ page.readingTime.words }} 字，预计需要
 							{{ page.readingTime.minutes }} 分钟
 						</span>
-						<span class="created-time"> 写于 {{ createdTime }} </span>
+						<span class="created-time" title="Created Time">
+							写于 {{ createdTime }}
+						</span>
 					</span>
 				</div>
 				<slot name="content-top" />

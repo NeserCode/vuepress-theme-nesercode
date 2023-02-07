@@ -1,0 +1,24 @@
+{
+	"name": "vuepress-plugin-data-helper",
+	"version": "1.0.0",
+	"description": "Data Generator for Theme nesercode.",
+	"type": "module",
+	"types": "./lib/node/index.d.ts",
+	"main": "./lib/node/index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"data",
+		"blog",
+		"vuepress"
+	],
+	"devDependencies": {
+		"@vuepress/core": "2.0.0-beta.60"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"author": "Nesercode",
+	"license": "MIT"
+}

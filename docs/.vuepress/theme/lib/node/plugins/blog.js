@@ -18,14 +18,14 @@ export const getBlogPlugin = () => blogPlugin({
   },
 
   getInfo: (page) => {
-    const { excerpt, frontmatter, title } = page
+    const { frontmatter, title } = page
     // 获取页面信息
     const info = {
       author: frontmatter.author || "",
       categories: frontmatter.categories || [],
       date: frontmatter.date ? new Date(frontmatter.date) : new Date(page.data.git?.createdTime),
       tags: frontmatter.tags || frontmatter.tag || [],
-      excerpt,
+      excerpt: page.data.excerpt,
       title
     };
 
@@ -42,7 +42,6 @@ export const getBlogPlugin = () => blogPlugin({
         localePath: path,
         plugins: {
           readingTime: false,
-          readingLine: false,
           comment: false,
           sidebarCategory: false,
         }
@@ -64,7 +63,6 @@ export const getBlogPlugin = () => blogPlugin({
         localePath: path,
         plugins: {
           readingTime: false,
-          readingLine: false,
           comment: false,
           sidebarCategory: false,
         }
