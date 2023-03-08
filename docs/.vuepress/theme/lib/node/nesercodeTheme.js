@@ -10,7 +10,7 @@ import { themeDataPlugin } from '@vuepress/plugin-theme-data';
 import { tocPlugin } from '@vuepress/plugin-toc';
 import { searchPlugin } from '@vuepress/plugin-search'
 import { getBlogPlugin } from './plugins/blog'
-import { useDataHelper } from 'vuepress-plugin-data-helper'
+// import { useDataHelper } from 'vuepress-plugin-data-helper'
 import { fs, getDirname, path } from '@vuepress/utils';
 
 import {
@@ -126,7 +126,7 @@ export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => 
             // Blog plugin
             getBlogPlugin(),
             // DataHelper plugin
-            useDataHelper(localeOptions.helperOptions)
+            // useDataHelper(localeOptions.helperOptions)
         ],
     };
 };
