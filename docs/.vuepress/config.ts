@@ -69,10 +69,11 @@ export default {
 			mapping: "title",
 			strict: "1",
 			theme: "light",
+			darkTheme: "dark_dimmed",
 			reactionsEnabled: "1",
 			inputPosition: "top",
 			language: "zh-CN",
-			loading: "eager",
+			loading: "lazy",
 		},
 	}),
 

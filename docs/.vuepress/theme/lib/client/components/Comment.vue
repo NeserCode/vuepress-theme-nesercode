@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import Giscus from "@giscus/vue"
-import { computed, ref, toRefs, watch } from "vue"
+import { computed, ref, toRefs } from "vue"
 
 import { GiscusOptions } from "../../shared"
 import { useDarkMode } from "../composables"
@@ -18,12 +18,17 @@ function generateGiscusOption(options: GiscusOptions): GiscusOptions {
 }
 
 const giscusOptions = ref<GiscusOptions>(generateGiscusOption(options.value))
-const themeComputed = computed(() => (darkMode.value ? "dark" : "light"))
+const themeComputed = computed(() =>
+	darkMode.value
+		? giscusOptions.value.darkTheme ?? "dark"
+		: giscusOptions.value.theme
+)
 </script>
 
 <template>
 	<div class="comment" id="giscus-comment">
 		<Giscus
+			host="https://giscus.app"
 			:repo="giscusOptions.repo"
 			:repo-id="giscusOptions.repoId"
 			:category="giscusOptions.category"
@@ -36,7 +41,6 @@ const themeComputed = computed(() => (darkMode.value ? "dark" : "light"))
 			:theme="themeComputed"
 			:lang="giscusOptions.language"
 			:loading="giscusOptions.loading"
-			crossorigin="anonymous"
 		/>
 	</div>
 </template>

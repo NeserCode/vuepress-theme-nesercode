@@ -58,7 +58,7 @@ export interface GiscusOptions {
 	 * category - The GitHub issue category to store comments
 	 * @default 'General'
 	 **/
-	category?: string
+	category: string
 	/**
 	 * categoryId - The GitHub issue category ID
 	 **/
@@ -106,12 +106,18 @@ export interface GiscusOptions {
 		| "transparent_dark"
 		| "cobalt"
 	/**
-	 * darkTheme - The dark color theme, available values: dark, dark_dimmed, dark_high_contrast
+	 * darkTheme - The dark color theme
 	 * @default 'dark'
-	 * @deprecated
-	 * @see theme
 	 **/
-	darkTheme?: "dark" | "dark_dimmed" | "dark_high_contrast"
+	darkTheme?:
+		| "dark"
+		| "dark_dimmed"
+		| "dark_high_contrast"
+		| "dark_protanopia"
+		| "dark_tritanopia"
+		| "preferred_color_scheme"
+		| "transparent_dark"
+		| "cobalt"
 	/**
 	 * language - The language of the widget
 	 * @default 'zh-CN'

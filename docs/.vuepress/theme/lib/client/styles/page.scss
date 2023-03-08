@@ -141,12 +141,26 @@
 	}
 }
 
+.comment {
+	padding: 2rem 0;
+	margin-top: 2rem;
+
+	transition: all ease-in-out 0.2s;
+}
+
 @media (max-width: $MQDesktop) {
 	.page {
 		display: block;
 		.sidebar-custom {
 			display: none;
 		}
+	}
+
+	.comment {
+		padding: 1rem 0;
+		margin: 0 auto;
+		margin-top: 1rem;
+		width: 80%;
 	}
 }
 
@@ -160,6 +174,10 @@
 		.contributors {
 			font-size: 0.8em;
 		}
+	}
+
+	.comment {
+		width: calc(100% - 2rem);
 	}
 }
 
