@@ -45,6 +45,83 @@ export interface DefaultThemePluginsOptions {
 }
 export type DefaultThemeLocaleOptions = DefaultThemeData
 export type DefaultThemeData = ThemeData<DefaultThemeLocaleData>
+export interface GiscusOptions {
+	/**
+	 * repo - The GitHub repository to store comments
+	 **/
+	repo: `${string}/${string}`
+	/**
+	 * repoId - The GitHub repository ID
+	 **/
+	repoId: string
+	/**
+	 * category - The GitHub issue category to store comments
+	 * @default 'General'
+	 **/
+	category?: string
+	/**
+	 * categoryId - The GitHub issue category ID
+	 **/
+	categoryId: string
+	/**
+	 * mapping - The GitHub issue mapping, e.g. pathname, URL or any custom string
+	 * @default 'pathname'
+	 **/
+	mapping: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
+	/**
+	 * strict - Whether to use strict mapping
+	 * @default '0'
+	 **/
+	strict?: "0" | "1"
+	/**
+	 * input position - The position of the comment input box
+	 * @default 'bottom'
+	 **/
+	inputPosition?: "bottom" | "top"
+	/**
+	 * reactionsEnabled - Enable or disable reactions
+	 * @default '1'
+	 **/
+	reactionsEnabled?: "0" | "1"
+	/**
+	 * emitMetadata - Emit metadata for commit author and URL
+	 * @default '0'
+	 **/
+	emitMetadata?: "0" | "1"
+	/**
+	 * theme - The color theme, available values: light, dark, dark_dimmed, dark_high_contrast
+	 * @default 'light'
+	 **/
+	theme?:
+		| "light"
+		| "dark"
+		| "dark_dimmed"
+		| "dark_high_contrast"
+		| "light_high_contrast"
+		| "light_protanopia"
+		| "light_tritanopia"
+		| "dark_protanopia"
+		| "dark_tritanopia"
+		| "preferred_color_scheme"
+		| "transparent_dark"
+		| "cobalt"
+	/**
+	 * darkTheme - The dark color theme, available values: dark, dark_dimmed, dark_high_contrast
+	 * @default 'dark'
+	 * @deprecated
+	 * @see theme
+	 **/
+	darkTheme?: "dark" | "dark_dimmed" | "dark_high_contrast"
+	/**
+	 * language - The language of the widget
+	 * @default 'zh-CN'
+	 **/
+	language?: string
+	/**
+	 * loading - lazy or eager
+	 **/
+	loading?: "lazy" | "eager"
+}
 export interface DefaultThemeLocaleData extends LocaleData {
 	/**
 	 * Default color mode
@@ -254,4 +331,8 @@ export interface DefaultThemeLocaleData extends LocaleData {
 	 * @default HelperOptions from plugin
 	 */
 	helperOptions: HelperOptions
+	/**
+	 * Comment Options - Giscus
+	 **/
+	giscus?: GiscusOptions
 }

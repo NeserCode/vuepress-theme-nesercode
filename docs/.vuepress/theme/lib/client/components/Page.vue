@@ -3,6 +3,8 @@
 import PageMeta from "@theme/PageMeta.vue"
 // @ts-ignore
 import PageNav from "@theme/PageNav.vue"
+// @ts-ignore
+import Comment from "@theme/Comment.vue"
 import { computed, onMounted } from "vue"
 import { Ref } from "@vue/reactivity"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
@@ -112,6 +114,8 @@ onMounted(() => {
 			<PageNav />
 
 			<slot name="bottom" />
+
+			<Comment :options="themeLocale.giscus" />
 		</div>
 		<aside class="sidebar-custom">
 			<Toc :options="tocOptions" v-if="isOpenSdiebarCategory" />
