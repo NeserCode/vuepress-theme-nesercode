@@ -77,6 +77,9 @@ const tocOptions = {
 
 const isOpenReadingTime = initialPluginState("readingTime")
 
+const isOpenComment = initialPluginState("comment")
+const isExistOption = computed(() => themeLocale.value.giscus !== undefined)
+
 onMounted(() => {
 	console.log(pages, page.value)
 })
@@ -115,7 +118,10 @@ onMounted(() => {
 
 			<slot name="bottom" />
 
-			<Comment :options="themeLocale.giscus" />
+			<Comment
+				:options="themeLocale.giscus"
+				v-if="isOpenComment && isExistOption"
+			/>
 		</div>
 		<aside class="sidebar-custom">
 			<Toc :options="tocOptions" v-if="isOpenSdiebarCategory" />

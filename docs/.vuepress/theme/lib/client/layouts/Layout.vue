@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 // @ts-ignore
 import BaseLayout from "./BaseLayout.vue"
 // @ts-ignore
