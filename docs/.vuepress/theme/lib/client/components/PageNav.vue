@@ -1,5 +1,6 @@
 <script setup lang="ts">
 <<<<<<< HEAD
+<<<<<<< HEAD
 // @ts-ignore
 import AutoLink from "@theme/AutoLink.vue"
 import { usePageFrontmatter } from "@vuepress/client"
@@ -7,11 +8,16 @@ import { isPlainObject, isString } from "@vuepress/shared"
 import { computed } from "vue"
 import { useRoute } from "vue-router"
 =======
+=======
+>>>>>>> parent of 573fc67 (Fix bug cannot find package)
 import AutoLink from '@theme/AutoLink.vue'
 import { usePageFrontmatter } from '@vuepress/client'
 import { isPlainObject, isString } from '@vuepress/shared'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+<<<<<<< HEAD
+>>>>>>> parent of 573fc67 (Fix bug cannot find package)
+=======
 >>>>>>> parent of 573fc67 (Fix bug cannot find package)
 import type {
   DefaultThemeNormalPageFrontmatter,

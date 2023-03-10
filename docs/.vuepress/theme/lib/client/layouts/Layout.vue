@@ -22,6 +22,7 @@ const onBeforeEnter = scrollPromise.resolve
 const onBeforeLeave = scrollPromise.pending
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // calculate scroll progress
 const readingProgress = ref<number>(0)
 
@@ -31,6 +32,8 @@ function getScrollProgress() {
 	const progress = Number(
 		((scrollTop / (scrollHeight - clientHeight)) * 100).toFixed(2)
 =======
+=======
+>>>>>>> parent of 573fc67 (Fix bug cannot find package)
 // calculate reading progress
 const readingProgress = computed(() => {
 	return Math.round(
@@ -38,6 +41,9 @@ const readingProgress = computed(() => {
 			(document.documentElement.scrollHeight -
 				document.documentElement.clientHeight)) *
 			100
+<<<<<<< HEAD
+>>>>>>> parent of 573fc67 (Fix bug cannot find package)
+=======
 >>>>>>> parent of 573fc67 (Fix bug cannot find package)
 	)
 })
