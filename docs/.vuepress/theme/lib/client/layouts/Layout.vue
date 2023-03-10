@@ -25,7 +25,8 @@ const onBeforeLeave = scrollPromise.pending
 const readingProgress = ref<number>(0)
 
 function getScrollProgress() {
-	const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+	const { scrollTop, scrollHeight, clientHeight } =
+		window?.document.documentElement
 	const progress = Number(
 		((scrollTop / (scrollHeight - clientHeight)) * 100).toFixed(2)
 	)
