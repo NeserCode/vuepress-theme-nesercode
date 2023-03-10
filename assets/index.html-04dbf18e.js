@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-2cae7d96","path":"/tag/common/","title":"common 标签","lang":"zh-CN","frontmatter":{"title":"common 标签","localePath":"/","blog":{"type":"category","name":"common","key":"tag"},"layout":"TagPage"},"headers":[],"git":{},"filePathRelative":null,"readingTime":{"minutes":0,"words":0}}');export{e as data};
