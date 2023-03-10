@@ -3,11 +3,13 @@
 import BaseLayout from "./BaseLayout.vue"
 // @ts-ignore
 import Page from "@theme/Page.vue"
+// @ts-ignore
+import ArticleList from "@theme/ArticleList.vue"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import type { DefaultThemePageFrontmatter } from "../../shared/index.js"
 import { useScrollPromise } from "../composables/index.js"
 // @ts-ignore
-// import { useBlogType } from "vuepress-plugin-blog2/client"
+import { useBlogType } from "vuepress-plugin-blog2/client"
 const page = usePageData()
 const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>()
 
@@ -16,8 +18,8 @@ const scrollPromise = useScrollPromise()
 const onBeforeEnter = scrollPromise.resolve
 const onBeforeLeave = scrollPromise.pending
 
-// const blogType = useBlogType()
-// console.log(blogType.value)
+const blogType = useBlogType()
+console.log(blogType.value)
 </script>
 
 <template>
@@ -35,6 +37,9 @@ const onBeforeLeave = scrollPromise.pending
 					</template>
 					<template #content-top>
 						<slot name="page-content-top" />
+					</template>
+					<template #content>
+						<article-list :articles="blogType.items" />
 					</template>
 					<template #content-bottom>
 						<slot name="page-content-bottom" />
