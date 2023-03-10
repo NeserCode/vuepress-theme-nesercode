@@ -21,6 +21,7 @@
 	"exports": {
 		".": "./lib/node/index.js",
 		"./client": "./lib/client/index.js",
+		"./shared": "./lib/shared/index.js",
 		"./components/*": "./lib/client/components/*",
 		"./layouts/*": "./lib/client/layouts/*",
 		"./styles/*": "./lib/client/styles/*",

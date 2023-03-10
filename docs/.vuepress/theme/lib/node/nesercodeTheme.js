@@ -2,17 +2,15 @@ import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links';
 import { backToTopPlugin } from '@vuepress/plugin-back-to-top';
 import { containerPlugin } from '@vuepress/plugin-container';
 import { externalLinkIconPlugin } from '@vuepress/plugin-external-link-icon';
-import { gitPlugin } from '@vuepress/plugin-git';
 import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom';
 import { nprogressPlugin } from '@vuepress/plugin-nprogress';
 import { palettePlugin } from '@vuepress/plugin-palette';
 import { prismjsPlugin } from '@vuepress/plugin-prismjs';
 import { themeDataPlugin } from '@vuepress/plugin-theme-data';
 import { tocPlugin } from '@vuepress/plugin-toc';
-import { searchPlugin } from '@vuepress/plugin-search'
 import { getBlogPlugin } from './plugins/blog'
-import { useDataHelper } from 'vuepress-plugin-data-helper'
 import { fs, getDirname, path } from '@vuepress/utils';
+import { useDataHelper } from 'vuepress-plugin-data-helper'
 
 import {
     assignDefaultLocaleOptions,
@@ -103,14 +101,6 @@ export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => 
                     }, {}),
                 })
                 : [],
-            // @vuepress/plugin-git
-            themePlugins.git !== false
-                ? gitPlugin({
-                    createdTime: false,
-                    updatedTime: localeOptions.lastUpdated !== false,
-                    contributors: localeOptions.contributors !== false,
-                })
-                : [],
             // @vuepress/plugin-medium-zoom
             themePlugins.mediumZoom !== false
                 ? mediumZoomPlugin({
@@ -126,15 +116,13 @@ export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => 
             palettePlugin({ preset: 'sass' }),
             // @vuepress/plugin-prismjs
             themePlugins.prismjs !== false ? prismjsPlugin() : [],
-            // @vuepress/plugin-search
-            themePlugins.search !== false ? searchPlugin() : [],
             // @vuepress/plugin-theme-data
             themeDataPlugin({ themeData: localeOptions }),
             // Toc plugin [@vuepress/plugin-toc] for sidebar category
             tocPlugin(),
             // Blog plugin
             getBlogPlugin(),
-            // DataHelper plugin
+            // Data Helper
             useDataHelper(localeOptions.helperOptions)
         ],
     };

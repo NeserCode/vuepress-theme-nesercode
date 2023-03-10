@@ -4,13 +4,13 @@ import PageMeta from "@theme/PageMeta.vue"
 // @ts-ignore
 import PageNav from "@theme/PageNav.vue"
 // @ts-ignore
-import Comment from "@theme/Comment.vue"
+import Comment from "@theme/GiscusComment.vue"
 import { computed, onMounted } from "vue"
 import { Ref } from "@vue/reactivity"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import { useThemeLocaleData } from "../composables"
 // @ts-ignore
-import { pages } from "@temp/pages"
+// import { pages } from "@temp/pages"
 
 import type { PageData, PageFrontmatter } from "@vuepress/client"
 import type { DefaultThemeLocaleData } from "../../shared/index.js"
@@ -81,7 +81,7 @@ const isOpenComment = initialPluginState("comment")
 const isExistOption = computed(() => themeLocale.value.giscus !== undefined)
 
 onMounted(() => {
-	console.log(page.value, pages)
+	console.log(page.value)
 })
 </script>
 

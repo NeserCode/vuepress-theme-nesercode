@@ -16,7 +16,7 @@
 	box-sizing: border-box;
 	border-bottom: 1px solid var(--c-border);
 	// background-color: var(--c-bg-navbar);
-	background-color: rgba(255 255 255 / 0.65);
+	background-color: rgba(255 255 255 / 0.78);
 	backdrop-filter: blur(0.5rem);
 	transition: background-color var(--t-color), border-color var(--t-color);
 }
@@ -171,15 +171,7 @@ html.dark .navbar {
 	width: 100%;
 	height: 0.125rem;
 	background: transparent;
-<<<<<<< HEAD
-	z-index: 4;
-=======
-	z-index: 999;
-	transition: all 0.3s ease;
-<<<<<<< HEAD
->>>>>>> parent of 573fc67 (Fix bug cannot find package)
-=======
->>>>>>> parent of 573fc67 (Fix bug cannot find package)
+	z-index: 3;
 	.reading-line-main {
 		display: inline-block;
 		position: absolute;
@@ -187,14 +179,13 @@ html.dark .navbar {
 		left: 0;
 		height: 0.125rem;
 		background-color: lightskyblue;
-		transition: all 0.3s ease-in-out;
 	}
 }
 
 html.dark {
 	.reading-line {
 		.reading-line-main {
-			background-color: lightgreen;
+			background-color: green;
 		}
 	}
 }

@@ -25,7 +25,7 @@ export const getBlogPlugin = () => blogPlugin({
       categories: frontmatter.categories || [],
       date: frontmatter.date ? new Date(frontmatter.date) : new Date(page.data.git?.createdTime),
       tags: frontmatter.tags || frontmatter.tag || [],
-      excerpt: page.data.excerpt,
+      excerpt: page.data.excerpt || "",
       title
     };
 
@@ -42,6 +42,7 @@ export const getBlogPlugin = () => blogPlugin({
         localePath: path,
         plugins: {
           readingTime: false,
+          readingLine: false,
           comment: false,
           sidebarCategory: false,
         }
@@ -63,6 +64,7 @@ export const getBlogPlugin = () => blogPlugin({
         localePath: path,
         plugins: {
           readingTime: false,
+          readingLine: false,
           comment: false,
           sidebarCategory: false,
         }
