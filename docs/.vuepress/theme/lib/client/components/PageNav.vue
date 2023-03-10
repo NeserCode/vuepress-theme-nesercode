@@ -1,69 +1,77 @@
 <script setup lang="ts">
+<<<<<<< HEAD
 // @ts-ignore
 import AutoLink from "@theme/AutoLink.vue"
 import { usePageFrontmatter } from "@vuepress/client"
 import { isPlainObject, isString } from "@vuepress/shared"
 import { computed } from "vue"
 import { useRoute } from "vue-router"
+=======
+import AutoLink from '@theme/AutoLink.vue'
+import { usePageFrontmatter } from '@vuepress/client'
+import { isPlainObject, isString } from '@vuepress/shared'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+>>>>>>> parent of 573fc67 (Fix bug cannot find package)
 import type {
-	DefaultThemeNormalPageFrontmatter,
-	NavLink,
-	ResolvedSidebarItem,
-} from "../../shared/index.js"
-import { useNavLink, useSidebarItems } from "../composables/index.js"
+  DefaultThemeNormalPageFrontmatter,
+  NavLink,
+  ResolvedSidebarItem,
+} from '../../shared/index.js'
+import { useNavLink, useSidebarItems } from '../composables/index.js'
 
 /**
  * Resolve `prev` or `next` config from frontmatter
  */
 const resolveFromFrontmatterConfig = (
-	conf: unknown
+  conf: unknown
 ): null | false | NavLink => {
-	if (conf === false) {
-		return null
-	}
+  if (conf === false) {
+    return null
+  }
 
-	if (isString(conf)) {
-		return useNavLink(conf)
-	}
+  if (isString(conf)) {
+    return useNavLink(conf)
+  }
 
-	if (isPlainObject<NavLink>(conf)) {
-		return conf
-	}
+  if (isPlainObject<NavLink>(conf)) {
+    return conf
+  }
 
-	return false
+  return false
 }
 
 /**
  * Resolve `prev` or `next` config from sidebar items
  */
 const resolveFromSidebarItems = (
-	sidebarItems: ResolvedSidebarItem[],
-	currentPath: string,
-	offset: number
+  sidebarItems: ResolvedSidebarItem[],
+  currentPath: string,
+  offset: number
 ): null | NavLink => {
-	const index = sidebarItems.findIndex((item) => item.link === currentPath)
-	if (index !== -1) {
-		const targetItem = sidebarItems[index + offset]
-		if (!targetItem?.link) {
-			return null
-		}
-		return targetItem as NavLink
-	}
+  const index = sidebarItems.findIndex((item) => item.link === currentPath)
+  if (index !== -1) {
+    const targetItem = sidebarItems[index + offset]
+    if (!targetItem?.link) {
+      return null
+    }
+    return targetItem as NavLink
+  }
 
-	for (const item of sidebarItems) {
-		if (item.children) {
-			const childResult = resolveFromSidebarItems(
-				item.children,
-				currentPath,
-				offset
-			)
-			if (childResult) {
-				return childResult
-			}
-		}
-	}
+  for (const item of sidebarItems) {
+    if (item.children) {
+      const childResult = resolveFromSidebarItems(
+        item.children,
+        currentPath,
+        offset
+      )
+      if (childResult) {
+        return childResult
+      }
+    }
+  }
 
-	return null
+  return null
 }
 
 const frontmatter = usePageFrontmatter<DefaultThemeNormalPageFrontmatter>()
@@ -71,34 +79,34 @@ const sidebarItems = useSidebarItems()
 const route = useRoute()
 
 const prevNavLink = computed(() => {
-	const prevConfig = resolveFromFrontmatterConfig(frontmatter.value.prev)
-	if (prevConfig !== false) {
-		return prevConfig
-	}
+  const prevConfig = resolveFromFrontmatterConfig(frontmatter.value.prev)
+  if (prevConfig !== false) {
+    return prevConfig
+  }
 
-	return resolveFromSidebarItems(sidebarItems.value, route.path, -1)
+  return resolveFromSidebarItems(sidebarItems.value, route.path, -1)
 })
 
 const nextNavLink = computed(() => {
-	const nextConfig = resolveFromFrontmatterConfig(frontmatter.value.next)
-	if (nextConfig !== false) {
-		return nextConfig
-	}
+  const nextConfig = resolveFromFrontmatterConfig(frontmatter.value.next)
+  if (nextConfig !== false) {
+    return nextConfig
+  }
 
-	return resolveFromSidebarItems(sidebarItems.value, route.path, 1)
+  return resolveFromSidebarItems(sidebarItems.value, route.path, 1)
 })
 </script>
 
 <template>
-	<nav v-if="prevNavLink || nextNavLink" class="page-nav">
-		<p class="inner">
-			<span v-if="prevNavLink" class="prev">
-				<AutoLink :item="prevNavLink" />
-			</span>
+  <nav v-if="prevNavLink || nextNavLink" class="page-nav">
+    <p class="inner">
+      <span v-if="prevNavLink" class="prev">
+        <AutoLink :item="prevNavLink" />
+      </span>
 
-			<span v-if="nextNavLink" class="next">
-				<AutoLink :item="nextNavLink" />
-			</span>
-		</p>
-	</nav>
+      <span v-if="nextNavLink" class="next">
+        <AutoLink :item="nextNavLink" />
+      </span>
+    </p>
+  </nav>
 </template>

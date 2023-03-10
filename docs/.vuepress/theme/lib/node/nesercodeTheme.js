@@ -2,6 +2,7 @@ import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links';
 import { backToTopPlugin } from '@vuepress/plugin-back-to-top';
 import { containerPlugin } from '@vuepress/plugin-container';
 import { externalLinkIconPlugin } from '@vuepress/plugin-external-link-icon';
+import { gitPlugin } from '@vuepress/plugin-git';
 import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom';
 import { nprogressPlugin } from '@vuepress/plugin-nprogress';
 import { palettePlugin } from '@vuepress/plugin-palette';
@@ -10,7 +11,7 @@ import { themeDataPlugin } from '@vuepress/plugin-theme-data';
 import { tocPlugin } from '@vuepress/plugin-toc';
 import { searchPlugin } from '@vuepress/plugin-search'
 import { getBlogPlugin } from './plugins/blog'
-// import { useDataHelper } from 'vuepress-plugin-data-helper'
+import { useDataHelper } from 'vuepress-plugin-data-helper'
 import { fs, getDirname, path } from '@vuepress/utils';
 
 import {
@@ -102,6 +103,14 @@ export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => 
                     }, {}),
                 })
                 : [],
+            // @vuepress/plugin-git
+            themePlugins.git !== false
+                ? gitPlugin({
+                    createdTime: false,
+                    updatedTime: localeOptions.lastUpdated !== false,
+                    contributors: localeOptions.contributors !== false,
+                })
+                : [],
             // @vuepress/plugin-medium-zoom
             themePlugins.mediumZoom !== false
                 ? mediumZoomPlugin({
@@ -126,7 +135,7 @@ export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => 
             // Blog plugin
             getBlogPlugin(),
             // DataHelper plugin
-            // useDataHelper(localeOptions.helperOptions)
+            useDataHelper(localeOptions.helperOptions)
         ],
     };
 };

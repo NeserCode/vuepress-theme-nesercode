@@ -171,7 +171,12 @@ html.dark .navbar {
 	width: 100%;
 	height: 0.125rem;
 	background: transparent;
+<<<<<<< HEAD
 	z-index: 4;
+=======
+	z-index: 999;
+	transition: all 0.3s ease;
+>>>>>>> parent of 573fc67 (Fix bug cannot find package)
 	.reading-line-main {
 		display: inline-block;
 		position: absolute;
@@ -179,13 +184,14 @@ html.dark .navbar {
 		left: 0;
 		height: 0.125rem;
 		background-color: lightskyblue;
+		transition: all 0.3s ease-in-out;
 	}
 }
 
 html.dark {
 	.reading-line {
 		.reading-line-main {
-			background-color: yellowgreen;
+			background-color: lightgreen;
 		}
 	}
 }

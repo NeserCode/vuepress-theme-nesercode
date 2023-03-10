@@ -81,7 +81,7 @@ const isOpenComment = initialPluginState("comment")
 const isExistOption = computed(() => themeLocale.value.giscus !== undefined)
 
 onMounted(() => {
-	console.log(pages, page.value)
+	console.log(page.value, pages)
 })
 </script>
 
