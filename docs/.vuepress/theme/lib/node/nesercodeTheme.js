@@ -12,6 +12,8 @@ import { getBlogPlugin } from './plugins/blog'
 import { fs, getDirname, path } from '@vuepress/utils';
 import { useDataHelper } from 'vuepress-plugin-data-helper'
 
+import { addViteSsrNoExternal } from "vuepress-shared"
+
 import {
     assignDefaultLocaleOptions,
     resolveContainerPluginOptions,
@@ -27,6 +29,7 @@ export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => 
         updatedTime: localeOptions.lastUpdated !== false,
         contributors: localeOptions.contributors !== false,
     })
+
     return {
         name: '@nesercode/vuepress-theme-nesercode',
         templateBuild: path.resolve(__dirname, '../../templates/build.html'),
@@ -41,6 +44,9 @@ export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => 
                 ])),
         },
         clientConfigFile: path.resolve(__dirname, '../client/config.js'),
+        extendsBundlerOptions: (config, app) => {
+            addViteSsrNoExternal(config, app, "vuepress-shared")
+        },
         extendsPage: (page) => {
             // save relative file path into page data to generate edit link
             page.data.filePathRelative = page.filePathRelative;

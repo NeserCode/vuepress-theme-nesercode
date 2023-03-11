@@ -1,9 +1,12 @@
 import { nesercodeTheme } from "./theme/lib/node"
+import { defineUserConfig } from "@vuepress/cli"
+import { viteBundler } from "@vuepress/bundler-vite"
+import { addViteSsrNoExternal } from "vuepress-shared"
 
 // plugins
 import { readingTimePlugin } from "vuepress-plugin-reading-time2"
 
-export default {
+export default defineUserConfig({
 	title: "✨NeserCode",
 	description: "NeserCode's Blog",
 	lang: "zh-CN",
@@ -16,6 +19,11 @@ export default {
 	],
 
 	base: "/vuepress-theme-nesercode/",
+
+	bundler: viteBundler({
+		viteOptions: {},
+		vuePluginOptions: {},
+	}),
 
 	theme: nesercodeTheme({
 		home: "/",
@@ -80,4 +88,4 @@ export default {
 	}),
 
 	plugins: [readingTimePlugin({ wordPerMinute: 200 })],
-}
+})

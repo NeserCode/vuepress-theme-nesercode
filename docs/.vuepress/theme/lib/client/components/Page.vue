@@ -106,7 +106,7 @@ onMounted(() => {
 				<slot name="content-top" />
 
 				<div class="content-custom">
-					<slot name="content" />
+					<slot name="custom-content" />
 					<Content />
 				</div>
 

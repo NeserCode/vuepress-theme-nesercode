@@ -9,9 +9,5 @@ console.log(articles.value)
 </script>
 
 <template>
-	<div class="article-list">
-		<span class="title" v-for="article in articles">{{
-			article.info.title
-		}}</span>
-	</div>
+	<div class="article-list"></div>
 </template>
