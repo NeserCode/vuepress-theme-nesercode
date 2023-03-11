@@ -25,7 +25,7 @@ const scrollPromise = useScrollPromise()
 const onBeforeEnter = scrollPromise.resolve
 const onBeforeLeave = scrollPromise.pending
 
-const tags: Ref<ArticleCategoryData> = useBlogCategory()
+const tags: Ref<ArticleCategoryData> = useBlogCategory("tag")
 
 function getComputedDescription() {
 	const keys = Object.keys(tags.value.map)

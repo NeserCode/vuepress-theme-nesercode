@@ -8,12 +8,12 @@ import Comment from "@theme/GiscusComment.vue"
 import { computed, onMounted } from "vue"
 import { Ref } from "@vue/reactivity"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
-import { useThemeLocaleData } from "../composables"
+import { useThemeLocaleData, usePluginState } from "../composables"
 // @ts-ignore
 // import { pages } from "@temp/pages"
 
 import type { PageData, PageFrontmatter } from "@vuepress/client"
-import type { DefaultThemeLocaleData } from "../../shared/index.js"
+import type { DefaultThemeLocaleData } from "../../shared"
 import type { GitData } from "@vuepress/plugin-git"
 import type { ReadingTime } from "vuepress-plugin-reading-time2"
 
@@ -46,24 +46,10 @@ const createdTime = computed(() => {
 	return frontmatter.value.date ?? outTimeText
 })
 
-// Plugins Options
-function initialPluginState(keyName: string) {
-	return computed(() => {
-		if (typeof frontmatter.value.plugins === "undefined") return true
-		else if (frontmatter.value.plugins instanceof Array) {
-			let tempValue = true
-			for (let i = 0; i < frontmatter.value.plugins.length; i++) {
-				Object.keys(frontmatter.value.plugins[i]).forEach((key) => {
-					if (key === keyName && frontmatter.value.plugins)
-						tempValue = frontmatter.value.plugins[i][key]
-				})
-			}
-			return tempValue
-		} else return !(frontmatter.value.plugins[keyName] === false)
-	})
-}
-
-const isOpenSdiebarCategory = initialPluginState("sidebarCategory")
+const isOpenSdiebarCategory = usePluginState(
+	"sidebarCategory",
+	frontmatter.value.plugins
+)
 const tocOptions = {
 	containerTag: "nav",
 	containerClass: "toc-main",
@@ -75,9 +61,12 @@ const tocOptions = {
 	linkChildrenActiveClass: "active",
 }
 
-const isOpenReadingTime = initialPluginState("readingTime")
+const isOpenReadingTime = usePluginState(
+	"readingTime",
+	frontmatter.value.plugins
+)
 
-const isOpenComment = initialPluginState("comment")
+const isOpenComment = usePluginState("comment", frontmatter.value.plugins)
 const isExistOption = computed(() => themeLocale.value.giscus !== undefined)
 
 onMounted(() => {

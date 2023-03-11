@@ -10,11 +10,19 @@ import ReadingLine from "@theme/ReadingLine.vue"
 
 import { ref, onMounted, onUnmounted } from "vue"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
-import type { DefaultThemePageFrontmatter } from "../../shared/index.js"
-import { useScrollPromise } from "../composables/index.js"
+import type { DefaultThemePageFrontmatter } from "../../shared"
+import { useScrollPromise, usePluginState } from "../composables"
+
+type ExtraPageFrontmatter = DefaultThemePageFrontmatter & {
+	plugins?: {
+		readingTime?: boolean
+		comment?: boolean
+		sidebarCategory?: boolean
+	}
+}
 
 const page = usePageData()
-const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>()
+const frontmatter = usePageFrontmatter<ExtraPageFrontmatter>()
 
 // handle scrollBehavior with transition
 const scrollPromise = useScrollPromise()
@@ -22,6 +30,10 @@ const onBeforeEnter = scrollPromise.resolve
 const onBeforeLeave = scrollPromise.pending
 
 // calculate scroll progress
+const isOpenReadingLine = usePluginState(
+	"readingLine",
+	frontmatter.value.plugins
+)
 const readingProgress = ref<number>(0)
 
 function getScrollProgress() {
@@ -45,7 +57,10 @@ onUnmounted(() => {
 <template>
 	<base-layout>
 		<template #page>
-			<reading-line :reading-progress="readingProgress" />
+			<reading-line
+				:reading-progress="readingProgress"
+				v-if="isOpenReadingLine"
+			/>
 			<Home v-if="frontmatter.home" />
 
 			<Transition

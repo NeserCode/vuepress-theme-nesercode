@@ -6,6 +6,12 @@
 	padding-top: 6rem;
 	display: inline-flex;
 
+	.description {
+		font-size: 0.875rem;
+		font-weight: 300;
+		color: var(--c-text-lighter);
+	}
+
 	.main-custom {
 		padding: 0;
 	}

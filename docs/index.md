@@ -22,6 +22,8 @@ features:
   - title: 打包工具
     details: 默认的打包工具是 Vite ，也同样支持 Webpack 。选一个你喜欢的来使用吧！
 footer: MIT Licensed | Copyright © 2018-present Evan You
+plugins:
+  readingLine: false
 ---
 
 ### 像数 1, 2, 3 一样容易
