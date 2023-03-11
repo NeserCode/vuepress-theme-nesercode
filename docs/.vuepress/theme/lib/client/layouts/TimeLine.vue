@@ -4,7 +4,7 @@ import BaseLayout from "./BaseLayout.vue"
 // @ts-ignore
 import Page from "@theme/Page.vue"
 // @ts-ignore
-// import ArticleList from "@theme/ArticleList.vue"
+import ArticleList from "@theme/ArticleList.vue"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import type { DefaultThemePageFrontmatter } from "../../shared/index.js"
 import { useScrollPromise } from "../composables/index.js"
@@ -41,6 +41,9 @@ onMounted(() => {
 					</template>
 					<template #content-top>
 						<slot name="page-content-top" />
+					</template>
+					<template #custom-content>
+						<article-list :articles="timeLines.items" />
 					</template>
 					<template #content-bottom>
 						<slot name="page-content-bottom" />

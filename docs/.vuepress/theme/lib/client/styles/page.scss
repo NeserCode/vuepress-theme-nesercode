@@ -11,6 +11,11 @@
 	}
 
 	.sidebar-custom {
+		position: fixed;
+		right: calc(
+			50% - var(--content-width) / 2 - var(--subsidebar-width) -
+				var(--subsidebar-offset)
+		);
 		max-width: fit-content;
 		padding: 0;
 		padding-top: 8.8rem;
@@ -21,6 +26,7 @@
 		.toc-main {
 			position: sticky;
 			top: calc(2rem + var(--navbar-height));
+			width: var(--subsidebar-width);
 			margin-left: 1.25rem;
 			& > .vuepress-toc-list {
 				border: 0px var(--c-text-accent) solid;
@@ -39,6 +45,19 @@
 					flex-direction: column;
 				}
 			}
+		}
+
+		.toc-main > .vuepress-toc-list > .vuepress-toc-item > .vuepress-toc-link,
+		.toc-main
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			> .vuepress-toc-link {
+			max-width: 15ch;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 
 		/* Active */

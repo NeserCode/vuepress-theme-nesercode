@@ -1,7 +1,6 @@
 import { nesercodeTheme } from "./theme/lib/node"
 import { defineUserConfig } from "@vuepress/cli"
 import { viteBundler } from "@vuepress/bundler-vite"
-import { addViteSsrNoExternal } from "vuepress-shared"
 
 // plugins
 import { readingTimePlugin } from "vuepress-plugin-reading-time2"
