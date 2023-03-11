@@ -61,6 +61,7 @@
 				.date {
 					display: inline-block;
 					margin-right: 1rem;
+					color: var(--c-text-quote);
 				}
 				.author {
 					font-weight: 600;
@@ -80,7 +81,8 @@
 
 				.tag {
 					display: inline-block;
-					margin: 1rem 1rem 1rem 0;
+					margin-right: 1rem;
+					margin-top: 1rem;
 					padding: 0.25rem 0.5rem;
 					text-transform: uppercase;
 					border: 1px solid var(--c-border);

@@ -49,13 +49,22 @@ export const getBlogPlugin = () => blogPlugin({
       }),
       itemPath: "/tag/:name/",
       itemLayout: "TagPage",
-      itemFrontmatter: (name, path) => ({ title: `${name} 标签`, localePath: path }),
+      itemFrontmatter: (name, path) => ({
+        title: `${name} 标签`,
+        localePath: path,
+        plugins: {
+          readingTime: false,
+          readingLine: false,
+          comment: false,
+          sidebarCategory: false,
+        }
+      }),
     },
   ],
   type: [
     {
       key: "timeLine",
-      filter: (page) => page.data.path.startsWith("/blog/"),
+      // filter: (page) => page.data.path.startsWith("/blog/"),
       sorter: (pageA, pageB) => new Date(pageB.data.git?.createdTime).getTime() - new Date(pageA.data.git?.createdTime).getTime(),
       path: "/timeLine/",
       layout: "TimeLine",

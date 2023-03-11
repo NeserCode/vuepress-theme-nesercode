@@ -62,6 +62,10 @@ function getAuthor(author: string) {
 	if (author.trim() === "") return siteLocale.value.title ?? "Unknown"
 	return author === undefined ? "Unknown" : author
 }
+
+function getTagPath(tag: string) {
+	return `/tag/${tag}/`
+}
 </script>
 
 <template>
@@ -82,14 +86,14 @@ function getAuthor(author: string) {
 					>
 					<span class="author">by {{ getAuthor(article.info.author) }}</span>
 				</span>
-				<span class="article-tags">
-					<span v-for="tag in article.info.tags" :key="tag" class="tag">
-						{{ tag }}
-					</span>
-				</span>
 				<span class="article-excerpt">{{
 					stringfyExcerpt(article.info.excerpt)
 				}}</span>
+				<span class="article-tags">
+					<span v-for="tag in article.info.tags" :key="tag" class="tag">
+						<router-link :to="getTagPath(tag)">{{ tag }}</router-link>
+					</span>
+				</span>
 			</div>
 		</div>
 	</div>

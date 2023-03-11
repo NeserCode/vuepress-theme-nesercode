@@ -6,11 +6,11 @@ import Page from "@theme/Page.vue"
 // @ts-ignore
 import ArticleList from "@theme/ArticleList.vue"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
-import type { DefaultThemePageFrontmatter } from "../../shared/index.js"
-import { useScrollPromise } from "../composables/index.js"
+import type { DefaultThemePageFrontmatter, ArticleTypeData } from "../../shared"
+import { useScrollPromise } from "../composables"
 // @ts-ignore
 import { useBlogType } from "vuepress-plugin-blog2/client"
-import { onMounted } from "vue"
+import { Ref } from "vue"
 const page = usePageData()
 const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>()
 
@@ -19,11 +19,7 @@ const scrollPromise = useScrollPromise()
 const onBeforeEnter = scrollPromise.resolve
 const onBeforeLeave = scrollPromise.pending
 
-const timeLines = useBlogType("timeLine")
-
-onMounted(() => {
-	console.log(timeLines.value)
-})
+const timeLines: Ref<ArticleTypeData> = useBlogType("timeLine")
 </script>
 
 <template>

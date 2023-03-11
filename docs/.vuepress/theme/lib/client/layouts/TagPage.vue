@@ -3,12 +3,19 @@
 import BaseLayout from "./BaseLayout.vue"
 // @ts-ignore
 import Page from "@theme/Page.vue"
+// @ts-ignore
+import ArticleList from "@theme/ArticleList.vue"
+
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
-import type { DefaultThemePageFrontmatter } from "../../shared/index.js"
-import { useScrollPromise } from "../composables/index.js"
+import type {
+	DefaultThemePageFrontmatter,
+	ArticleCategoryData,
+} from "../../shared"
+import { useScrollPromise } from "../composables"
 
 // @ts-ignore
 import { useBlogCategory } from "vuepress-plugin-blog2/client"
+import { Ref } from "vue"
 
 const page = usePageData()
 const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>()
@@ -18,8 +25,15 @@ const scrollPromise = useScrollPromise()
 const onBeforeEnter = scrollPromise.resolve
 const onBeforeLeave = scrollPromise.pending
 
-const tags = useBlogCategory("tag")
-console.log("tags", tags)
+const tags: Ref<ArticleCategoryData> = useBlogCategory()
+
+function getComputedDescription() {
+	const keys = Object.keys(tags.value.map)
+	if (tags.value.currentItems) {
+		return `共 ${keys.length} 类 · 此类下共有 ${tags.value.currentItems.length} 篇`
+	}
+	return `共 ${keys.length} 类`
+}
 </script>
 
 <template>
@@ -36,7 +50,14 @@ console.log("tags", tags)
 						<slot name="page-top" />
 					</template>
 					<template #content-top>
-						<slot name="page-content-top" />
+						<slot name="page-content-top">
+							<span class="description">
+								{{ getComputedDescription() }}
+							</span>
+						</slot>
+					</template>
+					<template #custom-content v-if="tags.currentItems">
+						<article-list :articles="tags.currentItems" />
 					</template>
 					<template #content-bottom>
 						<slot name="page-content-bottom" />
