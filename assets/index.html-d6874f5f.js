@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-e4f30fd4","path":"/tag/official/","title":"official 标签","lang":"zh-CN","frontmatter":{"title":"official 标签","localePath":"/","blog":{"type":"category","name":"official","key":"tag"},"layout":"TagPage"},"headers":[],"git":{},"filePathRelative":null,"readingTime":{"minutes":0,"words":0}}');export{a as data};
