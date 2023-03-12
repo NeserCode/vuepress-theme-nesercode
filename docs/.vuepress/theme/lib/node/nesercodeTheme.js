@@ -10,6 +10,7 @@ import { themeDataPlugin } from '@vuepress/plugin-theme-data';
 import { tocPlugin } from '@vuepress/plugin-toc';
 import { getBlogPlugin } from './plugins/blog'
 import { fs, getDirname, path } from '@vuepress/utils';
+import { searchPlugin } from '@vuepress/plugin-search'
 import { useDataHelper } from 'vuepress-plugin-data-helper'
 
 import { addViteSsrNoExternal } from "vuepress-shared"
@@ -65,6 +66,8 @@ export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => 
                 : [],
             // @vuepress/plugin-back-to-top
             themePlugins.backToTop !== false ? backToTopPlugin() : [],
+            // @vuepress/plugin-search
+            themePlugins.search !== false ? searchPlugin() : [],
             // @vuepress/plugin-container
             themePlugins.container?.tip !== false
                 ? containerPlugin(resolveContainerPluginOptions(localeOptions, 'tip'))
