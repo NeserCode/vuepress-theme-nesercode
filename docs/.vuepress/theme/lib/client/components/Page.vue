@@ -82,7 +82,7 @@ onMounted(() => {
 			<div class="theme-default-content">
 				<h1 class="page-title-custom">{{ page.title }}</h1>
 				<div class="page-header">
-					<span class="reading-time-main" v-if="isOpenReadingTime">
+					<span class="reading-time-main description" v-if="isOpenReadingTime">
 						<span class="reading-time">
 							📖 共 {{ page.readingTime.words }} 字，预计需要
 							{{ page.readingTime.minutes }} 分钟
