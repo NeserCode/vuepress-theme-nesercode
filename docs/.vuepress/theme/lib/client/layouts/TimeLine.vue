@@ -5,14 +5,13 @@ import BaseLayout from "./BaseLayout.vue"
 import Page from "@theme/Page.vue"
 // @ts-ignore
 import ArticleList from "@theme/ArticleList.vue"
-import { usePageData, usePageFrontmatter } from "@vuepress/client"
-import type { DefaultThemePageFrontmatter, ArticleTypeData } from "../../shared"
+import { usePageData } from "@vuepress/client"
+import type { ArticleTypeData } from "../../shared"
 import { useScrollPromise } from "../composables"
 // @ts-ignore
 import { useBlogType } from "vuepress-plugin-blog2/client"
 import { Ref } from "vue"
 const page = usePageData()
-const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>()
 
 // handle scrollBehavior with transition
 const scrollPromise = useScrollPromise()
@@ -20,6 +19,17 @@ const onBeforeEnter = scrollPromise.resolve
 const onBeforeLeave = scrollPromise.pending
 
 const timeLines: Ref<ArticleTypeData> = useBlogType("timeLine")
+
+function getTimeLimit(timeLines: ArticleTypeData) {
+	const early = timeLines.items[0].info.date
+	const late = timeLines.items[timeLines.items.length - 1].info.date
+	return [early, late]
+}
+
+function getComputedDescription() {
+	const timeLimit = getTimeLimit(timeLines.value)
+	return `共 ${timeLines.value.items.length} 篇 · 从 ${timeLimit[0]} 到 ${timeLimit[1]}`
+}
 </script>
 
 <template>
@@ -36,7 +46,11 @@ const timeLines: Ref<ArticleTypeData> = useBlogType("timeLine")
 						<slot name="page-top" />
 					</template>
 					<template #content-top>
-						<slot name="page-content-top" />
+						<slot name="page-content-top">
+							<span class="description">
+								{{ getComputedDescription() }}
+							</span>
+						</slot>
 					</template>
 					<template #custom-content>
 						<article-list :articles="timeLines.items" />
