@@ -9,7 +9,7 @@ export interface ArticleInfo {
 
 export interface ArticleMap {
 	[key: string]: {
-		items: ArticleTypeData[]
+		items: ArticleData[]
 		path: string
 	}
 }
@@ -18,11 +18,15 @@ export interface Article {
 	path: string
 }
 
-export interface ArticleTypeData extends Article {
+export interface ArticleData extends Article {
 	info: ArticleInfo
+}
+
+export interface ArticleTypeData extends Article {
+	items: ArticleData[]
 }
 
 export interface ArticleCategoryData extends Article {
 	map: ArticleMap
-	currentItems?: ArticleTypeData[]
+	currentItems?: ArticleData[]
 }

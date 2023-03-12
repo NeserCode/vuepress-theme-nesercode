@@ -164,6 +164,57 @@ html.dark .navbar {
 	}
 }
 
+.tag-list {
+	@include flex_center;
+	margin: 0;
+	padding: 0;
+	margin-top: 4rem;
+
+	.tag-item {
+		@include flex_center;
+		margin-right: 0.6rem;
+
+		.tag-link {
+			@include flex_center;
+			padding: 0.2rem 0.5rem;
+			width: 100%;
+			border: 2px solid var(--c-border);
+			border-radius: 0.25rem;
+
+			transition: all ease-in-out 0.3s;
+
+			text-decoration: none;
+			text-transform: uppercase;
+
+			.tag-name,
+			.tag-count {
+				font-family: var(--font-family-code);
+				user-select: none;
+			}
+
+			.tag-name {
+				margin-right: 0.5rem;
+			}
+
+			.tag-count {
+				color: var(--c-text);
+			}
+
+			&.router-link-exact-active {
+				border-color: var(--c-text-lightest);
+				background-color: var(--c-border);
+				color: var(--c-text);
+			}
+
+			&:hover {
+				color: var(--c-brand);
+				border-color: var(--c-brand);
+				background-color: var(--c-border);
+			}
+		}
+	}
+}
+
 .reading-line {
 	position: fixed;
 	top: var(--navbar-height);

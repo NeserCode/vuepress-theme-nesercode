@@ -50,7 +50,7 @@ export const getBlogPlugin = () => blogPlugin({
       itemPath: "/tag/:name/",
       itemLayout: "TagPage",
       itemFrontmatter: (name, path) => ({
-        title: `${name} 标签`,
+        title: `${name.toUpperCase()}`,
         localePath: path,
         plugins: {
           readingTime: false,

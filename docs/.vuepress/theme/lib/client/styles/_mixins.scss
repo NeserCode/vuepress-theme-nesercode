@@ -18,3 +18,9 @@
 	transition: height 0.1s ease-out;
 	overflow: hidden;
 }
+
+@mixin flex_center {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}

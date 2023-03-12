@@ -15,6 +15,7 @@ import { useScrollPromise, usePluginState } from "../composables"
 
 type ExtraPageFrontmatter = DefaultThemePageFrontmatter & {
 	plugins?: {
+		readingLine?: boolean
 		readingTime?: boolean
 		comment?: boolean
 		sidebarCategory?: boolean

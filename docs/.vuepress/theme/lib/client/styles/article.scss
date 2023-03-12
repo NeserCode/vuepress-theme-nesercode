@@ -7,7 +7,7 @@
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	margin: 4rem auto;
+	margin: 0 auto;
 	padding: 0;
 
 	.article-wrapper {
@@ -76,7 +76,6 @@
 				font-size: 1rem;
 				font-family: var(--font-family-code);
 				color: var(--c-text);
-				text-decoration: none;
 				transition: color 0.2s ease-in-out;
 
 				.tag {
@@ -88,13 +87,17 @@
 					border: 1px solid var(--c-border);
 					border-radius: 0.25rem;
 					user-select: none;
+
 					transition: all ease-in-out 0.2s;
 
 					&:hover {
 						background-color: var(--c-border);
 						border-color: var(--c-brand);
-						color: var(--c-text-lightest);
 						cursor: pointer;
+					}
+
+					a {
+						text-decoration: none;
 					}
 				}
 			}

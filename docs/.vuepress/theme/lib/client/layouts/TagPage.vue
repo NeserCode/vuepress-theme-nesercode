@@ -1,8 +1,10 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 // @ts-ignore
 import BaseLayout from "./BaseLayout.vue"
 // @ts-ignore
 import Page from "@theme/Page.vue"
+// @ts-ignore
+import TagList from "@theme/TagList.vue"
 // @ts-ignore
 import ArticleList from "@theme/ArticleList.vue"
 
@@ -34,6 +36,8 @@ function getComputedDescription() {
 	}
 	return `共 ${keys.length} 类`
 }
+
+console.log(tags.value)
 </script>
 
 <template>
@@ -56,8 +60,12 @@ function getComputedDescription() {
 							</span>
 						</slot>
 					</template>
-					<template #custom-content v-if="tags.currentItems">
-						<article-list :articles="tags.currentItems" />
+					<template #custom-content>
+						<tag-list :tag-map="tags.map" />
+						<article-list
+							:articles="tags.currentItems"
+							v-if="tags.currentItems"
+						/>
 					</template>
 					<template #content-bottom>
 						<slot name="page-content-bottom" />
