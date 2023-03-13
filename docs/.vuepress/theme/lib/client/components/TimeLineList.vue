@@ -69,13 +69,13 @@ function getTagPath(tag: string) {
 </script>
 
 <template>
-	<div class="article-list">
+	<div class="timeline-list">
 		<div
-			class="article-wrapper"
+			class="timeline-wrapper"
 			v-for="article in articles"
 			:key="article.path"
 		>
-			<div class="article-main">
+			<div class="timeline-main">
 				<router-link :to="article.path" class="article-title">{{
 					article.info.title
 				}}</router-link>

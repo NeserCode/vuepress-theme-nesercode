@@ -4,7 +4,7 @@ import BaseLayout from "./BaseLayout.vue"
 // @ts-ignore
 import Page from "@theme/Page.vue"
 // @ts-ignore
-import ArticleList from "@theme/ArticleList.vue"
+import TimeLineList from "@theme/TimeLineList.vue"
 import { usePageData } from "@vuepress/client"
 import type { ArticleTypeData } from "../../shared"
 import { useScrollPromise } from "../composables"
@@ -53,7 +53,7 @@ function getComputedDescription() {
 						</slot>
 					</template>
 					<template #custom-content>
-						<article-list :articles="timeLines.items" />
+						<time-line-list :articles="timeLines.items" />
 					</template>
 					<template #content-bottom>
 						<slot name="page-content-bottom" />
