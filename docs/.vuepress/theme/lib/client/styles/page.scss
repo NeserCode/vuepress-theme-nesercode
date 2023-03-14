@@ -222,15 +222,37 @@
 		overflow: auto;
 	}
 
+	.prev,
+	.next {
+		position: relative;
+		display: inline-block;
+		height: 6ch;
+		padding: 0.4rem 0.6rem;
+		border: 2px solid var(--c-border);
+		border-radius: 0.25rem;
+
+		transition: all ease-in-out 0.2s;
+
+		&:has(a:hover) {
+			border-color: var(--c-brand);
+		}
+	}
+
 	.prev {
 		a:before {
-			content: "←";
+			position: absolute;
+			top: calc(2ch + 0.4rem);
+			left: 0.6rem;
+			content: "PREV";
 		}
 	}
 	.next {
 		float: right;
 		a:after {
-			content: "→";
+			position: absolute;
+			top: calc(2ch + 0.4rem);
+			right: 0.6rem;
+			content: "NEXT";
 		}
 	}
 }

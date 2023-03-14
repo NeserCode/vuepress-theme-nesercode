@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 // @ts-ignore
 import AutoLink from "@theme/AutoLink.vue"
-import { usePageFrontmatter } from "@vuepress/client"
+import { usePageData, usePageFrontmatter, PageData } from "@vuepress/client"
 import { isPlainObject, isString } from "@vuepress/shared"
 import { computed } from "vue"
 import { useRoute } from "vue-router"
@@ -9,12 +9,17 @@ import type {
 	DefaultThemeNormalPageFrontmatter,
 	NavLink,
 	ResolvedSidebarItem,
-} from "../../shared/index.js"
-import { useNavLink, useSidebarItems } from "../composables/index.js"
+} from "../../shared"
+import { useNavLink, useSidebarItems } from "../composables"
 
 /**
  * Resolve `prev` or `next` config from frontmatter
  */
+interface ExrtaPageData extends PageData {
+	prev?: { path: string; title: string }
+	next?: { path: string; title: string }
+}
+
 const resolveFromFrontmatterConfig = (
 	conf: unknown
 ): null | false | NavLink => {
@@ -66,6 +71,7 @@ const resolveFromSidebarItems = (
 	return null
 }
 
+const page = usePageData<ExrtaPageData>()
 const frontmatter = usePageFrontmatter<DefaultThemeNormalPageFrontmatter>()
 const sidebarItems = useSidebarItems()
 const route = useRoute()
@@ -98,6 +104,21 @@ const nextNavLink = computed(() => {
 
 			<span v-if="nextNavLink" class="next">
 				<AutoLink :item="nextNavLink" />
+			</span>
+		</p>
+	</nav>
+	<nav v-else-if="page.prev || page.next" class="page-nav">
+		<p class="inner">
+			<span v-if="page.prev" class="prev">
+				<router-link :to="page.prev.path">
+					{{ page.prev.title }}
+				</router-link>
+			</span>
+
+			<span v-if="page.next" class="next">
+				<router-link :to="page.next.path">
+					{{ page.next.title }}
+				</router-link>
 			</span>
 		</p>
 	</nav>
