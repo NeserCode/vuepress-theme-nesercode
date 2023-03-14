@@ -4,6 +4,7 @@
 .article-title {
 	margin: 0;
 	padding: 0;
+	width: 100%;
 	font-size: 1.5rem;
 	font-weight: 600;
 	color: var(--c-text-lightest);
@@ -26,6 +27,7 @@
 	align-items: center;
 	margin: 0;
 	padding: 0;
+	width: 100%;
 	font-size: 1rem;
 	font-family: var(--font-family-code);
 	color: var(--c-text-quote);
@@ -114,32 +116,89 @@
 }
 
 .timeline-list {
-	display: flex;
+	display: inline-flex;
 	flex-direction: column;
-	align-items: center;
 	width: 100%;
 	padding: 2rem 0;
 
 	.timeline-wrapper {
+		position: relative;
+		display: inline-block;
 		transition: all ease-in-out 0.2s;
-		width: 100%;
+		width: 45%;
 
-		&:nth-child(odd) .timeline-main {
+		&:nth-child(odd) {
 			align-self: flex-start;
+			.timeline-main {
+				align-self: flex-start;
+			}
+			border-right: 2px solid var(--c-brand);
+			padding-right: 5%;
+
+			transform: translateX(-1px);
+
+			&::after {
+				content: "";
+				position: absolute;
+				width: 0.5rem;
+				height: 0.5rem;
+				top: calc(50% - 0.25rem);
+				background: var(--c-bg);
+				left: calc(100% - 0.25rem - 1px);
+				border: 2px solid var(--c-brand);
+				border-radius: 100%;
+			}
+
+			&::before {
+				content: "";
+				position: absolute;
+				width: calc(10% - 0.25rem);
+				height: 2px;
+				top: calc(50% + 0.5px);
+				right: 0.25rem;
+				background: var(--c-border-dark);
+			}
 		}
 
-		&:nth-child(even) .timeline-main {
-			align-self: end;
+		&:nth-child(even) {
+			align-self: flex-end;
+			.timeline-main {
+				align-self: flex-end;
+			}
+			border-left: 2px solid var(--c-brand);
+			padding-left: 5%;
+
+			transform: translateX(1px);
+
+			&::before {
+				content: "";
+				position: absolute;
+				width: 0.5rem;
+				height: 0.5rem;
+				top: calc(50% - 0.25rem);
+				background: var(--c-bg);
+				right: calc(100% - 0.25rem - 1px);
+				border: 2px solid var(--c-brand);
+				border-radius: 100%;
+			}
+
+			&::after {
+				content: "";
+				position: absolute;
+				width: calc(10% - 0.25rem - 1px);
+				height: 2px;
+				top: calc(50% + 0.5px);
+				left: calc(0.25rem + 1px);
+				background: var(--c-border-dark);
+			}
 		}
 
 		.timeline-main {
 			display: inline-flex;
 			flex-direction: column;
-			justify-content: center;
-			width: 50%;
 			padding: 0.5rem;
 
-			border: 1px solid var(--c-border-dark);
+			border: 2px solid var(--c-border-dark);
 			border-radius: 0.5rem;
 
 			.article-info {
