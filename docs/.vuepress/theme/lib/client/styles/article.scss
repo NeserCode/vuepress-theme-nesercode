@@ -210,3 +210,52 @@
 		}
 	}
 }
+
+@media (max-width: $MQMobile) {
+	.timeline-list {
+		.timeline-wrapper {
+			width: 90%;
+			padding: 0.8rem 0;
+
+			&:nth-child(odd) {
+				align-self: normal;
+				.timeline-main {
+					align-self: normal;
+				}
+				border-right: none;
+				padding-right: 0%;
+				border-left: 2px solid var(--c-brand);
+				padding-left: 5%;
+
+				&::after {
+					right: calc(100% - 0.25rem - 1px);
+					left: auto;
+				}
+
+				&::before {
+					left: 0.25rem;
+					width: calc(5% - 0.125rem);
+				}
+			}
+
+			&:nth-child(even) {
+				align-self: normal;
+				.timeline-main {
+					align-self: normal;
+				}
+				border-left: 2px solid var(--c-brand);
+				padding-left: 5%;
+				transform: translateX(-1px);
+
+				&::before {
+					right: calc(100% - 0.25rem - 1px);
+				}
+
+				&::after {
+					width: calc(5% - 0.125rem);
+					left: calc(0.25rem + 1px);
+				}
+			}
+		}
+	}
+}
