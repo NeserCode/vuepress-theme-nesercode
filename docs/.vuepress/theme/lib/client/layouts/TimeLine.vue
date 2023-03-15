@@ -20,10 +20,18 @@ const onBeforeLeave = scrollPromise.pending
 
 const timeLines: Ref<ArticleTypeData> = useBlogType("timeLine")
 
+function getFormatTimeString(time: string) {
+	if (new Date(time))
+		return new Date(time).toLocaleString("zh-CN", {
+			hourCycle: "h24",
+		})
+	return time
+}
+
 function getTimeLimit(timeLines: ArticleTypeData) {
 	const early = timeLines.items[0].info.date
 	const late = timeLines.items[timeLines.items.length - 1].info.date
-	return [early, late]
+	return [getFormatTimeString(late), getFormatTimeString(early)]
 }
 
 function getComputedDescription() {
