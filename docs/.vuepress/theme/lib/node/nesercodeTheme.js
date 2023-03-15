@@ -13,6 +13,8 @@ import { fs, getDirname, path } from '@vuepress/utils';
 import { searchPlugin } from '@vuepress/plugin-search'
 import { useDataHelper } from 'vuepress-plugin-data-helper'
 
+import { upAndDownPlugin } from '@nesercode/vuepress-plugin-up-and-down'
+
 import { addViteSsrNoExternal } from "vuepress-shared"
 
 import {
@@ -66,6 +68,8 @@ export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => 
                 : [],
             // @vuepress/plugin-back-to-top
             themePlugins.backToTop !== false ? backToTopPlugin() : [],
+            // Up and Down
+            themePlugins.upAndDown !== false ? upAndDownPlugin() : [],
             // @vuepress/plugin-search
             themePlugins.search !== false ? searchPlugin() : [],
             // @vuepress/plugin-container
@@ -132,7 +136,7 @@ export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => 
             // Blog plugin
             getBlogPlugin(),
             // Data Helper
-            useDataHelper(localeOptions.helperOptions)
+            useDataHelper(localeOptions.helperOptions),
         ],
     };
 };
