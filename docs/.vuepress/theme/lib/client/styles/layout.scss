@@ -165,13 +165,16 @@ html.dark .navbar {
 }
 
 .tag-list {
-	@include flex_center;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
 	margin: 0;
 	padding: 0;
 	margin: 4rem 0;
 
 	.tag-item {
 		@include flex_center;
+		margin-bottom: 0.6rem;
 		margin-right: 0.6rem;
 
 		.tag-link {

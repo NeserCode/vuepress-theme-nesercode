@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-import { Ref, toRefs } from "vue"
+// @ts-ignore
+import Pagination from "@theme/Pagination.vue"
+
+import { ref, Ref, toRefs } from "vue"
 import { useSiteLocaleData } from "@vuepress/client"
 
 import type { SiteLocaleData } from "@vuepress/client"
@@ -64,7 +67,30 @@ function getAuthor(author: string) {
 }
 
 function getTagPath(tag: string) {
-	return `/tag/${tag}/`
+	return encodeURI(`/tag/${tag.toLowerCase()}/`)
+}
+
+/* Pagination */
+const currentPage = ref(1)
+const totalPage = ref(18)
+const limit = ref(4)
+
+function prev() {
+	if (currentPage.value > 1) currentPage.value--
+}
+
+function next() {
+	if (currentPage.value < totalPage.value) currentPage.value++
+}
+
+function jump(page: number) {
+	if (page > 0 && page <= totalPage.value) currentPage.value = page
+}
+
+const callbacks = {
+	prev,
+	next,
+	jump,
 }
 </script>
 
@@ -90,11 +116,18 @@ function getTagPath(tag: string) {
 					stringfyExcerpt(article.info.excerpt)
 				}}</span>
 				<span class="article-tags">
-					<span v-for="tag in article.info.tags" :key="tag" class="tag">
+					<span v-for="tag of article.info.tags" :key="tag" class="tag">
 						<router-link :to="getTagPath(tag)">{{ tag }}</router-link>
 					</span>
 				</span>
 			</div>
 		</div>
+		<Pagination
+			:maxPage="6"
+			:total="totalPage"
+			:limit="limit"
+			:current="currentPage"
+			:callbacks="callbacks"
+		/>
 	</div>
 </template>
