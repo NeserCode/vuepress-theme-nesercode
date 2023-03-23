@@ -20,3 +20,18 @@
 	transform: translateY(10px);
 	opacity: 0;
 }
+
+/**
+ * fade-slide-x
+ */
+.fade-slide-x-enter-active {
+	transition: all 0.2s ease;
+}
+.fade-slide-x-leave-active {
+	transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.fade-slide-x-enter-from,
+.fade-slide-x-leave-to {
+	transform: translateX(10px);
+	opacity: 0;
+}

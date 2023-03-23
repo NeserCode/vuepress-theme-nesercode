@@ -62,9 +62,10 @@ console.log(tags.value)
 					</template>
 					<template #custom-content>
 						<tag-list :tag-map="tags.map" />
+
 						<article-list
-							:articles="tags.currentItems"
 							v-if="tags.currentItems"
+							:articles="tags.currentItems"
 						/>
 					</template>
 					<template #content-bottom>

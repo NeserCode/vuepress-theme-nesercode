@@ -2,7 +2,7 @@
 // @ts-ignore
 import Pagination from "@theme/Pagination.vue"
 
-import { ref, Ref, toRefs } from "vue"
+import { computed, ref, Ref, toRefs } from "vue"
 import { useSiteLocaleData } from "@vuepress/client"
 
 import type { SiteLocaleData } from "@vuepress/client"
@@ -72,8 +72,8 @@ function getTagPath(tag: string) {
 
 /* Pagination */
 const currentPage = ref(1)
-const totalPage = ref(24)
-const limit = ref(4)
+const totalPage = ref(articles.value.length)
+const limit = ref(5)
 
 function prev() {
 	if (currentPage.value > 1) currentPage.value--
@@ -92,42 +92,50 @@ const callbacks = {
 	next,
 	jump,
 }
+const slicedArticles = computed(() => {
+	const start = (currentPage.value - 1) * limit.value
+	const end = start + limit.value
+	if (!articles.value || articles.value.length === 0) return []
+	return articles.value.slice(start, end)
+})
 </script>
 
 <template>
-	<div class="article-list">
-		<div
-			class="article-wrapper"
-			v-for="article in articles"
-			:key="article.path"
-		>
-			<div class="article-main">
-				<router-link :to="article.path" class="article-title">{{
-					article.info.title
-				}}</router-link>
-				<span class="article-info">
-					<span class="date"
-						>{{ translateDate(article.info.date) }} ·
-						{{ getTimeFromNow(article.info.date) }}</span
-					>
-					<span class="author">by {{ getAuthor(article.info.author) }}</span>
-				</span>
-				<span class="article-excerpt">{{
-					stringfyExcerpt(article.info.excerpt)
-				}}</span>
-				<span class="article-tags">
-					<span v-for="tag of article.info.tags" :key="tag" class="tag">
-						<router-link :to="getTagPath(tag)">{{ tag }}</router-link>
+	<Transition name="fade-slide-x" appear mode="out-in">
+		<div class="article-list" :key="currentPage">
+			<div
+				class="article-wrapper"
+				v-for="article in slicedArticles"
+				:key="article.path"
+			>
+				<div class="article-main">
+					<router-link :to="article.path" class="article-title">{{
+						article.info.title
+					}}</router-link>
+					<span class="article-info">
+						<span class="date"
+							>{{ translateDate(article.info.date) }} ·
+							{{ getTimeFromNow(article.info.date) }}</span
+						>
+						<span class="author">by {{ getAuthor(article.info.author) }}</span>
 					</span>
-				</span>
+					<span class="article-excerpt">{{
+						stringfyExcerpt(article.info.excerpt)
+					}}</span>
+					<span class="article-tags">
+						<span v-for="tag of article.info.tags" :key="tag" class="tag">
+							<router-link :to="getTagPath(tag)">{{ tag }}</router-link>
+						</span>
+					</span>
+				</div>
 			</div>
 		</div>
-		<Pagination
-			:maxPage="6"
-			:total="totalPage"
-			:limit="limit"
-			:current="currentPage"
-			:callbacks="callbacks"
-		/>
-	</div>
+	</Transition>
+	<Pagination
+		:maxPage="6"
+		:total="totalPage"
+		:limit="limit"
+		:current="currentPage"
+		:callbacks="callbacks"
+	/>
 </template>
