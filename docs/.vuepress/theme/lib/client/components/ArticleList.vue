@@ -72,7 +72,7 @@ function getTagPath(tag: string) {
 
 /* Pagination */
 const currentPage = ref(1)
-const totalPage = ref(18)
+const totalPage = ref(24)
 const limit = ref(4)
 
 function prev() {
