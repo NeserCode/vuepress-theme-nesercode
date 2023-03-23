@@ -67,7 +67,6 @@
 		display: inline-block;
 		margin-right: 1rem;
 		margin-top: 0.4rem;
-		padding: 0.25rem 0.5rem;
 		text-transform: uppercase;
 		border: 2px solid var(--c-border);
 		border-radius: 0.25rem;
@@ -86,6 +85,8 @@
 		}
 
 		a {
+			display: inline-block;
+			padding: 0.25rem 0.5rem;
 			text-decoration: none;
 		}
 	}
