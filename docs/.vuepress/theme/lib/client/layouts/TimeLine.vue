@@ -10,7 +10,7 @@ import type { ArticleTypeData } from "../../shared"
 import { useScrollPromise } from "../composables"
 // @ts-ignore
 import { useBlogType } from "vuepress-plugin-blog2/client"
-import { Ref } from "vue"
+import { onMounted, Ref } from "vue"
 const page = usePageData()
 
 // handle scrollBehavior with transition

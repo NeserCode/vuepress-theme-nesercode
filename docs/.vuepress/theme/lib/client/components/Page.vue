@@ -5,7 +5,7 @@ import PageMeta from "@theme/PageMeta.vue"
 import PageNav from "@theme/PageNav.vue"
 // @ts-ignore
 import Comment from "@theme/GiscusComment.vue"
-import { computed, onMounted } from "vue"
+import { computed, onActivated, onMounted } from "vue"
 import { Ref } from "@vue/reactivity"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import { useThemeLocaleData, usePluginState } from "../composables"
