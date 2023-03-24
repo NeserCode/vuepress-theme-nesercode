@@ -11,7 +11,7 @@ import ReadingLine from "@theme/ReadingLine.vue"
 import { ref, onMounted, onUnmounted } from "vue"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import type { DefaultThemePageFrontmatter } from "../../shared"
-import { useScrollPromise, usePluginState } from "../composables"
+import { usePluginState } from "../composables"
 
 type ExtraPageFrontmatter = DefaultThemePageFrontmatter & {
 	plugins?: {
@@ -24,11 +24,6 @@ type ExtraPageFrontmatter = DefaultThemePageFrontmatter & {
 
 const page = usePageData()
 const frontmatter = usePageFrontmatter<ExtraPageFrontmatter>()
-
-// handle scrollBehavior with transition
-const scrollPromise = useScrollPromise()
-const onBeforeEnter = scrollPromise.resolve
-const onBeforeLeave = scrollPromise.pending
 
 // calculate scroll progress
 const isOpenReadingLine = usePluginState(
@@ -58,20 +53,13 @@ onUnmounted(() => {
 <template>
 	<base-layout>
 		<template #page>
-			<reading-line
-				:reading-progress="readingProgress"
-				v-if="isOpenReadingLine"
-			/>
-			<Home v-if="frontmatter.home" />
-
-			<Transition
-				v-else
-				name="fade-slide-y"
-				mode="out-in"
-				@before-enter="onBeforeEnter"
-				@before-leave="onBeforeLeave"
-			>
-				<Page :key="page.path">
+			<div class="page-wrapper" :key="page.path">
+				<reading-line
+					:reading-progress="readingProgress"
+					v-if="isOpenReadingLine"
+				/>
+				<Home v-if="frontmatter.home" />
+				<Page>
 					<template #top>
 						<slot name="page-top" />
 					</template>
@@ -85,7 +73,7 @@ onUnmounted(() => {
 						<slot name="page-bottom" />
 					</template>
 				</Page>
-			</Transition>
+			</div>
 		</template>
 	</base-layout>
 </template>

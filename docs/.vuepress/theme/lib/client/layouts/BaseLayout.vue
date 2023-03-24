@@ -7,10 +7,19 @@ import { usePageFrontmatter } from "@vuepress/client"
 import { computed, onMounted, onUnmounted, ref } from "vue"
 import { useRouter } from "vue-router"
 import type { DefaultThemePageFrontmatter } from "../../shared/index.js"
-import { useSidebarItems, useThemeLocaleData } from "../composables/index.js"
+import {
+	useScrollPromise,
+	useSidebarItems,
+	useThemeLocaleData,
+} from "../composables/index.js"
 
 const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>()
 const themeLocale = useThemeLocaleData()
+
+// handle scrollBehavior with transition
+const scrollPromise = useScrollPromise()
+const onBeforeEnter = scrollPromise.resolve
+const onBeforeLeave = scrollPromise.pending
 
 // navbar
 const shouldShowNavbar = computed(
@@ -94,6 +103,14 @@ onUnmounted(() => {
 			</Sidebar>
 		</slot>
 
-		<slot name="page"> </slot>
+		<Transition
+			name="fade-slide-y"
+			mode="out-in"
+			appear
+			@before-enter="onBeforeEnter"
+			@before-leave="onBeforeLeave"
+		>
+			<slot name="page"> </slot>
+		</Transition>
 	</div>
 </template>

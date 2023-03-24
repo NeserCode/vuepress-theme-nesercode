@@ -7,16 +7,10 @@ import Page from "@theme/Page.vue"
 import TimeLineList from "@theme/TimeLineList.vue"
 import { usePageData } from "@vuepress/client"
 import type { ArticleTypeData } from "../../shared"
-import { useScrollPromise } from "../composables"
 // @ts-ignore
 import { useBlogType } from "vuepress-plugin-blog2/client"
-import { onMounted, Ref } from "vue"
+import { Ref } from "vue"
 const page = usePageData()
-
-// handle scrollBehavior with transition
-const scrollPromise = useScrollPromise()
-const onBeforeEnter = scrollPromise.resolve
-const onBeforeLeave = scrollPromise.pending
 
 const timeLines: Ref<ArticleTypeData> = useBlogType("timeLine")
 
@@ -43,13 +37,8 @@ function getComputedDescription() {
 <template>
 	<base-layout>
 		<template #page>
-			<Transition
-				name="fade-slide-y"
-				mode="out-in"
-				@before-enter="onBeforeEnter"
-				@before-leave="onBeforeLeave"
-			>
-				<Page :key="page.path">
+			<div class="page-warpper" :key="page.path">
+				<Page>
 					<template #top>
 						<slot name="page-top" />
 					</template>
@@ -70,7 +59,7 @@ function getComputedDescription() {
 						<slot name="page-bottom" />
 					</template>
 				</Page>
-			</Transition>
+			</div>
 		</template>
 	</base-layout>
 </template>

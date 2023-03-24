@@ -13,7 +13,6 @@ import type {
 	DefaultThemePageFrontmatter,
 	ArticleCategoryData,
 } from "../../shared"
-import { useScrollPromise } from "../composables"
 
 // @ts-ignore
 import { useBlogCategory } from "vuepress-plugin-blog2/client"
@@ -21,11 +20,6 @@ import { Ref } from "vue"
 
 const page = usePageData()
 const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>()
-
-// handle scrollBehavior with transition
-const scrollPromise = useScrollPromise()
-const onBeforeEnter = scrollPromise.resolve
-const onBeforeLeave = scrollPromise.pending
 
 const tags: Ref<ArticleCategoryData> = useBlogCategory("tag")
 
@@ -43,13 +37,8 @@ console.log(tags.value)
 <template>
 	<base-layout>
 		<template #page>
-			<Transition
-				name="fade-slide-y"
-				mode="out-in"
-				@before-enter="onBeforeEnter"
-				@before-leave="onBeforeLeave"
-			>
-				<Page :key="page.path">
+			<div class="page-warpper" :key="page.path">
+				<Page>
 					<template #top>
 						<slot name="page-top" />
 					</template>
@@ -75,7 +64,7 @@ console.log(tags.value)
 						<slot name="page-bottom" />
 					</template>
 				</Page>
-			</Transition>
+			</div>
 		</template>
 	</base-layout>
 </template>
