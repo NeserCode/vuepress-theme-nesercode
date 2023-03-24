@@ -59,7 +59,7 @@ onUnmounted(() => {
 					v-if="isOpenReadingLine"
 				/>
 				<Home v-if="frontmatter.home" />
-				<Page>
+				<Page v-else>
 					<template #top>
 						<slot name="page-top" />
 					</template>

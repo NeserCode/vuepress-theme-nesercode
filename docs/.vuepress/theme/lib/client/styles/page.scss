@@ -227,14 +227,22 @@
 		position: relative;
 		display: inline-block;
 		height: 6ch;
+		max-width: 45%;
 		padding: 0.4rem 0.6rem;
 		border: 2px solid var(--c-border);
 		border-radius: 0.25rem;
 
 		transition: all ease-in-out 0.2s;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 
 		&:has(a:hover) {
 			border-color: var(--c-brand);
+		}
+
+		@media screen and (max-width: $MQMobile) {
+			padding: 0.1rem 0.3rem;
 		}
 	}
 
@@ -243,7 +251,7 @@
 			position: absolute;
 			top: calc(2ch + 0.4rem);
 			left: 0.6rem;
-			content: "PREV";
+			content: "Prev Page";
 		}
 	}
 	.next {
@@ -252,7 +260,7 @@
 			position: absolute;
 			top: calc(2ch + 0.4rem);
 			right: 0.6rem;
-			content: "NEXT";
+			content: "Next Page";
 		}
 	}
 }
