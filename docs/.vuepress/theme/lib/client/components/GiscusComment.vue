@@ -27,7 +27,7 @@ const themeComputed = computed(() =>
 </script>
 
 <template>
-	<div class="comment" id="giscus-comment">
+	<div class="comment" id="Comment-for-Up-and-Down">
 		<Giscus
 			host="https://giscus.app"
 			:repo="giscusOptions.repo"

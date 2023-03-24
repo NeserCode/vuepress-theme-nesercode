@@ -34,7 +34,7 @@
 	"dependencies": {
 		"@giscus/vue": "^2.2.6",
 		"@heroicons/vue": "^2.0.16",
-		"@nesercode/vuepress-plugin-up-and-down": "^1.0.0",
+		"@nesercode/vuepress-plugin-up-and-down": "^1.0.1",
 		"@vuepress/plugin-search": "^2.0.0-beta.60",
 		"vuepress-plugin-blog2": "^2.0.0-beta.171",
 		"vuepress-plugin-data-helper": "^1.0.1"
