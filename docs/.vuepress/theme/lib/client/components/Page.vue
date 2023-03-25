@@ -1,11 +1,13 @@
 <script setup lang="ts">
 // @ts-ignore
+import CopyRightBand from "./CopyRightBand.vue"
+// @ts-ignore
 import PageMeta from "@theme/PageMeta.vue"
 // @ts-ignore
 import PageNav from "@theme/PageNav.vue"
 // @ts-ignore
 import Comment from "@theme/GiscusComment.vue"
-import { computed, onActivated, onMounted } from "vue"
+import { computed, onMounted } from "vue"
 import { Ref } from "@vue/reactivity"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import { useThemeLocaleData, usePluginState } from "../composables"
@@ -29,6 +31,9 @@ type ExtraPageFrontmatter = PageFrontmatter & {
 		comment?: boolean
 		sidebarCategory?: boolean
 	}
+
+	original?: boolean
+	originalUrl?: string
 }
 
 const page: Ref<ExtraPageData> = usePageData()
@@ -69,6 +74,17 @@ const isOpenReadingTime = usePluginState(
 const isOpenComment = usePluginState("comment", frontmatter.value.plugins)
 const isExistOption = computed(() => themeLocale.value.giscus !== undefined)
 
+/* Original */
+const isOriginal = computed(() => {
+	if (frontmatter.value.original === false) return false
+	else return true
+})
+const originalUrl = computed(() => {
+	if (frontmatter.value.originalUrl !== undefined)
+		return frontmatter.value.originalUrl
+	else return window.location.href
+})
+
 onMounted(() => {
 	console.log(page.value)
 })
@@ -101,6 +117,8 @@ onMounted(() => {
 
 				<slot name="content-bottom" />
 			</div>
+
+			<CopyRightBand :isOriginal="isOriginal" :originalUrl="originalUrl" />
 
 			<PageMeta />
 

@@ -208,6 +208,49 @@
 	}
 }
 
+.copyright-band {
+	max-width: fit-content;
+	margin: 0 auto;
+	border: 2px solid var(--c-border);
+
+	.copyright-container {
+		.info {
+			@include flex_center;
+			position: relative;
+			flex-direction: column;
+			padding: 1.2rem 2rem;
+			align-items: flex-start;
+			overflow: hidden;
+
+			span {
+				display: inline-block;
+				color: var(--c-text-lighter);
+				z-index: 1;
+			}
+
+			.icon {
+				position: absolute;
+				bottom: -0.4rem;
+				right: 0.2rem;
+				width: 6rem;
+				height: 6rem;
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+				z-index: 0;
+
+				.cc-svg-path {
+					fill: var(--c-border-dark);
+				}
+			}
+		}
+	}
+
+	@media (max-width: $MQMobile) {
+		margin: 0 1.5rem;
+	}
+}
+
 .page-nav {
 	@include content_wrapper;
 	padding-top: 1rem;
