@@ -6,8 +6,9 @@ import { computed, toRefs } from "vue"
 const $props = defineProps<{
 	isOriginal: boolean
 	originalUrl?: string
+	tips?: string[]
 }>()
-const { isOriginal, originalUrl } = toRefs($props)
+const { isOriginal, originalUrl, tips } = toRefs($props)
 
 const decodedUrl = computed(() => {
 	if (originalUrl && originalUrl.value) {
@@ -34,8 +35,8 @@ console.log(isOriginal.value)
 					版权协议，转载请附上原文出处链接及本声明。</span
 				>
 				<span class="title" v-else>本文为转载文章，如欲转载请联系原作者</span>
-				<span class="origin-url">链接：{{ decodedUrl }}</span>
-				<span class="tips">tips</span>
+				<span v-for="tip in tips" :key="tip" class="tip">{{ tip }}</span>
+				<span class="origin-url">文章链接：{{ decodedUrl }}</span>
 				<span class="icon">
 					<svg
 						t="1679731809836"

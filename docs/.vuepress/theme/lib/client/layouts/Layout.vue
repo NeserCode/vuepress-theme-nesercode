@@ -6,9 +6,12 @@ import Home from "@theme/Home.vue"
 // @ts-ignore
 import Page from "@theme/Page.vue"
 // @ts-ignore
+import CopyRightBand from "@theme/CopyrightBand.vue"
+// @ts-ignore
 import ReadingLine from "@theme/ReadingLine.vue"
 
-import { ref, onMounted, onUnmounted } from "vue"
+import { ref, onMounted, onUnmounted, computed, watch } from "vue"
+import { useRoute } from "vue-router"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import type { DefaultThemePageFrontmatter } from "../../shared"
 import { usePluginState } from "../composables"
@@ -20,6 +23,9 @@ type ExtraPageFrontmatter = DefaultThemePageFrontmatter & {
 		comment?: boolean
 		sidebarCategory?: boolean
 	}
+
+	original?: boolean
+	originalUrl?: string
 }
 
 const page = usePageData()
@@ -40,6 +46,26 @@ function getScrollProgress() {
 	)
 	readingProgress.value = progress
 }
+
+/* Original */
+const $route = useRoute()
+const isOriginal = computed(() => {
+	if (frontmatter.value.original === false) return false
+	else return true
+})
+const originalUrl = ref(frontmatter.value.originalUrl ?? getReplacedUrl())
+function getReplacedUrl() {
+	return window.location.href.replace(encodeURI($route.hash), "")
+}
+watch(
+	() => $route.hash,
+	() => {
+		if (frontmatter.value.originalUrl)
+			originalUrl.value = frontmatter.value.originalUrl
+		else originalUrl.value = getReplacedUrl()
+	}
+)
+const copyrightTips = [""]
 
 onMounted(() => {
 	window.addEventListener("scroll", getScrollProgress)
@@ -70,6 +96,11 @@ onUnmounted(() => {
 						<slot name="page-content-bottom" />
 					</template>
 					<template #bottom>
+						<CopyRightBand
+							:isOriginal="isOriginal"
+							:originalUrl="originalUrl"
+							:tips="copyrightTips"
+						/>
 						<slot name="page-bottom" />
 					</template>
 				</Page>

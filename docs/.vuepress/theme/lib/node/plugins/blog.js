@@ -45,7 +45,8 @@ export const getBlogPlugin = () => blogPlugin({
           readingLine: false,
           comment: false,
           sidebarCategory: false,
-        }
+        },
+        layout: "TagPage",
       }),
       itemPath: "/tag/:name/",
       itemLayout: "TagPage",
@@ -57,7 +58,8 @@ export const getBlogPlugin = () => blogPlugin({
           readingLine: false,
           comment: false,
           sidebarCategory: false,
-        }
+        },
+        layout: "TagPage",
       }),
     },
   ],
@@ -76,7 +78,8 @@ export const getBlogPlugin = () => blogPlugin({
           readingLine: false,
           comment: false,
           sidebarCategory: false,
-        }
+        },
+        layout: "TimeLine",
       }),
     }
   ],
