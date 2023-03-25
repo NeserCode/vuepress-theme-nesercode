@@ -22,6 +22,11 @@ const linkItem = computed(() => ({
 	link: "https://creativecommons.org/licenses/by-sa/4.0/deed",
 }))
 
+function copyInfo() {
+	const text = `本文遵循 ${linkItem.value.text} 版权协议，转载请附上出处链接及本声明。文章出处：${decodedUrl.value}`
+	if (navigator && navigator.clipboard) navigator.clipboard.writeText(text)
+}
+
 console.log(isOriginal.value)
 </script>
 
@@ -37,6 +42,9 @@ console.log(isOriginal.value)
 				<span class="title" v-else>本文为转载文章，如欲转载请联系原作者</span>
 				<span v-for="tip in tips" :key="tip" class="tip">{{ tip }}</span>
 				<span class="origin-url">文章链接：{{ decodedUrl }}</span>
+				<span class="operate">
+					<button class="btn" @click="copyInfo">一键复制</button>
+				</span>
 				<span class="icon">
 					<svg
 						t="1679731809836"

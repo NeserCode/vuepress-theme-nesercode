@@ -243,6 +243,35 @@
 					fill: var(--c-border-dark);
 				}
 			}
+
+			.operate {
+				margin-top: 0.8rem;
+				.btn {
+					display: inline-block;
+					padding: 0.5rem 1rem;
+					background-color: transparent;
+					border: 2px solid var(--c-border);
+					border-radius: 0.5rem;
+					color: var(--c-text-lighter);
+					font-size: 0.8rem;
+					transition: all ease-in-out 0.2s;
+
+					&:hover {
+						background-color: var(--c-border);
+						color: var(--c-text);
+					}
+
+					&:active {
+						background-color: var(--c-border-dark);
+						border-color: var(--c-text-lighter);
+						color: var(--c-text);
+					}
+
+					&:not(:last-child) {
+						margin-right: 0.5rem;
+					}
+				}
+			}
 		}
 	}
 
