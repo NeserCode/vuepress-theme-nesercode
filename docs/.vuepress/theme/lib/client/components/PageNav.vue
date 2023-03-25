@@ -111,17 +111,13 @@ const nextNavLink = computed(() => {
 		<p class="inner">
 			<span v-if="page.prev" class="prev">
 				<router-link :to="page.prev.path">
-					{{ page.prev.title }}{{ page.prev.title }}{{ page.prev.title
-					}}{{ page.prev.title }}{{ page.prev.title }}{{ page.prev.title
-					}}{{ page.prev.title }}
+					{{ page.prev.title }}
 				</router-link>
 			</span>
 
 			<span v-if="page.next" class="next">
 				<router-link :to="page.next.path">
-					{{ page.next.title }}{{ page.next.title }}{{ page.next.title
-					}}{{ page.next.title }}{{ page.next.title }}{{ page.next.title
-					}}{{ page.next.title }}
+					{{ page.next.title }}
 				</router-link>
 			</span>
 		</p>
