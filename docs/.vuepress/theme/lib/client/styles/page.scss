@@ -36,6 +36,17 @@
 			top: calc(2rem + var(--navbar-height));
 			width: var(--subsidebar-width);
 			margin-left: 1.25rem;
+
+			&::before {
+				content: "On This Page";
+				position: absolute;
+				top: -0.5rem;
+				left: -0.25rem;
+				font-size: 0.875rem;
+				font-weight: 500;
+				color: var(--c-text-accent);
+			}
+
 			& > .vuepress-toc-list {
 				border: 0px var(--c-text-accent) solid;
 				border-left-width: 1px;
@@ -226,6 +237,11 @@
 				display: inline-block;
 				color: var(--c-text-lighter);
 				z-index: 1;
+
+				a {
+					text-decoration: underline;
+					text-underline-offset: 0.175rem;
+				}
 			}
 
 			.icon {
