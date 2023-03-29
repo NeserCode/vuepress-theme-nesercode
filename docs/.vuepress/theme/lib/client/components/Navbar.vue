@@ -70,10 +70,10 @@ function getCssValue(el: HTMLElement | null, property: string): number {
 
 		<div class="navbar-items-wrapper" :style="linksWrapperStyle">
 			<slot name="before" />
+			<NavbarSearch class="navbar-search" />
 			<NavbarItems class="can-hide" />
 			<slot name="after" />
 			<ToggleColorModeButton v-if="themeLocale.colorModeSwitch" />
-			<NavbarSearch />
 		</div>
 	</header>
 </template>
