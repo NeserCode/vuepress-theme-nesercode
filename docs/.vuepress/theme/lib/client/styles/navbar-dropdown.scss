@@ -23,6 +23,7 @@
 		.icon {
 			display: inline-block;
 			width: 2ch;
+			margin-right: 0.2rem;
 		}
 	}
 
@@ -37,9 +38,19 @@
 	}
 
 	.navbar-dropdown {
+		display: flex;
+		width: fit-content;
+		flex-direction: column;
+
+		padding: 0.6rem;
 		.navbar-dropdown-item {
 			color: inherit;
+			width: 100%;
 			line-height: 1.7rem;
+			border-radius: 0.2rem;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 
 			.navbar-dropdown-subtitle {
 				margin: 0.45rem 0 0;
@@ -71,33 +82,32 @@
 			}
 
 			a {
-				display: block;
-				line-height: 1.7rem;
+				display: inline-flex;
+				align-items: center;
+				width: 100%;
 				position: relative;
 				border-bottom: none;
 				font-weight: 400;
 				margin-bottom: 0;
-				padding: 0 1.5rem 0 1.25rem;
-
-				&:hover {
-					color: var(--c-text-accent);
-				}
+				padding: 0.2rem 0.5rem;
+				border-radius: 0.2rem;
 
 				&.router-link-active {
-					color: var(--c-text-accent);
-
-					&::after {
-						content: "";
-						width: 0;
-						height: 0;
-						border-left: 5px solid var(--c-text-accent);
-						border-top: 3px solid transparent;
-						border-bottom: 3px solid transparent;
-						position: absolute;
-						top: calc(50% - 2px);
-						left: 9px;
-					}
+					background-color: var(--c-text-accent);
+					color: var(--c-bg);
 				}
+			}
+
+			&:hover {
+				color: var(--c-text-accent);
+				border-radius: 0.2rem;
+				background-color: var(--c-border);
+
+				transition: all 0.2s ease-in-out;
+			}
+
+			&:not(:last-child) {
+				margin-bottom: 0.2rem;
 			}
 
 			&:first-child .navbar-dropdown-subtitle {
@@ -163,6 +173,7 @@
 		.navbar-dropdown {
 			display: none;
 			// Avoid height shaked by clicking
+			list-style: none;
 			height: auto !important;
 			box-sizing: border-box;
 			max-height: calc(100vh - 2.7rem);
@@ -171,12 +182,10 @@
 			top: 100%;
 			right: 0;
 			background-color: var(--c-bg-navbar);
-			padding: 0.6rem 0;
 			border: 1px solid var(--c-border);
 			border-bottom-color: var(--c-border-dark);
 			text-align: left;
-			border-radius: 0.25rem;
-			white-space: nowrap;
+			border-radius: 0.2rem;
 			margin: 0;
 		}
 	}

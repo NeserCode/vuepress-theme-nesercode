@@ -90,11 +90,13 @@
 			margin-left: 0;
 		}
 
-		&:has(.navbar-dropdown-wrapper):hover {
-			border-radius: 0.2rem;
-			background-color: var(--c-border-dark);
+		&:has(.navbar-dropdown-wrapper) {
+			&:hover {
+				border-radius: 0.2rem;
+				background-color: var(--c-border-dark);
 
-			transition: all ease-in-out 0.2s;
+				transition: all ease-in-out 0.2s;
+			}
 		}
 
 		> a {
