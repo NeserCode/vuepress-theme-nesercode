@@ -60,7 +60,8 @@
  * navbar-items
  */
 .navbar-items {
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
 
 	@media print {
 		display: none;
@@ -80,7 +81,7 @@
 	.navbar-item {
 		position: relative;
 		display: inline-block;
-		margin-left: 1.5rem;
+		margin-left: 1rem;
 		line-height: var(--navbar-line-height);
 
 		z-index: 5;
@@ -89,11 +90,29 @@
 			margin-left: 0;
 		}
 
+		&:has(.navbar-dropdown-wrapper):hover {
+			border-radius: 0.2rem;
+			background-color: var(--c-border-dark);
+
+			transition: all ease-in-out 0.2s;
+		}
+
 		> a {
+			padding: 0.2rem 0.5rem;
+
 			&:hover,
 			&.router-link-active {
-				margin-bottom: -2px;
-				border-bottom: 2px solid var(--c-text-accent);
+				border-radius: 0.2rem;
+
+				transition: all ease-in-out 0.2s;
+			}
+
+			&:hover {
+				background-color: var(--c-border-dark);
+			}
+			&.router-link-active {
+				color: var(--c-bg);
+				background-color: var(--c-text-accent);
 			}
 		}
 	}
