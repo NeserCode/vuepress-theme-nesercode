@@ -70,6 +70,7 @@ export default defineUserConfig({
 		contributorsText: "作者",
 		lastUpdatedText: "最近更新于",
 		outTime: "时间长河中某处",
+
 		giscus: {
 			repo: "NeserCode/NeserCode.github.io",
 			repoId: "R_kgDOHf8WIA=",
@@ -82,7 +83,7 @@ export default defineUserConfig({
 			reactionsEnabled: "1",
 			inputPosition: "top",
 			language: "zh-CN",
-			loading: "lazy",
+			loading: "eager",
 		},
 	}),
 

@@ -4,7 +4,10 @@ tag:
   - markdown
   - common
   - official
-author: NeserCode
+author: Someone
+date: 2021-01-01
+original: false
+originalUrl: https://vuepress.vuejs.org/zh/guide/markdown.html
 ---
 
 # Markdown

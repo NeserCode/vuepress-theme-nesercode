@@ -11,7 +11,13 @@
 		font-weight: 300;
 		color: var(--c-text-lighter);
 
-		// font-family: var(--font-family-HY-mid);
+		font-family: var(--font-family-SY-Song-light);
+	}
+
+	.reading-time-main {
+		display: inline-flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 
 	.main-custom {
@@ -19,6 +25,8 @@
 	}
 
 	.sidebar-custom {
+		font-family: var(--font-family-SY-Song-light);
+
 		position: fixed;
 		right: calc(
 			50% - var(--content-width) / 2 - var(--subsidebar-width) -

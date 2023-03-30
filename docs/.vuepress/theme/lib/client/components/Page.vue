@@ -45,6 +45,16 @@ const createdTime = computed(() => {
 
 	return frontmatter.value.date ?? outTimeText
 })
+const updatedTime = computed(() => {
+	if (page.value.git.updatedTime !== (undefined || null)) {
+		if (page.value.git.updatedTime !== undefined)
+			return new Date(page.value.git.updatedTime).toLocaleString()
+	}
+
+	let outTimeText = themeLocale.value.outTime ?? '"非法时间"'
+
+	return frontmatter.value.date ?? outTimeText
+})
 
 const isOpenSdiebarCategory = usePluginState(
 	"sidebarCategory",
@@ -84,11 +94,18 @@ onMounted(() => {
 				<div class="page-header">
 					<span class="reading-time-main description" v-if="isOpenReadingTime">
 						<span class="reading-time">
-							📖 共 {{ page.readingTime.words }} 字，预计需要
+							<span class="prefix">📖</span>
+							共 {{ page.readingTime.words }} 字，预计需要
 							{{ page.readingTime.minutes }} 分钟
 						</span>
-						<span class="created-time" title="Created Time">
-							写于 {{ createdTime }}
+						<span class="time-like">
+							<span class="prefix">🕙</span>
+							<span class="created-time" title="Created Time">
+								写于 {{ createdTime }}
+							</span>
+							<span class="updated-time" title="Updated Time">
+								最后更新于 {{ updatedTime }}
+							</span>
 						</span>
 					</span>
 				</div>

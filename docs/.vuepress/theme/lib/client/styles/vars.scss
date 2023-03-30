@@ -1,17 +1,7 @@
-// @font-face {
-// 	font-family: "HYWH-thin";
-// 	src: url(./fonts/HYWenHei-35W.ttf);
-// }
-
-// @font-face {
-// 	font-family: "HYWH-mid";
-// 	src: url(./fonts/HYWenHei-55S.ttf);
-// }
-
-// @font-face {
-// 	font-family: "HYWH-bold";
-// 	src: url(./fonts/HYWenHei-75W.ttf);
-// }
+@font-face {
+	font-family: "SY_SONG_LIGHT";
+	src: url("./fonts/Source_Han_Serif_SC_Light_Light.otf");
+}
 
 :root {
 	// brand colors
@@ -91,9 +81,7 @@
 	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
 		Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 	--font-family-code: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-	// --font-family-HY-thin: "HYWH-thin";
-	// --font-family-HY-mid: "HYWH-mid";
-	// --font-family-HY-bold: "HYWH-bold";
+	--font-family-SY-Song-light: "SY_SONG_LIGHT";
 
 	// layout vars
 	--navbar-height: 3.6rem;

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 // @ts-ignore
 import Giscus from "@giscus/vue"
-import { computed, ref, toRefs } from "vue"
+import { computed, watch, ref, toRefs } from "vue"
 
 import { GiscusOptions } from "../../shared"
 import { useDarkMode } from "../composables"
@@ -19,10 +19,21 @@ function generateGiscusOption(options: GiscusOptions): GiscusOptions {
 }
 
 const giscusOptions = ref<GiscusOptions>(generateGiscusOption(options.value))
-const themeComputed = computed(() =>
+const themeComputed = ref(
 	darkMode.value
 		? giscusOptions.value.darkTheme ?? "dark"
 		: giscusOptions.value.theme
+)
+
+watch(
+	() => darkMode.value,
+	() => {
+		themeComputed.value = darkMode.value
+			? giscusOptions.value.darkTheme ?? "dark"
+			: giscusOptions.value.theme
+
+		console.log(themeComputed.value)
+	}
 )
 </script>
 

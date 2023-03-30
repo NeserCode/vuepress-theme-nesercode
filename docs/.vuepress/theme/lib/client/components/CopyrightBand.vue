@@ -26,8 +26,6 @@ function copyInfo() {
 	const text = `本文遵循 ${linkItem.value.text} 版权协议，转载请附上出处链接及本声明。文章出处：${decodedUrl.value}`
 	if (navigator && navigator.clipboard) navigator.clipboard.writeText(text)
 }
-
-console.log(isOriginal.value)
 </script>
 
 <template>
