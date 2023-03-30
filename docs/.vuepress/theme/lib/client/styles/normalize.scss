@@ -91,6 +91,8 @@ h6 {
 	line-height: 1.25;
 	overflow-wrap: break-word;
 
+	font-family: var(--font-family-SY-Song-light);
+
 	&:focus-visible {
 		outline: none;
 	}
