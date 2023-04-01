@@ -63,6 +63,7 @@ export default defineUserConfig({
 		helperOptions: {
 			isTempPages: true,
 			pagesStartWith: "/blog/",
+			passwordSalt: "salt",
 		},
 
 		// theme locales
@@ -83,7 +84,7 @@ export default defineUserConfig({
 			reactionsEnabled: "1",
 			inputPosition: "top",
 			language: "zh-CN",
-			loading: "eager",
+			loading: "lazy",
 		},
 	}),
 

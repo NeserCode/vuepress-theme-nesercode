@@ -5,7 +5,10 @@ import PageMeta from "@theme/PageMeta.vue"
 import PageNav from "@theme/PageNav.vue"
 // @ts-ignore
 import Comment from "@theme/GiscusComment.vue"
-import { computed, onMounted } from "vue"
+// @ts-ignore
+import EncryptRouter from "./EncryptRouter.vue"
+
+import { computed, onMounted, ref } from "vue"
 import { Ref } from "@vue/reactivity"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import { useThemeLocaleData, usePluginState } from "../composables"
@@ -29,6 +32,8 @@ type ExtraPageFrontmatter = PageFrontmatter & {
 		comment?: boolean
 		sidebarCategory?: boolean
 	}
+
+	password?: string
 }
 
 const page: Ref<ExtraPageData> = usePageData()
@@ -79,13 +84,33 @@ const isOpenReadingTime = usePluginState(
 const isOpenComment = usePluginState("comment", frontmatter.value.plugins)
 const isExistOption = computed(() => themeLocale.value.giscus !== undefined)
 
+// encrypt
+const isEncrypted = ref(false)
+function encryptMatch() {
+	isEncrypted.value = true
+	// localStorage.setItem(`isEncrypted:${page.value.key}`, "true")
+}
+
 onMounted(() => {
 	console.log(page.value)
+	// if (frontmatter.value.password) {
+	// 	const storageSymbol = localStorage.getItem(`isEncrypted:${page.value.key}`)
+	// 	if (storageSymbol === "true") {
+	// 		isEncrypted.value = true
+	// 	}
+	// }
 })
 </script>
 
 <template>
-	<main class="page">
+	<main class="page encrypted" v-if="!isEncrypted && frontmatter.password">
+		<EncryptRouter
+			:encrypted="frontmatter.password"
+			:salt="themeLocale.helperOptions.passwordSalt ?? '#NeserCode#'"
+			@encrypt:match="encryptMatch"
+		/>
+	</main>
+	<main class="page" v-else>
 		<div class="main-custom">
 			<slot name="top" />
 
