@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { LockClosedIcon, KeyIcon } from "@heroicons/vue/24/outline"
 import { computed, onMounted, ref, toRefs } from "vue"
 
 import CryptoJs from "crypto-js/crypto-js"
@@ -30,7 +31,14 @@ function encrypt() {
 <template>
 	<div class="encrypt-main">
 		<div class="encrypt-title">
-			<h1>加密文章</h1>
+			<h1>
+				<span class="icon">
+					<LockClosedIcon />
+				</span>
+				<span class="text">加密内容</span>
+			</h1>
+		</div>
+		<div class="encrypt-content">
 			<p>啊哦，看起来这里被加上了锁</p>
 		</div>
 		<div class="encrypt-input">
@@ -38,7 +46,12 @@ function encrypt() {
 			<span class="test">{{ MATCH }}</span>
 		</div>
 		<div class="encrypt-button">
-			<button @click="encrypt">解锁</button>
+			<button class="btn" @click="encrypt">
+				<span class="icon">
+					<KeyIcon />
+				</span>
+				<span class="text">使用钥匙</span>
+			</button>
 		</div>
 	</div>
 </template>
