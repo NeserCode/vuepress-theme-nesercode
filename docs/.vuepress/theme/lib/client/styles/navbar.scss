@@ -236,6 +236,13 @@
 		transition: all var(--t-color);
 	}
 
+	.suggestions {
+		background-color: rgba(255 255 255 / 0.78);
+
+		backdrop-filter: blur(0.5rem);
+		transition: all var(--t-color);
+	}
+
 	&::after {
 		position: absolute;
 		top: 0;
@@ -266,5 +273,12 @@
 				opacity: 0;
 			}
 		}
+	}
+}
+
+html.dark {
+	.navbar-search .suggestions {
+		background-color: rgba(34 39 46 / 0.65);
+		backdrop-filter: blur(0.5rem);
 	}
 }
