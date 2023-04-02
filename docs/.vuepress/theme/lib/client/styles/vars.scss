@@ -1,6 +1,25 @@
 @font-face {
 	font-family: "SY_SONG_LIGHT";
 	src: url("./fonts/Source_Han_Serif_SC_Light_Light.otf");
+	font-display: auto;
+}
+
+@keyframes shake {
+	0% {
+		transform: translateX(0);
+	}
+	25% {
+		transform: translateX(-10px);
+	}
+	50% {
+		transform: translateX(10px);
+	}
+	75% {
+		transform: translateX(-10px);
+	}
+	100% {
+		transform: translateX(0);
+	}
 }
 
 :root {

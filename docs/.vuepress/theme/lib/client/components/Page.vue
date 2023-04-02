@@ -8,6 +8,9 @@ import Comment from "@theme/GiscusComment.vue"
 // @ts-ignore
 import EncryptRouter from "./EncryptRouter.vue"
 
+import CryptoJs from "crypto-js/crypto-js"
+import hmacSHA256 from "crypto-js/hmac-sha256"
+
 import { computed, onMounted, ref } from "vue"
 import { Ref } from "@vue/reactivity"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
@@ -86,19 +89,32 @@ const isExistOption = computed(() => themeLocale.value.giscus !== undefined)
 
 // encrypt
 const isEncrypted = ref(false)
-function encryptMatch() {
-	isEncrypted.value = true
-	// localStorage.setItem(`isEncrypted:${page.value.key}`, "true")
+function getEncryptedKey(key: string) {
+	return CryptoJs.enc.Base64.stringify(
+		hmacSHA256(
+			key,
+			themeLocale.value.helperOptions.passwordSalt ?? "#NeserCode#"
+		)
+	)
 }
-
+function encryptMatch(hash: string) {
+	isEncrypted.value = true
+	localStorage.setItem(`isEncrypted:${getEncryptedKey(page.value.key)}`, hash)
+}
+function encryptCheck() {
+	if (frontmatter.value.password) {
+		const storageSymbol = localStorage.getItem(
+			`isEncrypted:${getEncryptedKey(page.value.key)}`
+		)
+		if (storageSymbol === frontmatter.value.password) {
+			isEncrypted.value = true
+		}
+	}
+}
 onMounted(() => {
 	console.log(page.value)
-	// if (frontmatter.value.password) {
-	// 	const storageSymbol = localStorage.getItem(`isEncrypted:${page.value.key}`)
-	// 	if (storageSymbol === "true") {
-	// 		isEncrypted.value = true
-	// 	}
-	// }
+
+	encryptCheck()
 })
 </script>
 
