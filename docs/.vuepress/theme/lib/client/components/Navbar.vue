@@ -48,6 +48,12 @@ onMounted(() => {
 	handleLinksWrapWidth()
 	window.addEventListener("resize", handleLinksWrapWidth, false)
 	window.addEventListener("orientationchange", handleLinksWrapWidth, false)
+
+	if (window && document) {
+		document
+			.querySelector(".navbar-search input")
+			?.setAttribute("placeholder", " ")
+	}
 })
 
 function getCssValue(el: HTMLElement | null, property: string): number {

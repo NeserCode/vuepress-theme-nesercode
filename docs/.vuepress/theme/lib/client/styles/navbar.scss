@@ -224,7 +224,47 @@
 }
 
 .navbar-search {
-	margin-left: 0;
-	margin-right: 0.6rem;
-	transition: background-color var(--t-color);
+	position: relative;
+	transition: all var(--t-color);
+
+	input {
+		padding: 0.1rem 0.5rem;
+		background: transparent;
+		border-width: 2px;
+		border-radius: 0.15rem;
+
+		transition: all var(--t-color);
+	}
+
+	&::after {
+		position: absolute;
+		top: 0;
+		left: 0.5rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+
+		color: var(--c-text-lightest);
+		pointer-events: none;
+
+		content: "搜一下";
+		transition: all var(--t-color);
+	}
+
+	&:has(input:focus) {
+		&::after {
+			transform: translateX(calc(-100% - 2 * 0.5rem));
+			opacity: 1;
+			color: var(--c-text);
+		}
+	}
+
+	&:has(input:not(:placeholder-shown)) {
+		&:has(input:not(:focus)) {
+			&::after {
+				transform: translateX(0);
+				opacity: 0;
+			}
+		}
+	}
 }
