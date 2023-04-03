@@ -40,12 +40,6 @@ function encrypt() {
 			password.value = ""
 		}, 500)
 	}
-
-	console.log(
-		MATCH.value,
-		CryptoJs.enc.Hex.stringify(EncryptSaltFix.value),
-		encrypted.value
-	)
 }
 </script>
 

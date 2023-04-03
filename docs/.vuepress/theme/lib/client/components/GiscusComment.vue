@@ -31,8 +31,6 @@ watch(
 		themeComputed.value = darkMode.value
 			? giscusOptions.value.darkTheme ?? "dark"
 			: giscusOptions.value.theme
-
-		console.log(themeComputed.value)
 	}
 )
 </script>
