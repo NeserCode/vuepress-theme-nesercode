@@ -10,7 +10,7 @@ import CopyRightBand from "@theme/CopyrightBand.vue"
 // @ts-ignore
 import ReadingLine from "@theme/ReadingLine.vue"
 
-import { ref, onMounted, onUnmounted, computed, watch } from "vue"
+import { ref, onMounted, onUnmounted, computed, watch, Ref } from "vue"
 import { useRoute } from "vue-router"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import type { DefaultThemePageFrontmatter } from "../../shared"
@@ -49,13 +49,14 @@ function getScrollProgress() {
 
 /* Original */
 const $route = useRoute()
+const mountedWindow: Ref<Window | null> = ref(null)
 const isOriginal = computed(() => {
 	if (frontmatter.value.original === false) return false
 	else return true
 })
 const originalUrl = ref(frontmatter.value.originalUrl ?? getReplacedUrl())
 function getReplacedUrl() {
-	return window.location.href.replace(encodeURI($route.hash), "")
+	return mountedWindow.value?.location.href.replace(encodeURI($route.hash), "")
 }
 watch(
 	() => $route.hash,
@@ -69,6 +70,7 @@ const copyrightTips = [""]
 
 onMounted(() => {
 	window.addEventListener("scroll", getScrollProgress)
+	mountedWindow.value = window
 })
 
 onUnmounted(() => {
