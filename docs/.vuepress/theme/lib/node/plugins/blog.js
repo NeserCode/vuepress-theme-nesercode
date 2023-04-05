@@ -67,7 +67,12 @@ export const getBlogPlugin = () => blogPlugin({
     {
       key: "timeLine",
       filter: (page) => page.data.path.startsWith("/blog/"),
-      sorter: (pageA, pageB) => new Date(pageB.data.git?.createdTime).getTime() - new Date(pageA.data.git?.createdTime).getTime(),
+      sorter: (pageA, pageB) => {
+        const dateA = pageA.data.frontmatter.date ? new Date(pageA.data.frontmatter.date) : new Date(pageA.data.git?.createdTime);
+        const dateB = pageB.data.frontmatter.date ? new Date(pageB.data.frontmatter.date) : new Date(pageB.data.git?.createdTime);
+
+        return dateB - dateA;
+      },
       path: "/timeLine/",
       layout: "TimeLine",
       frontmatter: (path) => ({

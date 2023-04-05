@@ -225,14 +225,14 @@
 
 .navbar-search {
 	position: relative;
-	margin-right: 0.8rem;
+	margin-right: 2ch;
 	transition: all var(--t-color);
 
 	input {
 		padding: 0.1rem 0.5rem;
 		background: transparent;
 		border-width: 2px;
-		border-radius: 0.15rem;
+		border-radius: 0.25rem;
 
 		transition: all var(--t-color);
 	}
@@ -248,7 +248,7 @@
 		color: var(--c-text-lightest);
 		pointer-events: none;
 
-		content: "🔍 搜索";
+		content: "检索";
 		transition: all var(--t-color);
 	}
 
@@ -266,6 +266,12 @@
 				transform: translateX(0);
 				opacity: 0;
 			}
+		}
+	}
+
+	@media screen and (max-width: $MQMobile) {
+		&::before {
+			left: 0;
 		}
 	}
 }

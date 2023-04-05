@@ -1,9 +1,3 @@
-@font-face {
-	font-family: "SY_SONG_LIGHT";
-	src: url("./fonts/SourceHanSerifCN-VF.ttf");
-	font-display: auto;
-}
-
 @keyframes shake {
 	0% {
 		transform: translateX(0);
@@ -100,7 +94,6 @@
 	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
 		Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 	--font-family-code: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-	--font-family-SY-Song-light: "SY_SONG_LIGHT";
 
 	// layout vars
 	--navbar-height: 3.6rem;
