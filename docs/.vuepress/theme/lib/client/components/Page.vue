@@ -4,6 +4,8 @@ import PageMeta from "@theme/PageMeta.vue"
 // @ts-ignore
 import PageNav from "@theme/PageNav.vue"
 // @ts-ignore
+import PageFooter from "@theme/PageFooter.vue"
+// @ts-ignore
 import Comment from "@theme/GiscusComment.vue"
 // @ts-ignore
 import EncryptRouter from "./EncryptRouter.vue"
@@ -170,6 +172,8 @@ onMounted(() => {
 				:options="themeLocale.giscus"
 				v-if="isOpenComment && isExistOption"
 			/>
+
+			<PageFooter />
 		</div>
 		<aside class="sidebar-custom">
 			<Toc :options="tocOptions" v-if="isOpenSdiebarCategory" />

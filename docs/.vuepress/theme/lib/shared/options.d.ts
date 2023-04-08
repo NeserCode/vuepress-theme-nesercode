@@ -341,4 +341,35 @@ export interface DefaultThemeLocaleData extends LocaleData {
 	 * Comment Options - Giscus
 	 **/
 	giscus?: GiscusOptions
+	/**
+	 * Footer Options
+	 **/
+	footer?:
+		| false
+		| {
+				/**
+				 * copyRight - CopyRight Text
+				 **/
+				copyRight?: false | string
+				/**
+				 * footerLinks - Footer Links
+				 **/
+				footerLinks?:
+					| false
+					| {
+							/**
+							 * title - Footer Link Title
+							 **/
+							title?: string
+							/**
+							 * link - Footer Link
+							 **/
+							link?: string
+					  }[]
+				/**
+				 * themeInfoDisplay - Theme Info Display
+				 * @default true
+				 **/
+				themeInfoDisplay?: boolean
+		  }
 }

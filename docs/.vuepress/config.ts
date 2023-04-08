@@ -34,7 +34,7 @@ export default defineUserConfig({
 				link: "/blog/about/aboutme.md",
 			},
 			{
-				text: "时",
+				text: "时间线",
 				activeMatch: "^/timeLine/",
 				link: "/timeLine/",
 			},
@@ -59,6 +59,7 @@ export default defineUserConfig({
 			// Disable back-to-top
 			backToTop: false,
 		},
+
 		// Data helper options
 		helperOptions: {
 			isTempPages: true,
@@ -85,6 +86,11 @@ export default defineUserConfig({
 			inputPosition: "top",
 			language: "zh-CN",
 			loading: "lazy",
+		},
+
+		footer: {
+			themeInfoDisplay: true,
+			copyRight: "<a href='https://github.com/Nesercode'>NeserCode</a>",
 		},
 	}),
 

@@ -105,6 +105,7 @@ onUnmounted(() => {
 						/>
 						<slot name="page-bottom" />
 					</template>
+					<template #sidebar-custom> </template>
 				</Page>
 			</div>
 		</template>

@@ -1,15 +1,15 @@
-<script setup lang="ts">
-import HomeContent from '@theme/HomeContent.vue'
-import HomeFeatures from '@theme/HomeFeatures.vue'
-import HomeFooter from '@theme/HomeFooter.vue'
-import HomeHero from '@theme/HomeHero.vue'
+<script lang="ts" setup>
+import HomeContent from "@theme/HomeContent.vue"
+import HomeFeatures from "@theme/HomeFeatures.vue"
+import PageFooter from "@theme/PageFooter.vue"
+import HomeHero from "@theme/HomeHero.vue"
 </script>
 
 <template>
-  <main class="home">
-    <HomeHero />
-    <HomeFeatures />
-    <HomeContent />
-    <HomeFooter />
-  </main>
+	<main class="home">
+		<HomeHero />
+		<HomeFeatures />
+		<HomeContent />
+		<PageFooter />
+	</main>
 </template>
