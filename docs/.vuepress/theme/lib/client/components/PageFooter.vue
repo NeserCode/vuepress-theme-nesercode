@@ -15,7 +15,11 @@ const footerDisplay = computed(() => themeLocale.value.footer !== false)
 const footer = computed(() => frontmatter.value.footer)
 const footerHtml = computed(() => frontmatter.value.footerHtml)
 
-const year = computed(() => new Date().getFullYear())
+const year = computed(() =>
+	themeLocale.value.footer
+		? themeLocale.value.footer.year ?? new Date().getFullYear()
+		: new Date().getFullYear()
+)
 const copyright = computed(() =>
 	themeLocale.value.footer
 		? themeLocale.value.footer.copyRight
@@ -23,6 +27,9 @@ const copyright = computed(() =>
 )
 const themeInfoDisplay = computed(() =>
 	themeLocale.value.footer ? themeLocale.value.footer.themeInfoDisplay : true
+)
+const footerLinks = computed(() =>
+	themeLocale.value.footer ? themeLocale.value.footer.footerLinks : null
 )
 </script>
 
@@ -36,7 +43,17 @@ const themeInfoDisplay = computed(() =>
 			<span class="copyright" v-if="copyright" v-html="copyright"></span>
 		</span>
 		<span class="theme-info" v-if="themeInfoDisplay">
-			Theme By NeserCode | Power By VuePress v2
+			Theme By NeserCode · Power By VuePress v2
+		</span>
+		<span class="links" v-if="footerLinks">
+			<a
+				v-for="link in footerLinks"
+				:key="link.link"
+				:href="link.link"
+				target="_blank"
+				rel="noopener noreferrer"
+				>{{ link.title }}</a
+			>
 		</span>
 	</div>
 </template>

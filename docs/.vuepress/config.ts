@@ -89,8 +89,24 @@ export default defineUserConfig({
 		},
 
 		footer: {
+			year: "2022 - 2024",
 			themeInfoDisplay: true,
-			copyRight: "<a href='https://github.com/Nesercode'>NeserCode</a>",
+			copyRight:
+				"<a target='_blank' href='https://github.com/Nesercode'>NeserCode</a>",
+			footerLinks: [
+				{
+					title: "GitHub",
+					link: "https://github.com",
+				},
+				{
+					title: "Gitee",
+					link: "https://gitee.com",
+				},
+				{
+					title: "Bilibili",
+					link: "https://space.bilibili.com",
+				},
+			],
 		},
 	}),
 

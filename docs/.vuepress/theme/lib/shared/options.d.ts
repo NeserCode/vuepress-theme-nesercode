@@ -352,6 +352,10 @@ export interface DefaultThemeLocaleData extends LocaleData {
 				 **/
 				copyRight?: false | string
 				/**
+				 * year - CopyRight Year
+				 **/
+				year?: false | string
+				/**
 				 * footerLinks - Footer Links
 				 **/
 				footerLinks?:
