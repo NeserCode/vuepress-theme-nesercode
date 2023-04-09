@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { usePageFrontmatter, useSiteData } from "@vuepress/client"
 import { useThemeLocaleData } from "../composables"
 import { computed } from "vue"
