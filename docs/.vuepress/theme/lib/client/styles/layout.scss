@@ -199,7 +199,14 @@ html.dark .navbar {
 			}
 
 			.tag-count {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: max-content;
+				padding: 0 0.3rem;
+				border-radius: 0.25rem;
 				color: var(--c-text);
+				background-color: var(--c-border);
 			}
 
 			&.router-link-exact-active {
@@ -225,6 +232,7 @@ html.dark .navbar {
 			padding: 0.15rem;
 			margin: 0;
 			border-radius: 100%;
+			color: var(--c-text-lightest);
 
 			height: 3ch;
 			width: 3ch;
@@ -232,9 +240,15 @@ html.dark .navbar {
 		}
 
 		&.show {
-			.icon svg {
-				transform: rotate(180deg);
-				transition: all ease-in-out 0.3s;
+			.icon {
+				border-color: var(--c-text-lightest);
+				color: var(--c-text-lightest);
+				background-color: var(--c-border);
+
+				svg {
+					transform: rotate(180deg);
+					transition: all ease-in-out 0.3s;
+				}
 			}
 		}
 	}

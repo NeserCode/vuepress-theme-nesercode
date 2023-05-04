@@ -3,8 +3,8 @@ import {
 	ChevronLeftIcon,
 	ChevronRightIcon,
 	EllipsisHorizontalIcon,
-} from "@heroicons/vue/20/solid"
-import { computed, watch, toRefs } from "vue"
+} from "@heroicons/vue/24/solid"
+import { computed, toRefs } from "vue"
 
 const $props = defineProps<{
 	total: number
@@ -61,14 +61,6 @@ const disabledPrevClass = computed(() =>
 const disabledNextClass = computed(() =>
 	isNextDisabled.value ? "disabled" : null
 )
-
-watch(
-	current,
-	() => {
-		console.log("current changed", current.value)
-	},
-	{ immediate: true }
-)
 </script>
 
 <template>
@@ -103,7 +95,9 @@ watch(
 					<ChevronLeftIcon class="icon" />
 				</span>
 				<span class="pagination-item" @click="jump(1)">
-					<span :class="['pagination-item-link', activeClass(1)]">{{ 1 }}</span>
+					<span :class="['pagination-item-link', activeClass(1)]">{{
+						1
+					}}</span>
 				</span>
 				<span class="pagination-item ellipsis">
 					<span class="pagination-item-link icon"
@@ -126,9 +120,13 @@ watch(
 					/></span>
 				</span>
 				<span class="pagination-item" @click="jump(pageNumber)">
-					<span :class="['pagination-item-link', activeClass(pageNumber)]">{{
-						pageNumber
-					}}</span>
+					<span
+						:class="[
+							'pagination-item-link',
+							activeClass(pageNumber),
+						]"
+						>{{ pageNumber }}</span
+					>
 				</span>
 				<span
 					:class="['pagination-item', 'next', disabledNextClass]"
