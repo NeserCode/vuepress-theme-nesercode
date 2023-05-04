@@ -13,7 +13,10 @@ export default defineUserConfig({
 		[
 			// ICON
 			"link",
-			{ rel: "icon", href: "https://q1.qlogo.cn/g?b=qq&nk=510648363&s=640" },
+			{
+				rel: "icon",
+				href: "https://q1.qlogo.cn/g?b=qq&nk=510648363&s=640",
+			},
 		],
 	],
 
@@ -64,7 +67,7 @@ export default defineUserConfig({
 		helperOptions: {
 			isTempPages: true,
 			pagesStartWith: "/blog/",
-			passwordSalt: "salt",
+			// passwordSalt: "salt",
 		},
 
 		// theme locales

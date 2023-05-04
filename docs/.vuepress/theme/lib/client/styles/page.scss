@@ -374,24 +374,16 @@
 	width: 100%;
 
 	.encrypt-title {
-		display: flex;
-		justify-content: center;
+		display: inline-flex;
 		align-items: center;
 		font-size: 1.5rem;
 		font-weight: 500;
 		color: var(--c-text);
 
-		h1 {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
 		.icon {
-			display: flex;
-			margin: 0 0.5rem;
-			width: 2rem;
-			height: 2rem;
+			display: inline-block;
+			width: 1.75rem;
+			height: 1.75rem;
 		}
 	}
 
