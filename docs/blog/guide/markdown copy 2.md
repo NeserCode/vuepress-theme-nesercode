@@ -1,10 +1,30 @@
 ---
 pinned: false
 tag:
-  - markdown
-  - common
-  - official
-  - copy
+    - markdown
+    - common
+    - official
+    - copy
+    - 测试标签1
+    - 测试标签2
+    - 测试标签3
+    - 测试标签4
+    - 测试标签5
+    - 测试标签6
+    - 测试标签7
+    - 测试标签8
+    - 测试标签9
+    - 测试标签10
+    - 测试标签11
+    - 测试标签12
+    - 测试标签13
+    - 测试标签14
+    - 测试标签15
+    - 测试标签16
+    - 测试标签17
+    - 测试标签18
+    - 测试标签19
+    - 测试标签20
 ---
 
 # Markdown-2
@@ -23,8 +43,8 @@ VuePress 会使用 [markdown-it](https://github.com/markdown-it/markdown-it) 来
 
 由 markdown-it 内置支持：
 
-- [表格](https://help.github.com/articles/organizing-information-with-tables/) (GFM)
-- [删除线](https://help.github.com/articles/basic-writing-and-formatting-syntax/#styling-text) (GFM)
+-   [表格](https://help.github.com/articles/organizing-information-with-tables/) (GFM)
+-   [删除线](https://help.github.com/articles/basic-writing-and-formatting-syntax/#styling-text) (GFM)
 
 ### 标题锚点
 
@@ -101,16 +121,16 @@ VuePress 会使用 [markdown-it](https://github.com/markdown-it/markdown-it) 来
 
 **解释**
 
-- 内部链接会被转换为 `<RouterLink>` 以便进行 SPA 导航。
-- 指向 `.md` 文件的内部链接会被转换为目标页面的 [路由路径](./page.md#路由)，并且支持绝对路径和相对路径。
-- 外部链接会被添加 `target="_blank" rel="noopener noreferrer"` 属性。
+-   内部链接会被转换为 `<RouterLink>` 以便进行 SPA 导航。
+-   指向 `.md` 文件的内部链接会被转换为目标页面的 [路由路径](./page.md#路由)，并且支持绝对路径和相对路径。
+-   外部链接会被添加 `target="_blank" rel="noopener noreferrer"` 属性。
 
 **建议**
 
 对于指向内部 Markdown 文件的链接，尽可能使用相对路径而不是绝对路径。
 
-- 相对路径是指向目标文件的有效链接，在你的编辑器或者代码仓库中浏览源文件时也可以正确跳转。
-- 相对路径在不同 locales 下都是一致的，这样在翻译你的内容时就不需要修改 locale 路径了。
+-   相对路径是指向目标文件的有效链接，在你的编辑器或者代码仓库中浏览源文件时也可以正确跳转。
+-   相对路径在不同 locales 下都是一致的，这样在翻译你的内容时就不需要修改 locale 路径了。
 
 ::: tip
 链接扩展是由我们的内置插件支持的。
@@ -202,9 +222,9 @@ export default defineUserConfig({
 
 行数范围标记的例子：
 
-- 行数范围： `{5-8}`
-- 多个单行： `{4,7,9}`
-- 组合： `{4,7-13,16,23-27,40}`
+-   行数范围： `{5-8}`
+-   多个单行： `{4,7,9}`
+-   组合： `{4,7-13,16,23-27,40}`
 
 ::: tip
 行高亮扩展是由我们的内置插件支持的，该扩展 Fork 并修改自 [markdown-it-highlight-lines](https://github.com/egoist/markdown-it-highlight-lines)。
@@ -353,10 +373,10 @@ v-pre 扩展是由我们的内置插件支持的。
 
 下面是一个复杂的例子：
 
-- 导入 `'../foo.js'` 文件的第 3 行至第 10 行
-- 指定语言为 `'js'`
-- 对导入代码的第 3 行进行高亮，即 `'../foo.js'` 文件的第 5 行
-- 禁用行号
+-   导入 `'../foo.js'` 文件的第 3 行至第 10 行
+-   指定语言为 `'js'`
+-   对导入代码的第 3 行进行高亮，即 `'../foo.js'` 文件的第 5 行
+-   禁用行号
 
 ```md
 @[code{3-10} js{3}:no-line-numbers](../foo.js)
@@ -401,8 +421,8 @@ export default {
 
 我们知道：
 
-- Markdown 中允许使用 HTML。
-- Vue 模板语法是和 HTML 兼容的。
+-   Markdown 中允许使用 HTML。
+-   Vue 模板语法是和 HTML 兼容的。
 
 这意味着， Markdown 中允许直接使用 [Vue 模板语法](https://v3.vuejs.org/guide/template-syntax.html)。
 
@@ -446,12 +466,12 @@ export default {
 
 非标准的 HTML 标签不会被 Vue 模板编译器识别成原生 HTML 标签。相反，Vue 会尝试将这些标签解析为 Vue 组件，而显然这些组件通常是不存在的。 例如：
 
-- 已废弃的 HTML 标签，比如 [\<center>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/center) 和 [\<font>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/font) 等。
-- [MathML 标签](https://developer.mozilla.org/zh-CN/docs/Web/MathML)，它们可能会被一些 markdown-it 的 LaTeX 插件用到。
+-   已废弃的 HTML 标签，比如 [\<center>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/center) 和 [\<font>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/font) 等。
+-   [MathML 标签](https://developer.mozilla.org/zh-CN/docs/Web/MathML)，它们可能会被一些 markdown-it 的 LaTeX 插件用到。
 
 如果你无论如何都要使用这些标签的话，可以尝试下面两种方法之一：
 
-- 添加一个 [v-pre](https://v3.cn.vuejs.org/api/directives.html#v-pre) 指令来跳过这个元素和它的子元素的编译过程。注意所有的模板语法也都会失效。
-- 设置 [compilerOptions.isCustomElement](https://v3.vuejs.org/api/application-config.html#compileroptions) 来告诉 Vue 模板编译器不要尝试作为组件来解析它们。
-  - 对于 `@bundler-webpack` ，设置 [vue.compilerOptions](../reference/bundler/webpack.md#vue)
-  - 对于 `@bundler-vite` ，设置 [vuePluginOptions.template.compilerOptions](../reference/bundler/vite.md#vuepluginoptions)
+-   添加一个 [v-pre](https://v3.cn.vuejs.org/api/directives.html#v-pre) 指令来跳过这个元素和它的子元素的编译过程。注意所有的模板语法也都会失效。
+-   设置 [compilerOptions.isCustomElement](https://v3.vuejs.org/api/application-config.html#compileroptions) 来告诉 Vue 模板编译器不要尝试作为组件来解析它们。
+    -   对于 `@bundler-webpack` ，设置 [vue.compilerOptions](../reference/bundler/webpack.md#vue)
+    -   对于 `@bundler-vite` ，设置 [vuePluginOptions.template.compilerOptions](../reference/bundler/vite.md#vuepluginoptions)

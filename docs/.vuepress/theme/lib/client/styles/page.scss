@@ -70,7 +70,10 @@
 			}
 		}
 
-		.toc-main > .vuepress-toc-list > .vuepress-toc-item > .vuepress-toc-link,
+		.toc-main
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			> .vuepress-toc-link,
 		.toc-main
 			> .vuepress-toc-list
 			> .vuepress-toc-item
@@ -84,11 +87,16 @@
 		}
 
 		/* Active */
-		.toc-main > .vuepress-toc-list > .vuepress-toc-item > .vuepress-toc-list {
+		.toc-main
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			> .vuepress-toc-list {
 			display: none;
 		}
 		.toc-main
-			> .vuepress-toc-list:has(.vuepress-toc-list .vuepress-toc-link.active),
+			> .vuepress-toc-list:has(
+				.vuepress-toc-list .vuepress-toc-link.active
+			),
 		.toc-main
 			> .vuepress-toc-list
 			> .vuepress-toc-item
@@ -366,16 +374,24 @@
 	width: 100%;
 
 	.encrypt-title {
-		display: inline-flex;
+		display: flex;
+		justify-content: center;
 		align-items: center;
 		font-size: 1.5rem;
 		font-weight: 500;
 		color: var(--c-text);
 
+		h1 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
 		.icon {
-			display: inline-block;
-			width: 1.75rem;
-			height: 1.75rem;
+			display: flex;
+			margin: 0 0.5rem;
+			width: 2rem;
+			height: 2rem;
 		}
 	}
 
