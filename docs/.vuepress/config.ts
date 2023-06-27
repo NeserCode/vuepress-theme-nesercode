@@ -7,7 +7,8 @@ import { readingTimePlugin } from "vuepress-plugin-reading-time2"
 
 export default defineUserConfig({
 	title: "✨NeserCode",
-	description: "NeserCode's Blog",
+	description:
+		"欢迎来访我的个人博客，你所看到的是我的个人博客项目，如果你喜欢的话，可以给我一个star，谢谢！",
 	lang: "zh-CN",
 	head: [
 		[

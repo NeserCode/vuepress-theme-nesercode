@@ -10,13 +10,15 @@ import { isArray } from "@vuepress/shared"
 import type { FunctionalComponent } from "vue"
 import { computed, h } from "vue"
 import type { DefaultThemeHomePageFrontmatter } from "../../shared/index.js"
-import { useDarkMode } from "../composables/index.js"
+import { useDarkMode, useThemeLocaleData } from "../composables/index.js"
 
 const frontmatter = usePageFrontmatter<DefaultThemeHomePageFrontmatter>()
 const siteLocale = useSiteLocaleData()
+const themeLocale = useThemeLocaleData()
 const isDarkMode = useDarkMode()
 
 const heroImage = computed(() => {
+	if (!frontmatter.value.heroImage) return themeLocale.value.logo
 	if (isDarkMode.value && frontmatter.value.heroImageDark !== undefined) {
 		return frontmatter.value.heroImageDark
 	}
@@ -39,20 +41,10 @@ const tagline = computed(() => {
 		return null
 	}
 	return (
-		frontmatter.value.tagline || siteLocale.value.description || "自定义文案"
+		frontmatter.value.tagline ||
+		siteLocale.value.description ||
+		"自定义文案"
 	)
-})
-
-const actions = computed(() => {
-	if (!isArray(frontmatter.value.actions)) {
-		return []
-	}
-
-	return frontmatter.value.actions.map(({ text, link, type = "primary" }) => ({
-		text,
-		link,
-		type,
-	}))
 })
 
 const HomeHeroImage: FunctionalComponent = () => {
@@ -61,6 +53,7 @@ const HomeHeroImage: FunctionalComponent = () => {
 		src: withBase(heroImage.value),
 		alt: heroAlt.value,
 		height: heroHeight.value,
+		class: "hero-image",
 	})
 	if (frontmatter.value.heroImageDark === undefined) {
 		return img
@@ -75,22 +68,13 @@ const HomeHeroImage: FunctionalComponent = () => {
 	<header class="hero">
 		<HomeHeroImage />
 
-		<h1 v-if="heroText" id="main-title">
-			{{ heroText }}
-		</h1>
-
-		<p v-if="tagline" class="description">
-			{{ tagline }}
-		</p>
-
-		<p v-if="actions.length" class="actions">
-			<AutoLink
-				v-for="action in actions"
-				:key="action.text"
-				class="action-button"
-				:class="[action.type]"
-				:item="action"
-			/>
-		</p>
+		<span class="info">
+			<span v-if="heroText" id="main-title">
+				{{ heroText }}
+			</span>
+			<span v-if="tagline" class="description">
+				{{ tagline }}
+			</span>
+		</span>
 	</header>
 </template>
