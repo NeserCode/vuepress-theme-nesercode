@@ -1,9 +1,8 @@
 ---
 pinned: true
 tag:
-  - markdown
-  - common
-  - official
+  - Markdown
+  - Official
 author: NeserCode
 password: "789011"
 ---

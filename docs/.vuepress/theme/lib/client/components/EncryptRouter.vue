@@ -47,9 +47,6 @@ function encrypt() {
 	<div class="encrypt-main">
 		<div class="encrypt-title">
 			<h1>
-				<span class="icon">
-					<LockClosedIcon />
-				</span>
 				<span class="text">加密内容</span>
 			</h1>
 		</div>
@@ -58,6 +55,7 @@ function encrypt() {
 				:class="['input-body', WrongClass]"
 				type="password"
 				v-model="password"
+				autocomplete="off"
 				:placeholder="WrongText"
 				@keypress.enter="encrypt"
 			/>

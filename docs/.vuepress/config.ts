@@ -7,16 +7,23 @@ import { readingTimePlugin } from "vuepress-plugin-reading-time2"
 
 export default defineUserConfig({
 	title: "✨NeserCode",
-	description:
-		"欢迎来访我的个人博客，你所看到的是我的个人博客项目，如果你喜欢的话，可以给我一个star，谢谢！",
+	description: "欢迎来访我的博客！",
 	lang: "zh-CN",
 	head: [
 		[
-			// ICON
+			// Icon
 			"link",
 			{
 				rel: "icon",
 				href: "https://q1.qlogo.cn/g?b=qq&nk=510648363&s=640",
+			},
+		],
+		[
+			// Font
+			"link",
+			{
+				rel: "stylesheet",
+				href: "https://static.imalan.cn/file/font/noto-serif-sc/fonts.css",
 			},
 		],
 	],
@@ -31,6 +38,7 @@ export default defineUserConfig({
 	theme: nesercodeTheme({
 		home: "/",
 		logo: "https://q1.qlogo.cn/g?b=qq&nk=510648363&s=640",
+
 		navbar: [
 			{
 				text: "关于",

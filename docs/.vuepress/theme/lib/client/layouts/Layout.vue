@@ -32,10 +32,12 @@ const page = usePageData()
 const frontmatter = usePageFrontmatter<ExtraPageFrontmatter>()
 
 // calculate scroll progress
-const isOpenReadingLine = usePluginState(
-	"readingLine",
-	frontmatter.value.plugins
-)
+const isOpenReadingLine = computed(() => {
+	return (
+		usePluginState("readingLine", frontmatter.value.plugins) &&
+		!frontmatter.value.home
+	)
+})
 const readingProgress = ref<number>(0)
 
 function getScrollProgress() {
@@ -105,7 +107,7 @@ onUnmounted(() => {
 						/>
 						<slot name="page-bottom" />
 					</template>
-					<template #sidebar-custom> </template>
+					<template #sidebar-custom></template>
 				</Page>
 			</div>
 		</template>

@@ -95,9 +95,7 @@ const disabledNextClass = computed(() =>
 					<ChevronLeftIcon class="icon" />
 				</span>
 				<span class="pagination-item" @click="jump(1)">
-					<span :class="['pagination-item-link', activeClass(1)]">{{
-						1
-					}}</span>
+					<span :class="['pagination-item-link', activeClass(1)]">{{ 1 }}</span>
 				</span>
 				<span class="pagination-item ellipsis">
 					<span class="pagination-item-link icon"
@@ -120,13 +118,9 @@ const disabledNextClass = computed(() =>
 					/></span>
 				</span>
 				<span class="pagination-item" @click="jump(pageNumber)">
-					<span
-						:class="[
-							'pagination-item-link',
-							activeClass(pageNumber),
-						]"
-						>{{ pageNumber }}</span
-					>
+					<span :class="['pagination-item-link', activeClass(pageNumber)]">{{
+						pageNumber
+					}}</span>
 				</span>
 				<span
 					:class="['pagination-item', 'next', disabledNextClass]"

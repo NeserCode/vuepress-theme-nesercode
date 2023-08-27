@@ -158,8 +158,6 @@
 	}
 
 	&:not(.mobile) {
-		height: 1.8rem;
-
 		&:hover .navbar-dropdown,
 		&.open .navbar-dropdown {
 			// override the inline style.

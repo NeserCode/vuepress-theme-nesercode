@@ -208,10 +208,15 @@ td {
 	width: 100%;
 	display: inline-flex;
 	justify-content: center;
+
+	scroll-snap-type: y mandatory;
 }
 
 @media (max-width: $MQDesktop) {
 	#app {
 		display: block;
+	}
+	#app:has(.theme-container .home) {
+		display: inline-flex;
 	}
 }
