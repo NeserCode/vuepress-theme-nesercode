@@ -6,7 +6,7 @@ import { viteBundler } from "@vuepress/bundler-vite"
 import { readingTimePlugin } from "vuepress-plugin-reading-time2"
 
 export default defineUserConfig({
-	title: "✨NeserCode",
+	title: "NeserCode",
 	description: "欢迎来访我的博客！",
 	lang: "zh-CN",
 	head: [
@@ -38,6 +38,7 @@ export default defineUserConfig({
 	theme: nesercodeTheme({
 		home: "/",
 		logo: "https://q1.qlogo.cn/g?b=qq&nk=510648363&s=640",
+		repo: "nesercode/vuepress-theme-nesercode",
 
 		navbar: [
 			{
@@ -56,7 +57,7 @@ export default defineUserConfig({
 				link: "/tag/",
 			},
 			{
-				text: "起步",
+				text: "其他",
 				children: [
 					{
 						text: "Markdown",

@@ -1,17 +1,8 @@
 <script lang="ts" setup>
-import {
-	LockClosedIcon,
-	LockOpenIcon,
-	ArrowUpCircleIcon,
-} from "@heroicons/vue/20/solid"
 // @ts-ignore
 import Pagination from "@theme/Pagination.vue"
 
-import { Ref, computed, ref, toRefs } from "vue"
-import CryptoJs from "crypto-js/crypto-js"
-import hmacSHA256 from "crypto-js/hmac-sha256"
-import { DefaultThemeLocaleData } from "../../shared"
-import { useThemeLocaleData } from "../composables"
+import { computed, ref, toRefs } from "vue"
 
 const $props = defineProps<{
 	articles: any[]
@@ -70,32 +61,6 @@ function getTagPath(tag: string) {
 	return encodeURI(`/tag/${tag.toLowerCase()}/`)
 }
 
-const themeLocale: Ref<DefaultThemeLocaleData> = useThemeLocaleData()
-function getEncryptedKey(key: string) {
-	return CryptoJs.enc.Base64.stringify(
-		hmacSHA256(
-			key,
-			themeLocale.value.helperOptions.passwordSalt ?? "#NeserCode#"
-		)
-	)
-}
-
-function isEncryptedPage(article: any, key: "lock" | "unlock") {
-	if (key == "lock") {
-		return (
-			article.frontmatter.password &&
-			!localStorage.getItem(`isEncrypted:${getEncryptedKey(article.key)}`)
-		)
-	} else if (key == "unlock") {
-		return (
-			article.frontmatter.password &&
-			localStorage.getItem(`isEncrypted:${getEncryptedKey(article.key)}`)
-		)
-	}
-
-	return false
-}
-
 /* Pagination */
 const currentPage = ref(1)
 const totalPage = ref(articles.value.length)
@@ -144,23 +109,6 @@ const slicedArticles = computed(() => {
 							>{{ translateDate(getComputedDate(article)) }} ·
 							{{ getTimeFromNow(getComputedDate(article)) }}</span
 						>
-					</span>
-					<span class="special">
-						<ArrowUpCircleIcon
-							v-if="article.frontmatter.isPinned || article.frontmatter.pinned"
-							class="icon"
-							:title="'已置顶'"
-						/>
-						<LockClosedIcon
-							v-if="isEncryptedPage(article, 'lock')"
-							class="icon"
-							:title="'内容已加密'"
-						/>
-						<LockOpenIcon
-							v-if="isEncryptedPage(article, 'unlock')"
-							class="icon"
-							:title="'内容已解密'"
-						/>
 					</span>
 					<span class="tags">
 						<span
