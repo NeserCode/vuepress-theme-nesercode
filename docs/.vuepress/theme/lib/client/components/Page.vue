@@ -17,8 +17,6 @@ import { computed, onMounted, ref } from "vue"
 import { Ref } from "@vue/reactivity"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import { useThemeLocaleData, usePluginState } from "../composables"
-// @ts-ignore
-// import { pages } from "@temp/pages"
 
 import type { PageData, PageFrontmatter } from "@vuepress/client"
 import type { DefaultThemeLocaleData } from "../../shared"
@@ -32,6 +30,7 @@ type ExtraPageData = PageData & {
 }
 
 type ExtraPageFrontmatter = PageFrontmatter & {
+	tag?: string[]
 	plugins?: {
 		readingTime?: boolean
 		comment?: boolean
@@ -118,6 +117,13 @@ onMounted(() => {
 
 	encryptCheck()
 })
+
+// Article Tag
+const tag = frontmatter.value.tag ?? []
+
+function getTagPath(tag: string) {
+	return encodeURI(`/tag/${tag.toLowerCase()}/`)
+}
 </script>
 
 <template>
@@ -135,24 +141,33 @@ onMounted(() => {
 			<div class="theme-default-content">
 				<h1 class="page-title-custom">{{ page.title }}</h1>
 				<div class="page-header">
-					<span
-						class="reading-time-main description"
-						v-if="isOpenReadingTime"
-					>
+					<span class="reading-time-main description" v-if="isOpenReadingTime">
 						<span class="reading-time">
-							<span class="prefix">📖</span>
-							共 {{ page.readingTime.words }} 字，预计需要
-							{{ page.readingTime.minutes }} 分钟
-						</span>
+							<span class="prefix">📖</span>共
+							{{ page.readingTime.words }} 字，预计需要{{
+								page.readingTime.minutes
+							}}
+							分钟</span
+						>
 						<span class="time-like">
 							<span class="prefix">🕙</span>
-							<span class="created-time" title="Created Time">
-								写于 {{ createdTime }}
-							</span>
-							<span class="updated-time" title="Updated Time">
-								最后更新于 {{ updatedTime }}
-							</span>
+							<span class="created-time" title="Created Time"
+								>写于 {{ createdTime }}</span
+							>
+							<span class="updated-time" title="Updated Time"
+								>最后更新于 {{ updatedTime }}</span
+							>
 						</span>
+					</span>
+					<span class="tags description" v-if="tag.length">
+						<span class="prefix"> <span class="prefix">🔖</span>本文标签</span>
+						<router-link
+							class="tag"
+							v-for="tagName in tag"
+							:key="tagName"
+							:to="getTagPath(tagName)"
+							>{{ tagName }}</router-link
+						>
 					</span>
 				</div>
 				<slot name="content-top" />

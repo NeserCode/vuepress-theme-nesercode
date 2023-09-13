@@ -30,6 +30,7 @@ type ExtraPageFrontmatter = DefaultThemePageFrontmatter & {
 
 const page = usePageData()
 const frontmatter = usePageFrontmatter<ExtraPageFrontmatter>()
+const $route = useRoute()
 
 // calculate scroll progress
 const isOpenReadingLine = computed(() => {
@@ -49,8 +50,17 @@ function getScrollProgress() {
 	readingProgress.value = progress
 }
 
+// Listen router name change
+watch(
+	() => $route.name,
+	() => {
+		if (isOpenReadingLine.value && readingProgress.value) {
+			readingProgress.value = 0
+		}
+	}
+)
+
 /* Original */
-const $route = useRoute()
 const mountedWindow: Ref<Window | null> = ref(null)
 const isOriginal = computed(() => {
 	if (frontmatter.value.original === false) return false
@@ -60,6 +70,8 @@ const originalUrl = ref(frontmatter.value.originalUrl ?? getReplacedUrl())
 function getReplacedUrl() {
 	return mountedWindow.value?.location.href.replace(encodeURI($route.hash), "")
 }
+
+// Listen router hash change
 watch(
 	() => $route.hash,
 	() => {

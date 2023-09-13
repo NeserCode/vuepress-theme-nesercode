@@ -8,6 +8,7 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: space-between;
+
 		font-family: inherit;
 		cursor: inherit;
 		padding: 0.2rem 0.5rem;
@@ -21,9 +22,12 @@
 		}
 
 		.icon {
-			display: inline-block;
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
 			width: 2ch;
-			margin-right: 0.2rem;
+			height: 2ch;
+			margin: 0 auto;
 		}
 	}
 

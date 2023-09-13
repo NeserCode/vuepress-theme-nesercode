@@ -103,10 +103,8 @@
 			}
 
 			.tags {
-				display: inline-flex;
+				@include flex_center;
 				flex-wrap: wrap;
-				justify-content: center;
-				align-items: center;
 
 				.tag {
 					@include flex_center;

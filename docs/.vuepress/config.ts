@@ -7,7 +7,7 @@ import { readingTimePlugin } from "vuepress-plugin-reading-time2"
 
 export default defineUserConfig({
 	title: "NeserCode",
-	description: "欢迎来访我的博客！",
+	description: "Make learning useful.",
 	lang: "zh-CN",
 	head: [
 		[
@@ -28,6 +28,7 @@ export default defineUserConfig({
 		],
 	],
 
+	// Product link prefix
 	base: "/vuepress-theme-nesercode/",
 
 	bundler: viteBundler({
@@ -38,7 +39,7 @@ export default defineUserConfig({
 	theme: nesercodeTheme({
 		home: "/",
 		logo: "https://q1.qlogo.cn/g?b=qq&nk=510648363&s=640",
-		repo: "nesercode/vuepress-theme-nesercode",
+		// repo: "nesercode/vuepress-theme-nesercode",
 
 		navbar: [
 			{

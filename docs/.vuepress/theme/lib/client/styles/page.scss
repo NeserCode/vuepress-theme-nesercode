@@ -10,12 +10,43 @@
 		font-size: 0.875rem;
 		font-weight: 400;
 		color: var(--c-text-lighter);
+
+		.prefix {
+			display: inline-block;
+			margin-right: 1ch;
+		}
 	}
 
 	.reading-time-main {
 		display: inline-flex;
 		flex-direction: column;
 		justify-content: center;
+	}
+
+	.tags {
+		display: inline-flex;
+		align-items: center;
+		flex-wrap: wrap;
+
+		.tag {
+			@include flex_center;
+			text-decoration: none;
+
+			line-height: 0.75rem;
+
+			&::after {
+				@include flex_center;
+				content: "·";
+				padding: 0.2rem;
+				margin: 0 0.3rem;
+
+				opacity: 0.5;
+			}
+
+			&:last-child::after {
+				display: none;
+			}
+		}
 	}
 
 	.main-custom {
@@ -70,10 +101,7 @@
 			}
 		}
 
-		.toc-main
-			> .vuepress-toc-list
-			> .vuepress-toc-item
-			> .vuepress-toc-link,
+		.toc-main > .vuepress-toc-list > .vuepress-toc-item > .vuepress-toc-link,
 		.toc-main
 			> .vuepress-toc-list
 			> .vuepress-toc-item
@@ -87,16 +115,11 @@
 		}
 
 		/* Active */
-		.toc-main
-			> .vuepress-toc-list
-			> .vuepress-toc-item
-			> .vuepress-toc-list {
+		.toc-main > .vuepress-toc-list > .vuepress-toc-item > .vuepress-toc-list {
 			display: none;
 		}
 		.toc-main
-			> .vuepress-toc-list:has(
-				.vuepress-toc-list .vuepress-toc-link.active
-			),
+			> .vuepress-toc-list:has(.vuepress-toc-list .vuepress-toc-link.active),
 		.toc-main
 			> .vuepress-toc-list
 			> .vuepress-toc-item

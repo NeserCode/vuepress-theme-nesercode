@@ -63,6 +63,12 @@ html.dark .navbar {
 	display: none;
 }
 
+html.dark .theme-container {
+	&::selection {
+		background-color: var(--c-brand);
+	}
+}
+
 .theme-container {
 	display: inline-flex;
 	&.sidebar-open {
