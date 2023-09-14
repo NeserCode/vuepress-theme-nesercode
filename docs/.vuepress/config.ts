@@ -4,6 +4,7 @@ import { viteBundler } from "@vuepress/bundler-vite"
 
 // plugins
 import { readingTimePlugin } from "vuepress-plugin-reading-time2"
+import searchPlugin from "@vuepress/plugin-search"
 
 export default defineUserConfig({
 	title: "NeserCode",

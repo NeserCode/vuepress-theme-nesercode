@@ -69,10 +69,10 @@ const isOriginal = computed(() => {
 	if (frontmatter.value.original === false) return false
 	else return true
 })
-const originalUrl = ref(frontmatter.value.originalUrl ?? getReplacedUrl())
-function getReplacedUrl() {
-	return mountedWindow.value?.location.href.replace(encodeURI($route.hash), "")
-}
+const repalcedUrl = computed(() =>
+	mountedWindow.value?.location.href.replace(encodeURI($route.hash), "")
+)
+const originalUrl = ref(frontmatter.value.originalUrl ?? repalcedUrl?.value)
 
 // Listen router hash change
 watch(
@@ -80,7 +80,7 @@ watch(
 	() => {
 		if (frontmatter.value.originalUrl)
 			originalUrl.value = frontmatter.value.originalUrl
-		else originalUrl.value = getReplacedUrl()
+		else originalUrl.value = repalcedUrl.value
 	}
 )
 const copyrightTips = [""]
