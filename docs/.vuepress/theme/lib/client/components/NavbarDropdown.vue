@@ -58,8 +58,8 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
 			:aria-label="dropdownAriaLabel"
 			@click="handleDropdown"
 		>
-			<Bars3Icon class="icon" focusable="false" />
 			<span class="title">{{ item.text }}</span>
+			<Bars3Icon class="icon" focusable="false" />
 		</button>
 
 		<button

@@ -9,7 +9,10 @@ const $props = defineProps<{
 }>()
 
 const { articles } = toRefs($props)
-console.log(articles.value)
+
+articles.value.sort((a, b) => {
+	return a.data.git?.createdTime > b.data.git?.createdTime ? -1 : 1
+})
 
 function getComputedDate(page: any) {
 	const { frontmatter } = page

@@ -1,4 +1,5 @@
 @import "_variables";
+@import "_mixins";
 
 .navbar {
 	--navbar-line-height: calc(
@@ -8,6 +9,10 @@
 	padding: var(--navbar-padding-v) var(--navbar-padding-h);
 	line-height: var(--navbar-line-height);
 
+	.nav-brand {
+		display: inline-flex;
+	}
+
 	.logo {
 		height: var(--navbar-line-height);
 		margin-right: var(--navbar-padding-v);
@@ -15,10 +20,36 @@
 	}
 
 	.site-name {
-		font-size: 1.3rem;
-		font-weight: 600;
-		color: var(--c-text);
 		position: relative;
+		display: inline-flex;
+		flex-direction: column;
+
+		color: var(--c-text);
+
+		&:not(:has(.github-nickname)) {
+			.title {
+				font-size: 1.35rem;
+				font-weight: 600;
+				line-height: 2rem;
+			}
+		}
+
+		.title {
+			display: inline-block;
+			font-size: 1.25rem;
+			font-weight: 600;
+			line-height: 1.25rem;
+		}
+
+		.github-nickname {
+			display: inline-block;
+			width: fit-content;
+			height: fit-content;
+			font-size: 0.5rem;
+
+			font-weight: 600;
+			line-height: 1rem;
+		}
 	}
 
 	.navbar-items-wrapper {

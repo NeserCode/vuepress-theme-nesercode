@@ -45,6 +45,13 @@ export interface DefaultThemePluginsOptions {
 }
 export type DefaultThemeLocaleOptions = DefaultThemeData
 export type DefaultThemeData = ThemeData<DefaultThemeLocaleData>
+
+export interface GithubOptions {
+	/**
+	 * username - github username to get github info
+	 **/
+	username: string
+}
 export interface GiscusOptions {
 	/**
 	 * repo - The GitHub repository to store comments
@@ -337,6 +344,10 @@ export interface DefaultThemeLocaleData extends LocaleData {
 	 * @default HelperOptions from plugin
 	 */
 	helperOptions: HelperOptions
+	/**
+	 * Github Object
+	 **/
+	github?: GithubOptions
 	/**
 	 * Comment Options - Giscus
 	 **/

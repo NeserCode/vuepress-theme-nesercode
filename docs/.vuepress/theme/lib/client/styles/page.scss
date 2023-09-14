@@ -53,111 +53,6 @@
 		padding: 0;
 	}
 
-	.sidebar-custom {
-		position: fixed;
-		right: calc(
-			50% - var(--content-width) / 2 - var(--subsidebar-width) -
-				var(--subsidebar-offset)
-		);
-		max-width: fit-content;
-		padding: 0;
-		padding-top: 8.8rem;
-
-		display: inline-flex;
-		flex-direction: column;
-
-		.toc-main {
-			position: sticky;
-			top: calc(2rem + var(--navbar-height));
-			width: var(--subsidebar-width);
-			margin-left: 1.25rem;
-
-			&::before {
-				content: "On This Page";
-				position: absolute;
-				top: -0.5rem;
-				left: -0.25rem;
-				font-size: 0.875rem;
-				font-weight: 500;
-				color: var(--c-text-accent);
-			}
-
-			& > .vuepress-toc-list {
-				border: 0px var(--c-text-accent) solid;
-				border-left-width: 1px;
-			}
-			.vuepress-toc-list {
-				display: inline-flex;
-				justify-content: center;
-				flex-direction: column;
-				padding-left: 0.5rem;
-				list-style: none;
-
-				transition: all ease-in-out 300;
-				.vuepress-toc-item {
-					display: inline-flex;
-					flex-direction: column;
-				}
-			}
-		}
-
-		.toc-main > .vuepress-toc-list > .vuepress-toc-item > .vuepress-toc-link,
-		.toc-main
-			> .vuepress-toc-list
-			> .vuepress-toc-item
-			> .vuepress-toc-list
-			> .vuepress-toc-item
-			> .vuepress-toc-link {
-			max-width: 15ch;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-		}
-
-		/* Active */
-		.toc-main > .vuepress-toc-list > .vuepress-toc-item > .vuepress-toc-list {
-			display: none;
-		}
-		.toc-main
-			> .vuepress-toc-list:has(.vuepress-toc-list .vuepress-toc-link.active),
-		.toc-main
-			> .vuepress-toc-list
-			> .vuepress-toc-item
-			> .vuepress-toc-list:has(.vuepress-toc-link.active),
-		.toc-main
-			> .vuepress-toc-list
-			> .vuepress-toc-item:has(.vuepress-toc-link.active)
-			> .vuepress-toc-list {
-			display: inline-flex;
-		}
-
-		.toc-main
-			> .vuepress-toc-list
-			> .vuepress-toc-item
-			> .vuepress-toc-list
-			> .vuepress-toc-item
-			> .vuepress-toc-link.active {
-			text-decoration: underline;
-			text-underline-offset: 0.3rem;
-			text-underline-position: left;
-		}
-
-		.toc-main
-			> .vuepress-toc-list
-			> .vuepress-toc-item
-			.vuepress-toc-link.active {
-			color: var(--c-text-lighter);
-		}
-		.toc-main
-			> .vuepress-toc-list
-			> .vuepress-toc-item
-			> .vuepress-toc-list
-			> .vuepress-toc-item
-			.vuepress-toc-link.active {
-			color: var(--c-text-lightest);
-		}
-	}
-
 	.page-header {
 		display: inline-flex;
 		flex-direction: column;
@@ -281,7 +176,7 @@
 }
 
 .copyright-band {
-	max-width: fit-content;
+	max-width: var(--content-width);
 	margin: 0 auto;
 	border: 2px solid var(--c-border);
 

@@ -2,6 +2,7 @@
 tag:
   - en-US
   - RoCoX-Codex
+repo: NeserCode-Studio/Roco-Codex
 ---
 
 # RoCoX Codex Guide

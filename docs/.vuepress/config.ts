@@ -41,6 +41,10 @@ export default defineUserConfig({
 		logo: "https://q1.qlogo.cn/g?b=qq&nk=510648363&s=640",
 		// repo: "nesercode/vuepress-theme-nesercode",
 
+		github: {
+			username: "nesercode",
+		},
+
 		navbar: [
 			{
 				text: "关于",

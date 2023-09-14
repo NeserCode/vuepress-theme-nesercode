@@ -1,20 +1,55 @@
 <script setup lang="ts">
-// @ts-ignore
 import Navbar from "@theme/Navbar.vue"
-// @ts-ignore
 import Sidebar from "@theme/Sidebar.vue"
+
 import { usePageFrontmatter } from "@vuepress/client"
-import { computed, onMounted, onUnmounted, ref } from "vue"
+import {
+	Ref,
+	computed,
+	onBeforeMount,
+	onMounted,
+	onUnmounted,
+	provide,
+	reactive,
+	ref,
+} from "vue"
 import { useRouter } from "vue-router"
-import type { DefaultThemePageFrontmatter } from "../../shared/index.js"
+import type {
+	DefaultThemePageFrontmatter,
+	DefaultThemeLocaleData,
+} from "../../shared/index.js"
 import {
 	useScrollPromise,
 	useSidebarItems,
 	useThemeLocaleData,
 } from "../composables/index.js"
 
+import { GithubDataKey } from "../token.js"
+
 const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>()
-const themeLocale = useThemeLocaleData()
+const themeLocale: Ref<DefaultThemeLocaleData> = useThemeLocaleData()
+
+// github data
+const githubData = ref(null)
+const githubName = themeLocale.value.github?.username
+provide(
+	GithubDataKey,
+	computed(() => githubData.value)
+)
+onBeforeMount(() => {
+	if (githubName)
+		fetch(`https://api.github.com/users/${githubName}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				githubData.value = data
+			})
+})
 
 // handle scrollBehavior with transition
 const scrollPromise = useScrollPromise()

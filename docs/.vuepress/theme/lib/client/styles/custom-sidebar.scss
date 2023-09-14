@@ -1,0 +1,202 @@
+@import "_mixins";
+
+.page {
+	.sidebar-custom {
+		position: fixed;
+		right: calc(
+			50% - var(--content-width) / 2 - var(--subsidebar-width) -
+				var(--subsidebar-offset)
+		);
+
+		max-width: fit-content;
+		padding: 0;
+		padding-top: 8.8rem;
+
+		display: inline-flex;
+		flex-direction: column;
+
+		.toc-main {
+			position: sticky;
+			top: calc(2rem + var(--navbar-height));
+			width: var(--subsidebar-width);
+			margin-left: 1.25rem;
+
+			&::before {
+				content: "On This Page";
+				position: absolute;
+				top: -0.5rem;
+				left: -0.25rem;
+				font-size: 0.875rem;
+				font-weight: 500;
+				color: var(--c-text-accent);
+			}
+
+			& > .vuepress-toc-list {
+				border: 0px var(--c-text-accent) solid;
+				border-left-width: 1px;
+			}
+			.vuepress-toc-list {
+				display: inline-flex;
+				justify-content: center;
+				flex-direction: column;
+				padding-left: 0.5rem;
+				list-style: none;
+
+				transition: all ease-in-out 300;
+				.vuepress-toc-item {
+					display: inline-flex;
+					flex-direction: column;
+				}
+			}
+		}
+
+		.toc-main > .vuepress-toc-list > .vuepress-toc-item > .vuepress-toc-link,
+		.toc-main
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			> .vuepress-toc-link {
+			max-width: 15ch;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		/* Active */
+		.toc-main > .vuepress-toc-list > .vuepress-toc-item > .vuepress-toc-list {
+			display: none;
+		}
+		.toc-main
+			> .vuepress-toc-list:has(.vuepress-toc-list .vuepress-toc-link.active),
+		.toc-main
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			> .vuepress-toc-list:has(.vuepress-toc-link.active),
+		.toc-main
+			> .vuepress-toc-list
+			> .vuepress-toc-item:has(.vuepress-toc-link.active)
+			> .vuepress-toc-list {
+			display: inline-flex;
+		}
+
+		.toc-main
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			> .vuepress-toc-link.active {
+			text-decoration: underline;
+			text-underline-offset: 0.3rem;
+			text-underline-position: left;
+		}
+
+		.toc-main
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			.vuepress-toc-link.active {
+			color: var(--c-text-lighter);
+		}
+		.toc-main
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			> .vuepress-toc-list
+			> .vuepress-toc-item
+			.vuepress-toc-link.active {
+			color: var(--c-text-lightest);
+		}
+
+		/* github repo card */
+		.github-repo-card {
+			display: flex;
+			flex-direction: column;
+
+			font-size: 0.85rem;
+			transform: translateX(0.75rem);
+
+			.prefix {
+				display: inline-block;
+				width: 100%;
+
+				color: var(--c-text-lightest);
+				user-select: none;
+			}
+
+			.card-main {
+				display: inline-flex;
+				flex-direction: column;
+
+				width: fit-content;
+
+				margin: 0.5rem 0;
+				padding: 0.75rem 1rem;
+				border: 1px solid var(--c-border);
+				border-radius: 0.6rem;
+
+				color: var(--c-text-lighter);
+
+				transition: all 0.2s ease-in-out;
+
+				&:hover {
+					border-color: var(--c-border-light);
+					background-color: var(--c-bg-light);
+
+					.repo-name {
+						color: var(--c-brand);
+						transition: all 0.2s ease-in-out;
+					}
+				}
+
+				.repo-title {
+					display: flex;
+					align-items: center;
+
+					.title-icon {
+						@include flex_center;
+
+						width: 1.8rem;
+						height: 1.8rem;
+						padding: 0.3rem;
+						margin-right: 0.25rem;
+					}
+
+					.repo-name {
+						display: inline-flex;
+						flex-direction: column;
+
+						.repo,
+						.owner {
+							display: inline-block;
+
+							max-width: 24ch;
+
+							text-overflow: ellipsis;
+							overflow: hidden;
+							white-space: nowrap;
+						}
+
+						.repo {
+							line-height: 1rem;
+							font-size: 0.9rem;
+						}
+
+						.owner {
+							opacity: 0.75;
+
+							font-size: 0.4rem;
+							line-height: 0.75rem;
+						}
+					}
+
+					color: var(--c-brand);
+					transition: all 0.2s ease-in-out;
+				}
+
+				.repo-description {
+					font-size: 0.6rem;
+					opacity: 0.75;
+				}
+			}
+		}
+	}
+}

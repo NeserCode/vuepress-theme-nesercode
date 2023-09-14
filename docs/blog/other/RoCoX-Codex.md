@@ -1,6 +1,7 @@
 ---
 tag:
   - RoCoX-Codex
+repo: NeserCode-Studio/Roco-Codex
 ---
 
 # RoCoX Codex 指南

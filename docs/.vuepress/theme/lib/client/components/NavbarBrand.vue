@@ -5,9 +5,11 @@ import {
 	useSiteLocaleData,
 	withBase,
 } from "@vuepress/client"
-import { computed, h } from "vue"
+import { computed, h, inject, watch, ref, reactive } from "vue"
 import type { FunctionalComponent } from "vue"
 import { useDarkMode, useThemeLocaleData } from "../composables/index.js"
+
+import { GithubDataKey } from "../token.js"
 
 const routeLocale = useRouteLocale()
 const siteLocale = useSiteLocaleData()
@@ -38,10 +40,23 @@ const NavbarBrandLogo: FunctionalComponent = () => {
 	// when using a different brand logo in dark mode
 	return h(ClientOnly, () => img)
 }
+
+// use github data
+const dataFromGithub = reactive({
+	nickname: "",
+	avatar: "",
+	bio: "",
+})
+const githubData = inject(GithubDataKey, ref())
+watch(githubData, (val) => {
+	dataFromGithub.nickname = val.name
+	dataFromGithub.avatar = val.avatar_url
+	dataFromGithub.bio = val.bio
+})
 </script>
 
 <template>
-	<RouterLink :to="navbarBrandLink">
+	<RouterLink :to="navbarBrandLink" class="nav-brand">
 		<NavbarBrandLogo />
 
 		<span
@@ -49,7 +64,10 @@ const NavbarBrandLogo: FunctionalComponent = () => {
 			class="site-name"
 			:class="{ 'can-hide': navbarBrandLogo }"
 		>
-			{{ navbarBrandTitle }}
+			<span class="title">{{ navbarBrandTitle }}</span>
+			<span class="github-nickname" v-if="dataFromGithub.nickname !== ''">{{
+				dataFromGithub.nickname
+			}}</span>
 		</span>
 	</RouterLink>
 </template>

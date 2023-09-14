@@ -1,14 +1,10 @@
 <script lang="ts" setup>
-// @ts-ignore
 import BaseLayout from "./BaseLayout.vue"
-// @ts-ignore
 import Home from "@theme/Home.vue"
-// @ts-ignore
 import Page from "@theme/Page.vue"
-// @ts-ignore
 import CopyRightBand from "@theme/CopyrightBand.vue"
-// @ts-ignore
 import ReadingLine from "@theme/ReadingLine.vue"
+import GithubRepoCard from "@theme/GithubRepoCard.vue"
 
 import { ref, onMounted, onUnmounted, computed, watch, Ref } from "vue"
 import { useRoute } from "vue-router"
@@ -26,11 +22,18 @@ type ExtraPageFrontmatter = DefaultThemePageFrontmatter & {
 
 	original?: boolean
 	originalUrl?: string
+
+	repo?: string
 }
 
 const page = usePageData()
 const frontmatter = usePageFrontmatter<ExtraPageFrontmatter>()
 const $route = useRoute()
+
+// repo info
+const repo = computed(() => {
+	return frontmatter.value.repo?.split("/")
+})
 
 // calculate scroll progress
 const isOpenReadingLine = computed(() => {
@@ -119,7 +122,12 @@ onUnmounted(() => {
 						/>
 						<slot name="page-bottom" />
 					</template>
-					<template #sidebar-custom></template>
+					<template #sidebar-custom>
+						<github-repo-card
+							:owner="repo ? repo[0] : null"
+							:repo-name="repo ? repo[1] : null"
+						/>
+					</template>
 				</Page>
 			</div>
 		</template>

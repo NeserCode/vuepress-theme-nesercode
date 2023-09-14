@@ -88,6 +88,8 @@
 			@include flex_center;
 			flex-direction: column;
 
+			max-width: $MQMobile;
+
 			.title {
 				font-weight: bold;
 				font-size: 2rem;
