@@ -29,7 +29,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-	<Transition>
+	<Transition name="turn-z" mode="out-in" appear>
 		<div class="github-repo-card" v-if="owner && repoName">
 			<span class="prefix">Linked Github Repo</span>
 			<a :href="repoInfo?.html_url" class="card-main" target="_blank">

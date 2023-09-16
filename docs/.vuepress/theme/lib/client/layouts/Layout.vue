@@ -45,8 +45,11 @@ const isOpenReadingLine = computed(() => {
 const readingProgress = ref<number>(0)
 
 function getScrollProgress() {
+	let content = document.querySelector(".theme-default-content") as HTMLElement
+	if (!content && window) return 0
+
 	const { scrollTop, scrollHeight, clientHeight } =
-		window?.document.documentElement
+		window.document.documentElement
 	const progress = Number(
 		((scrollTop / (scrollHeight - clientHeight)) * 100).toFixed(2)
 	)

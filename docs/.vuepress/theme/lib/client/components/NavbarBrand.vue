@@ -64,10 +64,17 @@ watch(githubData, (val) => {
 			class="site-name"
 			:class="{ 'can-hide': navbarBrandLogo }"
 		>
-			<span class="title">{{ navbarBrandTitle }}</span>
-			<span class="github-nickname" v-if="dataFromGithub.nickname !== ''">{{
-				dataFromGithub.nickname
-			}}</span>
+			<Transition name="slide-up" mode="out-in" appear>
+				<span class="title" v-if="navbarBrandTitle">{{
+					navbarBrandTitle
+				}}</span>
+			</Transition>
+
+			<Transition name="turn-z" mode="out-in" appear>
+				<span class="github-nickname" v-if="dataFromGithub.nickname !== ''">{{
+					dataFromGithub.nickname
+				}}</span>
+			</Transition>
 		</span>
 	</RouterLink>
 </template>

@@ -35,3 +35,34 @@
 	transform: translateX(10px);
 	opacity: 0;
 }
+
+/**
+ * turn-z
+ */
+
+.turn-z-enter-active,
+.turn-z-leave-active {
+	transition: all ease-in-out 0.8s;
+	opacity: 1;
+}
+
+.turn-z-enter-from,
+.turn-z-leave-to {
+	transform: rotateX(60deg) translateY(50%);
+	opacity: 0;
+}
+
+/**
+ * slide-up
+ */
+.slide-up-enter-active,
+.slide-up-leave-active {
+	transition: all ease-in-out 0.2s;
+	opacity: 1;
+}
+
+.slide-up-enter-from,
+.slide-up-leave-to {
+	transform: translateY(25%);
+	opacity: 0;
+}
