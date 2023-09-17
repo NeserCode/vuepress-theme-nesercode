@@ -351,6 +351,55 @@ html.dark {
 	}
 }
 
+.not-found {
+	@include flex_center;
+	flex-direction: column;
+
+	min-height: 70vh;
+
+	.not-found-number,
+	.not-found-number::after {
+		position: relative;
+
+		white-space: nowrap;
+		font-size: 12rem;
+		font-weight: 700;
+		font-family: Arial, Helvetica, sans-serif;
+
+		user-select: none;
+	}
+	.not-found-number::after {
+		content: "404";
+
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		animation: 5s glitch infinite steps(3, jump-none);
+	}
+
+	.home-link {
+		@include flex_center;
+
+		margin: 2.4rem;
+
+		.icon {
+			@include flex_center;
+
+			width: 1.6rem;
+			height: 1.6rem;
+		}
+
+		.text {
+			display: inline-block;
+			margin-left: 0.6rem;
+			font-size: 1.2rem;
+		}
+	}
+}
+
 // narrow desktop / iPad
 @media (max-width: $MQNarrow) {
 	.sidebar {

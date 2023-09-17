@@ -91,6 +91,16 @@ export default defineUserConfig({
 		contributorsText: "作者",
 		lastUpdatedText: "最近更新于",
 		outTime: "时间长河中某处",
+		// 404
+		notFound: [
+			"嗯哼，这片区域，以后再来探索吧！",
+			"哎呀，这里可没有什么宝藏哦。",
+			"喂喂，你再怎么刷新就是没有东西的啊！",
+			"哇哦，规则就是用来打破的！",
+			"嘿嘿，虚晃你一手。",
+			"嗯？这里是怎么回事？",
+		],
+		backToHome: "首页",
 
 		giscus: {
 			repo: "NeserCode/NeserCode.github.io",
