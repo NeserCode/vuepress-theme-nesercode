@@ -1,9 +1,14 @@
 <script lang="ts" setup>
-import { LockClosedIcon, KeyIcon } from "@heroicons/vue/24/outline"
+import { LightBulbIcon, KeyIcon } from "@heroicons/vue/24/outline"
 import { computed, ref, toRefs } from "vue"
+import { usePageFrontmatter, PageFrontmatter } from "@vuepress/client"
 
 import CryptoJs from "crypto-js/crypto-js"
 import hmacSHA256 from "crypto-js/hmac-sha256"
+
+interface ExtraPageFrontmatter extends PageFrontmatter {
+	hint?: string[]
+}
 
 const $props = defineProps<{
 	encrypted: string
@@ -41,6 +46,14 @@ function encrypt() {
 		}, 500)
 	}
 }
+
+const frontmatter = usePageFrontmatter<ExtraPageFrontmatter>()
+const word = computed(() => {
+	if (!frontmatter.value.hint) return ""
+	let r = Math.floor(Math.random() * frontmatter.value.hint.length)
+
+	return frontmatter.value.hint[r]
+})
 </script>
 
 <template>
@@ -50,6 +63,11 @@ function encrypt() {
 				<span class="text">加密内容</span>
 			</h1>
 		</div>
+		<span class="hint" v-if="word != '' && word">
+			<LightBulbIcon class="icon" />
+			<span class="numbers"> 1 of {{ frontmatter.hint?.length }}</span>
+			<span class="text">{{ word }}</span>
+		</span>
 		<div class="encrypt-input">
 			<input
 				:class="['input-body', WrongClass]"

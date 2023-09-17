@@ -305,12 +305,36 @@
 		}
 	}
 
+	.hint {
+		@include flex_center;
+
+		font-size: 0.875rem;
+		opacity: 0.6;
+
+		user-select: none;
+
+		.icon {
+			@include flex_center;
+
+			width: 1.2rem;
+			height: 1.2rem;
+
+			margin: 0 0.2rem;
+		}
+
+		.numbers {
+			@include flex_center;
+
+			margin-right: 0.5rem;
+		}
+	}
+
 	.encrypt-input {
 		margin-top: 4rem;
 
 		.input-body {
 			display: inline-block;
-			width: 100%;
+			width: fit-content;
 			padding: 0.4rem 0.6rem;
 			background-color: transparent;
 			border: 2px solid var(--c-border);
