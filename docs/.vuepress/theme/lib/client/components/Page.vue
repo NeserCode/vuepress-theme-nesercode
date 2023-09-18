@@ -1,13 +1,8 @@
 <script setup lang="ts">
-// @ts-ignore
 import PageMeta from "@theme/PageMeta.vue"
-// @ts-ignore
 import PageNav from "@theme/PageNav.vue"
-// @ts-ignore
 import PageFooter from "@theme/PageFooter.vue"
-// @ts-ignore
 import Comment from "@theme/GiscusComment.vue"
-// @ts-ignore
 import EncryptRouter from "./EncryptRouter.vue"
 
 import CryptoJs from "crypto-js/crypto-js"
@@ -144,19 +139,17 @@ function getTagPath(tag: string) {
 					<span class="reading-time-main description" v-if="isOpenReadingTime">
 						<span class="reading-time">
 							<span class="prefix">📖</span>共
-							{{ page.readingTime.words }} 字，预计需要{{
-								page.readingTime.minutes
-							}}
-							分钟</span
+							{{ page.readingTime.words }} 字，预计需要
+							{{ page.readingTime.minutes }} 分钟</span
 						>
 						<span class="time-like">
 							<span class="prefix">🕙</span>
 							<span class="created-time" title="Created Time"
-								>写于 {{ createdTime }}</span
-							>
-							<span class="updated-time" title="Updated Time"
-								>最后更新于 {{ updatedTime }}</span
-							>
+								>写于 {{ createdTime }}
+							</span>
+							<span class="updated-time" title="Updated Time">
+								最后更新于 {{ updatedTime }}
+							</span>
 						</span>
 					</span>
 					<span class="tags description" v-if="tag.length">

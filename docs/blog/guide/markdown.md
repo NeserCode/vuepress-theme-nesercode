@@ -4,7 +4,8 @@ tag:
   - Markdown
   - Official
 author: NeserCode
-password: "789011"
+original: false
+originalUrl: https://v2.vuepress.vuejs.org/zh/guide/markdown.html
 ---
 
 # Markdown

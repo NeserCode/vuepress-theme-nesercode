@@ -9,10 +9,17 @@ const $props = defineProps<{
 }>()
 
 const { articles } = toRefs($props)
+const sorter = (a: any, b: any) => {
+	const pinnedA = !!(a.frontmatter.pinned || a.frontmatter.isPinned)
+	const pinnedB = !!(b.frontmatter.pinned || b.frontmatter.isPinned)
+	const dateA = getComputedDate(a)
+	const dateB = getComputedDate(b)
 
-articles.value.sort((a, b) => {
-	return a.data.git?.createdTime > b.data.git?.createdTime ? -1 : 1
-})
+	if (pinnedA && pinnedB) return parseInt(dateB) - parseInt(dateA)
+	else if (pinnedA && !pinnedB) return -1
+	else if (!pinnedA && pinnedB) return 1
+	else return parseInt(dateB) - parseInt(dateA)
+}
 
 function getComputedDate(page: any) {
 	const { frontmatter } = page
@@ -90,8 +97,10 @@ const callbacks = {
 const slicedArticles = computed(() => {
 	const start = (currentPage.value - 1) * limit.value
 	const end = start + limit.value
+	const sorted = articles.value.sort(sorter)
+
 	if (!articles.value || articles.value.length === 0) return []
-	return articles.value.slice(start, end)
+	return sorted.slice(start, end)
 })
 </script>
 
@@ -111,6 +120,11 @@ const slicedArticles = computed(() => {
 						<span class="date"
 							>{{ translateDate(getComputedDate(article)) }} ·
 							{{ getTimeFromNow(getComputedDate(article)) }}</span
+						>
+						<span
+							class="pinned"
+							v-if="article.frontmatter.pinned || article.frontmatter.isPinned"
+							>置顶</span
 						>
 					</span>
 					<span class="tags">
