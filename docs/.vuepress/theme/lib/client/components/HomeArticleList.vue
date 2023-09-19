@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-// @ts-ignore
 import Pagination from "@theme/Pagination.vue"
 
 import { computed, ref, toRefs } from "vue"
