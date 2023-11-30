@@ -11,8 +11,8 @@ const { articles } = toRefs($props)
 const sorter = (a: any, b: any) => {
 	const pinnedA = !!(a.frontmatter.pinned || a.frontmatter.isPinned)
 	const pinnedB = !!(b.frontmatter.pinned || b.frontmatter.isPinned)
-	const dateA = getComputedDate(a)
-	const dateB = getComputedDate(b)
+	const dateA = new Date(getComputedDate(a)).getTime().toString()
+	const dateB = new Date(getComputedDate(b)).getTime().toString()
 
 	if (pinnedA && pinnedB) return parseInt(dateB) - parseInt(dateA)
 	else if (pinnedA && !pinnedB) return -1
@@ -78,15 +78,12 @@ const limit = ref(5)
 function prev() {
 	if (currentPage.value > 1) currentPage.value--
 }
-
 function next() {
 	if (currentPage.value < totalPage.value) currentPage.value++
 }
-
 function jump(page: number) {
 	if (page > 0 && page <= totalPage.value) currentPage.value = page
 }
-
 const callbacks = {
 	prev,
 	next,
@@ -112,18 +109,18 @@ const slicedArticles = computed(() => {
 				:key="article.path"
 			>
 				<div class="home-article-main">
-					<router-link :to="article.path" class="title">{{
-						article.title
-					}}</router-link>
-					<span class="info">
-						<span class="date"
-							>{{ translateDate(getComputedDate(article)) }} ·
-							{{ getTimeFromNow(getComputedDate(article)) }}</span
-						>
+					<router-link :to="article.path" class="title">
 						<span
 							class="pinned"
 							v-if="article.frontmatter.pinned || article.frontmatter.isPinned"
 							>置顶</span
+						>
+						<span class="text">{{ article.title }}</span>
+					</router-link>
+					<span class="info">
+						<span class="date"
+							>{{ translateDate(getComputedDate(article)) }} ·
+							{{ getTimeFromNow(getComputedDate(article)) }}</span
 						>
 					</span>
 					<span class="tags">

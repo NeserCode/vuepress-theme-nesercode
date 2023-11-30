@@ -13,7 +13,7 @@ const $props = defineProps<{
 }>()
 
 const { articles } = toRefs($props)
-console.log(articles.value)
+console.log(`[DeBug: List Pages]`, articles.value)
 
 const siteLocale: Ref<SiteLocaleData> = useSiteLocaleData()
 
@@ -117,22 +117,14 @@ const slicedArticles = computed(() => {
 							>{{ translateDate(article.info.date) }} ·
 							{{ getTimeFromNow(article.info.date) }}</span
 						>
-						<span class="author"
-							>by {{ getAuthor(article.info.author) }}</span
-						>
+						<span class="author">by {{ getAuthor(article.info.author) }}</span>
 					</span>
 					<span class="article-excerpt">{{
 						stringfyExcerpt(article.info.excerpt)
 					}}</span>
 					<span class="article-tags">
-						<span
-							v-for="tag of article.info.tags"
-							:key="tag"
-							class="tag"
-						>
-							<router-link :to="getTagPath(tag)">{{
-								tag
-							}}</router-link>
+						<span v-for="tag of article.info.tags" :key="tag" class="tag">
+							<router-link :to="getTagPath(tag)">{{ tag }}</router-link>
 						</span>
 					</span>
 				</div>

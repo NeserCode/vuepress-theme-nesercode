@@ -182,46 +182,64 @@
 	border: 2px solid var(--c-border);
 
 	.copyright-container {
+		position: relative;
+		overflow: hidden;
+
 		.info {
 			@include flex_center;
-			position: relative;
 			flex-direction: column;
 			padding: 1.2rem 2rem;
 			align-items: flex-start;
-			overflow: hidden;
 
 			span {
-				display: inline-block;
-				color: var(--c-text-lighter);
+				display: block;
+				max-width: fit-content;
 				z-index: 1;
 
-				word-break: break-all;
-				word-wrap: break-word;
+				color: var(--c-text-lighter);
 
 				a {
-					text-decoration: underline;
-					text-underline-offset: 0.175rem;
+					@include flex_center;
+					border: 2px var(--c-border) solid;
+					border-radius: 0.25rem;
+					padding: 0 0.4rem;
+					font-weight: bolder;
 				}
 			}
 
-			.icon {
-				position: absolute;
-				bottom: -0.4rem;
-				right: 0.2rem;
-				width: 6rem;
-				height: 6rem;
-				display: inline-flex;
-				justify-content: center;
-				align-items: center;
-				z-index: 0;
+			.origin-url {
+				width: 40rem;
+				display: inline-block;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
 
-				.cc-svg-path {
-					fill: var(--c-border-dark);
+				@media (max-width: $MQMobile) {
+					width: 19rem;
+				}
+				@media (max-width: $MQMobileNarrow) {
+					width: 50vw;
 				}
 			}
 
 			.operate {
 				margin-top: 0.8rem;
+			}
+		}
+
+		.icon {
+			position: absolute;
+			bottom: -0.4rem;
+			right: -0.4rem;
+			width: 6rem;
+			height: 6rem;
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 0;
+
+			.cc-svg-path {
+				fill: var(--c-border-dark);
 			}
 		}
 	}

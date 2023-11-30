@@ -91,8 +91,22 @@
 			max-width: $MQMobile;
 
 			.title {
+				@include flex_center;
 				font-weight: bold;
 				font-size: 2rem;
+
+				.pinned {
+					@include flex_center;
+
+					padding: 0.1rem 0.4rem;
+					margin-right: 0.4rem;
+					border: 2px solid var(--c-border);
+					border-radius: 0.25rem;
+
+					font-size: 0.9rem;
+					transition: all ease-in-out 0.2s;
+					pointer-events: none;
+				}
 			}
 
 			.info {

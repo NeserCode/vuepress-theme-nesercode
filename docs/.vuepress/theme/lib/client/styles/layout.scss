@@ -356,6 +356,7 @@ html.dark {
 	flex-direction: column;
 
 	min-height: 70vh;
+	width: 100%;
 
 	.not-found-number,
 	.not-found-number::after {
@@ -364,7 +365,7 @@ html.dark {
 		white-space: nowrap;
 		font-size: 12rem;
 		font-weight: 700;
-		font-family: Arial, Helvetica, sans-serif;
+		font-family: var(--font-family-code);
 
 		user-select: none;
 	}
@@ -444,4 +445,10 @@ html.dark {
 	h1 {
 		font-size: 1.9rem;
 	}
+}
+
+//
+.back-to-top::after,
+.down-to-bottom::after {
+	font-size: 0.6rem;
 }

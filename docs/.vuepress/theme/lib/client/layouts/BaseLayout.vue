@@ -6,6 +6,7 @@ import { usePageFrontmatter } from "@vuepress/client"
 import {
 	Ref,
 	computed,
+	nextTick,
 	onBeforeMount,
 	onMounted,
 	onUnmounted,
@@ -37,18 +38,26 @@ provide(
 	computed(() => githubData.value)
 )
 onBeforeMount(() => {
-	if (githubName)
-		fetch(`https://api.github.com/users/${githubName}`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				Accept: "application/json",
-			},
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				githubData.value = data
+	if (!localStorage.getItem("fetch-github-data")) {
+		if (githubName) {
+			fetch(`https://api.github.com/users/${githubName}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
 			})
+				.then((res) => res.json())
+				.then((data) => {
+					githubData.value = data
+					localStorage.setItem("fetch-github-data", JSON.stringify(data))
+				})
+		}
+	} else {
+		nextTick(() => {
+			githubData.value = JSON.parse(localStorage.getItem("fetch-github-data")!)
+		})
+	}
 })
 
 // handle scrollBehavior with transition

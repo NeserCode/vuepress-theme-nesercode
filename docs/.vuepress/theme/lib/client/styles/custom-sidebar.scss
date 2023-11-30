@@ -128,10 +128,10 @@
 
 				width: fit-content;
 
-				margin: 0.5rem 0;
-				padding: 0.75rem 1rem;
-				border: 1px solid var(--c-border);
-				border-radius: 0.6rem;
+				margin: 0.6rem 0;
+				padding: 0.4rem 0.4rem;
+				border: 2px solid var(--c-border-dark);
+				border-radius: 0.4rem;
 
 				color: var(--c-text-lighter);
 
@@ -177,13 +177,13 @@
 
 						.repo {
 							line-height: 1rem;
-							font-size: 0.9rem;
+							font-size: 1rem;
 						}
 
 						.owner {
 							opacity: 0.75;
 
-							font-size: 0.4rem;
+							font-size: 0.7rem;
 							line-height: 0.75rem;
 						}
 					}
@@ -193,7 +193,12 @@
 				}
 
 				.repo-description {
-					font-size: 0.6rem;
+					display: inline-block;
+					width: 10rem;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					font-size: 0.75rem;
 					opacity: 0.75;
 				}
 			}

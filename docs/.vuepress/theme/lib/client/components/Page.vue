@@ -108,7 +108,7 @@ function encryptCheck() {
 	}
 }
 onMounted(() => {
-	console.log(page.value)
+	console.log(`[Debug: Page Data]`, page.value)
 
 	encryptCheck()
 })

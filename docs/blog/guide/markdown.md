@@ -6,6 +6,9 @@ tag:
 author: NeserCode
 original: false
 originalUrl: https://v2.vuepress.vuejs.org/zh/guide/markdown.html
+password: "12345678"
+hint:
+  - "八位数密码"
 ---
 
 # Markdown

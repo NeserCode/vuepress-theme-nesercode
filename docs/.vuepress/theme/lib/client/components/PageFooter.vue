@@ -8,7 +8,6 @@ import type { DefaultThemeLocaleData } from "../../shared"
 
 const themeLocale: Ref<DefaultThemeLocaleData> = useThemeLocaleData()
 const siteData = useSiteData()
-// console.log(siteData.value)
 
 const frontmatter = usePageFrontmatter()
 const footerDisplay = computed(() => themeLocale.value.footer !== false)

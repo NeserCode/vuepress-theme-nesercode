@@ -349,6 +349,10 @@ export interface DefaultThemeLocaleData extends LocaleData {
 	 **/
 	github?: GithubOptions
 	/**
+	 * Domain
+	 */
+	domain?: `http://${string}` | `https://${string}`
+	/**
 	 * Comment Options - Giscus
 	 **/
 	giscus?: GiscusOptions

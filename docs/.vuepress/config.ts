@@ -42,6 +42,7 @@ export default defineUserConfig({
 		logo: "https://q1.qlogo.cn/g?b=qq&nk=510648363&s=640",
 		// repo: "nesercode/vuepress-theme-nesercode",
 
+		domain: "https://nesercode.github.io",
 		github: {
 			username: "nesercode",
 		},
@@ -104,7 +105,7 @@ export default defineUserConfig({
 
 		giscus: {
 			repo: "NeserCode/NeserCode.github.io",
-			repoId: "R_kgDOHf8WIA=",
+			repoId: "R_kgDOHf8WIA",
 			category: "General",
 			categoryId: "DIC_kwDOHf8WIM4CRa-j",
 			mapping: "title",

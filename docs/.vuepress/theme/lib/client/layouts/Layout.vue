@@ -8,9 +8,9 @@ import GithubRepoCard from "@theme/GithubRepoCard.vue"
 
 import { ref, onMounted, onUnmounted, computed, watch, Ref } from "vue"
 import { useRoute } from "vue-router"
-import { usePageData, usePageFrontmatter } from "@vuepress/client"
+import { usePageData, usePageFrontmatter, useSiteData } from "@vuepress/client"
 import type { DefaultThemePageFrontmatter } from "../../shared"
-import { usePluginState } from "../composables"
+import { usePluginState, useThemeLocaleData } from "../composables"
 
 type ExtraPageFrontmatter = DefaultThemePageFrontmatter & {
 	plugins?: {
@@ -27,6 +27,8 @@ type ExtraPageFrontmatter = DefaultThemePageFrontmatter & {
 }
 
 const page = usePageData()
+const site = useSiteData()
+const themeLocale = useThemeLocaleData()
 const frontmatter = usePageFrontmatter<ExtraPageFrontmatter>()
 const $route = useRoute()
 
@@ -56,41 +58,22 @@ function getScrollProgress() {
 	readingProgress.value = progress
 }
 
-// Listen router name change
-watch(
-	() => $route.name,
-	() => {
-		if (isOpenReadingLine.value && readingProgress.value) {
-			readingProgress.value = 0
-		}
-	}
-)
-
 /* Original */
-const mountedWindow: Ref<Window | null> = ref(null)
 const isOriginal = computed(() => {
 	if (frontmatter.value.original === false) return false
 	else return true
 })
-const repalcedUrl = computed(() =>
-	mountedWindow.value?.location.href.replace(encodeURI($route.hash), "")
-)
-const originalUrl = ref(frontmatter.value.originalUrl ?? repalcedUrl?.value)
-
-// Listen router hash change
-watch(
-	() => $route.hash,
-	() => {
-		if (frontmatter.value.originalUrl)
-			originalUrl.value = frontmatter.value.originalUrl
-		else originalUrl.value = repalcedUrl.value
-	}
-)
+const originalUrl = computed(() => {
+	if (frontmatter.value.originalUrl) return frontmatter.value.originalUrl
+	return (
+		themeLocale.value.domain +
+		(site.value.base + page.value.path).replace("//", "/")
+	)
+})
 const copyrightTips = [""]
 
 onMounted(() => {
 	window.addEventListener("scroll", getScrollProgress)
-	mountedWindow.value = window
 })
 
 onUnmounted(() => {
