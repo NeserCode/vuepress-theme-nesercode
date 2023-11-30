@@ -24,7 +24,7 @@ export default defineUserConfig({
 			"link",
 			{
 				rel: "stylesheet",
-				href: "https://static.imalan.cn/file/font/noto-serif-sc/fonts.css",
+				href: "https://cdn.jsdelivr.net/npm/noto-serif-sc@22.0.0/all.min.css",
 			},
 		],
 	],

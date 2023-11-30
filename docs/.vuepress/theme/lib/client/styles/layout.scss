@@ -447,8 +447,15 @@ html.dark {
 	}
 }
 
+<<<<<<< Updated upstream
 //
 .back-to-top::after,
 .down-to-bottom::after {
 	font-size: 0.6rem;
+=======
+// back to up plugin css
+.back-to-top::after,
+.down-to-bottom::after {
+	font-size: 0.75rem;
+>>>>>>> Stashed changes
 }
