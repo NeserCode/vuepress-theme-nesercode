@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import { BookmarkSquareIcon } from "@heroicons/vue/24/outline"
 
-import { onBeforeMount, ref } from "vue"
+import { Ref, onBeforeMount, ref } from "vue"
+import { useThemeLocaleData } from "../composables"
+import { DefaultThemeLocaleData } from "../../shared"
 const $props = withDefaults(
 	defineProps<{
 		owner?: string
@@ -9,6 +11,7 @@ const $props = withDefaults(
 	}>(),
 	{}
 )
+const themeLocale: Ref<DefaultThemeLocaleData> = useThemeLocaleData()
 
 const repoInfo = ref<null | any>(null)
 onBeforeMount(() => {
@@ -18,6 +21,7 @@ onBeforeMount(() => {
 			headers: {
 				"Content-Type": "application/json",
 				Accept: "application/vnd.github.v3+json",
+				Authorization: `Bearer ${themeLocale.value.github?.accessToken}`,
 			},
 		})
 			.then((res) => res.json())

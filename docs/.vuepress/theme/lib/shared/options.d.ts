@@ -50,7 +50,12 @@ export interface GithubOptions {
 	/**
 	 * username - github username to get github info
 	 **/
-	username: string
+	username?: string
+	/**
+	 * accessToken - github access token to get github info
+	 * Just generate a base token without any manage right.
+	 */
+	accessToken?: string
 }
 export interface GiscusOptions {
 	/**

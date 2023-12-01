@@ -20,11 +20,19 @@ export default defineUserConfig({
 			},
 		],
 		[
+			// Font preload?
+			"link",
+			{
+				rel: "preload",
+				href: "https://static.imalan.cn/file/font/noto-serif-sc/fonts.css",
+			},
+		],
+		[
 			// Font
 			"link",
 			{
 				rel: "stylesheet",
-				href: "https://cdn.jsdelivr.net/npm/noto-serif-sc@22.0.0/all.min.css",
+				href: "https://static.imalan.cn/file/font/noto-serif-sc/fonts.css",
 			},
 		],
 	],
@@ -45,6 +53,9 @@ export default defineUserConfig({
 		domain: "https://nesercode.github.io",
 		github: {
 			username: "nesercode",
+			// it got expired
+			accessToken:
+				"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",
 		},
 
 		navbar: [
