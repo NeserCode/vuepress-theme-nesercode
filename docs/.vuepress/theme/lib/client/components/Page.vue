@@ -8,7 +8,7 @@ import EncryptRouter from "./EncryptRouter.vue"
 import CryptoJs from "crypto-js/crypto-js"
 import hmacSHA256 from "crypto-js/hmac-sha256"
 
-import { computed, onMounted, ref } from "vue"
+import { computed, nextTick, onMounted, ref, watch } from "vue"
 import { Ref } from "@vue/reactivity"
 import { usePageData, usePageFrontmatter } from "@vuepress/client"
 import { useThemeLocaleData, usePluginState } from "../composables"
@@ -17,6 +17,7 @@ import type { PageData, PageFrontmatter } from "@vuepress/client"
 import type { DefaultThemeLocaleData } from "../../shared"
 import type { GitData } from "@vuepress/plugin-git"
 import type { ReadingTime } from "vuepress-plugin-reading-time2"
+import { useRoute } from "vue-router"
 
 type ExtraPageData = PageData & {
 	readingTime: ReadingTime
@@ -119,6 +120,63 @@ const tag = frontmatter.value.tag ?? []
 function getTagPath(tag: string) {
 	return encodeURI(`/tag/${tag.toLowerCase()}/`)
 }
+
+// Toc
+const $route = useRoute()
+const toc = ref<HTMLDivElement | null>(null)
+const tocFly = ref<HTMLDivElement | null>(null)
+watch(
+	() => $route.hash,
+	() => {
+		let counter = 0
+		let current = -1
+		let sums = [] as number[]
+
+		function getTotal(list: number[], index: number = list.length - 1) {
+			let result = 0
+
+			list.forEach((l, i) => {
+				if (i < index + 1 && index >= 0) result += l
+			})
+			return result
+		}
+
+		nextTick(() => {
+			const list = toc.value?.querySelector<HTMLDivElement>(
+				".vuepress-toc-list"
+			) as HTMLDivElement
+			if (!list) return
+
+			list.querySelectorAll(".vuepress-toc-list").forEach((l) => {
+				sums.push(l.querySelectorAll(".vuepress-toc-link").length)
+			})
+
+			const links = list.querySelectorAll(".vuepress-toc-link")
+			counter = links.length
+			links.forEach((link, index) => {
+				if (!link.classList.contains("active")) return
+				else current = index
+			})
+
+			let offsetRadius = 0
+			let index = 0
+			if (current === -1) {
+			} else {
+				sums.forEach((_sum, i) => {
+					if (current >= getTotal(sums, i - 1) + i) {
+						index = i
+					}
+				})
+				offsetRadius = current - (index > 0 ? getTotal(sums, index - 1) : 0)
+			}
+			console.log(`[Debug Hash Fly Position]`, offsetRadius)
+			;(tocFly.value as HTMLDivElement).style.transform = `translateY(calc(${
+				offsetRadius * 100
+			}% + ${0.485 * offsetRadius}rem))`
+		})
+	},
+	{ immediate: true }
+)
 </script>
 
 <template>
@@ -187,7 +245,8 @@ function getTagPath(tag: string) {
 			<PageFooter />
 		</div>
 		<aside class="sidebar-custom">
-			<Toc :options="tocOptions" v-if="isOpenSdiebarCategory" />
+			<Toc ref="toc" :options="tocOptions" v-if="isOpenSdiebarCategory" />
+			<div class="toc-fly" ref="tocFly" v-if="isOpenSdiebarCategory"></div>
 			<slot name="sidebar-custom" />
 		</aside>
 	</main>

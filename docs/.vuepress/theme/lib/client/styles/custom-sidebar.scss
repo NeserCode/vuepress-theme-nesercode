@@ -39,7 +39,7 @@
 				display: inline-flex;
 				justify-content: center;
 				flex-direction: column;
-				padding-left: 0.5rem;
+				padding-left: 1ch;
 				list-style: none;
 
 				transition: all ease-in-out 300;
@@ -61,6 +61,8 @@
 			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
+
+			padding-left: 1ch;
 		}
 
 		/* Active */
@@ -86,9 +88,10 @@
 			> .vuepress-toc-list
 			> .vuepress-toc-item
 			> .vuepress-toc-link.active {
-			text-decoration: underline;
-			text-underline-offset: 0.3rem;
-			text-underline-position: left;
+			background: var(--c-brand-light);
+			color: var(--c-bg-light);
+			border-radius: 0.25rem;
+			transition: all ease-in-out 0.2s;
 		}
 
 		.toc-main
@@ -96,14 +99,29 @@
 			> .vuepress-toc-item
 			.vuepress-toc-link.active {
 			color: var(--c-text-lighter);
+			font-weight: bolder;
 		}
-		.toc-main
-			> .vuepress-toc-list
-			> .vuepress-toc-item
-			> .vuepress-toc-list
-			> .vuepress-toc-item
-			.vuepress-toc-link.active {
-			color: var(--c-text-lightest);
+		// .toc-main
+		// 	> .vuepress-toc-list
+		// 	> .vuepress-toc-item
+		// 	> .vuepress-toc-list
+		// 	> .vuepress-toc-item
+		// 	.vuepress-toc-link.active {
+		// 	color: var(--c-text-lightest);
+		// }
+
+		.toc-fly {
+			position: absolute;
+			width: 5px;
+			height: 2.25ch;
+			left: 1.125rem;
+			top: 10.125rem;
+			background: var(--c-text-accent);
+			border-radius: 100px;
+
+			z-index: 5;
+			transform: translateY(0);
+			transition: all ease-in-out 0.2s;
 		}
 
 		/* github repo card */

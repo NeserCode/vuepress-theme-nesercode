@@ -25,6 +25,7 @@ export default defineUserConfig({
 			{
 				rel: "preload",
 				href: "https://static.imalan.cn/file/font/noto-serif-sc/fonts.css",
+				as: "style",
 			},
 		],
 		[
@@ -55,7 +56,7 @@ export default defineUserConfig({
 			username: "nesercode",
 			// it got expired
 			accessToken:
-				"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",
+				"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",
 		},
 
 		navbar: [
