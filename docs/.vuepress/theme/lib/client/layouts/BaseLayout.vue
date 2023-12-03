@@ -120,13 +120,17 @@ onUnmounted(() => {
 
 // watch path
 const $route = useRoute()
-watch(
-	() => $route.path,
-	() => {
-		initUpandDown()
-	},
-	{ immediate: true }
-)
+onMounted(() => {
+	watch(
+		() => $route.path,
+		() => {
+			nextTick(() => {
+				initUpandDown(document)
+			})
+		},
+		{ immediate: true }
+	)
+})
 </script>
 
 <template>

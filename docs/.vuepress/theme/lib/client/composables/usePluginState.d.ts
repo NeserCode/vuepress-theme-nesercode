@@ -12,5 +12,5 @@ export const usePluginState: (
 		| undefined
 ) => ComputedRef<boolean>
 
-export const enableUpandDown: (state: boolean) => void
-export const initUpandDown: () => void
+export const enableUpandDown: (state: boolean, document: Document) => void
+export const initUpandDown: (document: Document) => void

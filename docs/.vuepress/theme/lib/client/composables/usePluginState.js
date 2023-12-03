@@ -14,24 +14,20 @@ export const usePluginState = (keyName, states) => computed(() => {
   } else return !(states[keyName] === false)
 })
 
-export const enableUpandDown = (state) => {
+export const enableUpandDown = (state, document) => {
   const stateStyle = state ? 'block' : 'none'
-
-  if (!window && !document) return
 
   const plugin = document.querySelector(".up-and-down")
   if (plugin) plugin.style.display = stateStyle
   else return
 }
 
-export const initUpandDown = () => {
-  if (!window && !document) return
-
+export const initUpandDown = (document) => {
   nextTick(() => {
-    enableUpandDown(false)
+    enableUpandDown(false, document)
 
     document.addEventListener('scrollend', () => {
-      enableUpandDown(true)
+      enableUpandDown(true, document)
       document.removeEventListener('scrollend', () => { })
     })
   })
