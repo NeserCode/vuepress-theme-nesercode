@@ -76,7 +76,7 @@
 			text-overflow: ellipsis;
 			white-space: nowrap;
 
-			padding-left: 0.5ch;
+			padding: 0 0.5ch;
 		}
 
 		/* Active */
@@ -161,10 +161,10 @@
 				flex-direction: column;
 				cursor: pointer;
 
-				width: fit-content;
+				width: 8rem;
 
 				margin: 0.6rem 0;
-				padding: 0.4rem 0.4rem;
+				padding: 0.5rem 0.8rem;
 				border: 2px solid var(--c-border-dark);
 				border-radius: 0.4rem;
 
@@ -203,7 +203,7 @@
 						.owner {
 							display: inline-block;
 
-							max-width: 24ch;
+							max-width: 12ch;
 
 							text-overflow: ellipsis;
 							overflow: hidden;
@@ -218,7 +218,7 @@
 						.owner {
 							opacity: 0.75;
 
-							font-size: 0.65rem;
+							font-size: 0.75rem;
 							line-height: 0.75rem;
 						}
 					}
@@ -228,7 +228,7 @@
 				}
 
 				.repo-description {
-					font-size: 0.75rem;
+					font-size: 0.7rem;
 					opacity: 0.75;
 				}
 			}

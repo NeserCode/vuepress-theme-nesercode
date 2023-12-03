@@ -13,8 +13,9 @@ import {
 	provide,
 	reactive,
 	ref,
+	watch,
 } from "vue"
-import { useRouter } from "vue-router"
+import { useRouter, useRoute } from "vue-router"
 import type {
 	DefaultThemePageFrontmatter,
 	DefaultThemeLocaleData,
@@ -23,6 +24,7 @@ import {
 	useScrollPromise,
 	useSidebarItems,
 	useThemeLocaleData,
+	initUpandDown,
 } from "../composables/index.js"
 
 import { GithubDataKey } from "../token.js"
@@ -115,6 +117,16 @@ onMounted(() => {
 onUnmounted(() => {
 	unregisterRouterHook()
 })
+
+// watch path
+const $route = useRoute()
+watch(
+	() => $route.path,
+	() => {
+		initUpandDown()
+	},
+	{ immediate: true }
+)
 </script>
 
 <template>
