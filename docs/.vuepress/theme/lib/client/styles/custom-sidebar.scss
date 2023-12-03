@@ -46,6 +46,20 @@
 				.vuepress-toc-item {
 					display: inline-flex;
 					flex-direction: column;
+
+					&:has(.vuepress-toc-list .vuepress-toc-item)::before {
+						content: "H2";
+
+						position: absolute;
+						left: -3.25ch;
+
+						opacity: 0.5;
+						font-size: small;
+						font-weight: 900;
+						font-family: var(--font-family-code);
+
+						transform: translateY(12%);
+					}
 				}
 			}
 		}
@@ -62,7 +76,7 @@
 			text-overflow: ellipsis;
 			white-space: nowrap;
 
-			padding-left: 1ch;
+			padding-left: 0.5ch;
 		}
 
 		/* Active */
@@ -88,10 +102,12 @@
 			> .vuepress-toc-list
 			> .vuepress-toc-item
 			> .vuepress-toc-link.active {
+			padding-left: 1ch;
+
 			background: var(--c-brand-light);
 			color: var(--c-bg-light);
 			border-radius: 0.25rem;
-			transition: all ease-in-out 0.2s;
+			transition: all ease-in-out 0.4s;
 		}
 
 		.toc-main

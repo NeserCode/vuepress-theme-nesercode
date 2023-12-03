@@ -39,9 +39,7 @@ function copyInfo() {
 				>
 				<span class="title" v-else>本文为转载文章，如欲转载请联系原作者</span>
 				<span v-for="tip in tips" :key="tip" class="tip">{{ tip }}</span>
-				<span class="origin-url"
-					>文章链接：{{ decodedUrl }}{{ decodedUrl }}{{ decodedUrl }}</span
-				>
+				<span class="origin-url">文章链接：{{ decodedUrl }}</span>
 				<span class="operate">
 					<button class="btn" @click="copyInfo">一键复制</button>
 				</span>

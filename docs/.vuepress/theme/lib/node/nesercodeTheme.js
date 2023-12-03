@@ -63,7 +63,7 @@ export const nesercodeTheme = ({ themePlugins = {}, ...localeOptions } = {}) => 
                     headerLinkSelector: 'a.sidebar-item',
                     headerAnchorSelector: '.header-anchor',
                     // should greater than page transition duration
-                    delay: 300,
+                    delay: 500,
                 })
                 : [],
             // @vuepress/plugin-back-to-top
