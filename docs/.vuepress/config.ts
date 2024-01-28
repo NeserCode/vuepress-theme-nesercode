@@ -39,7 +39,7 @@ export default defineUserConfig({
 	],
 
 	// Product link prefix
-	base: "/vuepress-theme-nesercode/",
+	base: "/",
 
 	bundler: viteBundler({
 		viteOptions: {},
